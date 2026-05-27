@@ -62,11 +62,11 @@ function getSiteRoot() {
 const ROOT = getSiteRoot();
 
 const NAV_LINKS = [
-    { href: 'static/about.html',    label: 'Tentang Kami' },
-    { href: 'static/proker.html',   label: 'Program Kerja' },
-    { href: 'static/struktur.html', label: 'Struktur' },
-    { href: 'static/articles.html', label: 'Artikel' },
-    { href: 'static/contacts.html', label: 'Contact' },
+    { href: 'about.html',    label: 'Tentang Kami' },
+    { href: 'proker.html',   label: 'Program Kerja' },
+    { href: 'struktur.html', label: 'Struktur' },
+    { href: 'articles.html', label: 'Artikel' },
+    { href: 'contacts.html', label: 'Contact' },
 ];
 
 function getCurrentPage() {
