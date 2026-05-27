@@ -6,7 +6,7 @@ date: 25 Mei 2026
 date_iso: 2026-05-25
 excerpt: Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi
 cover: https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/demo-proker-artikel-digital.png?raw=true
-featured: True
+featured: False
 ---
 
 Selamat datang di platform digital kami yang baru saja kami buat! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.

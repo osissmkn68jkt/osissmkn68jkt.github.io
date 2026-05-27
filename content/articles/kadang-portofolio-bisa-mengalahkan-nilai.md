@@ -6,7 +6,7 @@ date: 27 Mei 2026
 date_iso: 2026-05-27
 excerpt: Nilai tetap penting. Tetapi kemampuan menunjukkan karya nyata sering kali membuat seseorang lebih mudah terlihat.
 cover: https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/kadang-portofolio-bisa-mengalahkan-nilai.jpeg?raw=true
-featured: True
+featured: False
 ---
 
 Banyak siswa masih percaya bahwa nilai tinggi adalah tiket utama untuk mendapatkan pekerjaan. Padahal di dunia kerja sekarang, perusahaan mulai melihat hal lain yang tidak selalu muncul di raport, karya nyata.
