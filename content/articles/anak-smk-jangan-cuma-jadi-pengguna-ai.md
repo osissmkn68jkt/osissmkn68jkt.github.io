@@ -1,7 +1,7 @@
 ---
 title: Anak SMK Jangan Cuma Jadi Pengguna AI
 category: Edukasi
-author: Ikram Rahmani & Kolaborasi x https://mulamula.id/
+author: Ikram Rahmani x https://mulamula.id/
 date: 27 Mei 2026
 date_iso: 2026-05-27
 excerpt: Banyak orang memakai AI hanya untuk mencari jawaban tugas sekolah atau membuat caption media sosial. Padahal kemampuan paling penting sebenarnya bukan sekadar “bertanya ke AI”.

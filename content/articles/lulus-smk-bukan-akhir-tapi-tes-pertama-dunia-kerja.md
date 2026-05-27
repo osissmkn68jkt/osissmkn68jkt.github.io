@@ -1,7 +1,7 @@
 ---
 title: Lulus SMK Bukan Akhir, Tapi Tes Pertama Dunia Kerja
 category: Edukasi
-author: Ikram Rahmani & Kolaborasi x https://mulamula.id/
+author: Ikram Rahmani x https://mulamula.id/
 date: 27 Mei 2026
 date_iso: 2026-05-27
 excerpt: Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi

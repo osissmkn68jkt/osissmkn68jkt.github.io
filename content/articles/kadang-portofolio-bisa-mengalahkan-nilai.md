@@ -1,7 +1,7 @@
 ---
 title: Kadang Portofolio Bisa Mengalahkan Nilai
 category: Edukasi
-author: Ikram Rahmani & Kolaborasi x https://mulamula.id/
+author: Ikram Rahmani x https://mulamula.id/
 date: 27 Mei 2026
 date_iso: 2026-05-27
 excerpt: Nilai tetap penting. Tetapi kemampuan menunjukkan karya nyata sering kali membuat seseorang lebih mudah terlihat.
