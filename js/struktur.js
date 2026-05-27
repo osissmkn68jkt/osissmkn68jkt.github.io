@@ -6,11 +6,16 @@
 
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
     }
-    return origin + '/' + parts[0] + '/';
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 function dataPath() {

@@ -9,14 +9,19 @@
 
 import { parseMarkdown } from './md-parser.js';
 
-/** Site root — same logic as components.js */
+/** Site root — same robust logic as components.js */
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
     }
-    return origin + '/' + parts[0] + '/';
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 const ROOT = getSiteRoot();
@@ -84,7 +89,6 @@ function buildCategorySidebar(articles, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // Count articles per category
     const counts = {};
     articles.forEach(a => {
         counts[a.category] = (counts[a.category] || 0) + 1;
@@ -141,7 +145,7 @@ export async function initArticleListPage() {
     const gridContainer     = document.getElementById('articles-grid-container');
     const categoryListId    = 'category-list';
 
-    if (!gridContainer) return; // not on articles.html
+    if (!gridContainer) return;
 
     try {
         const manifest = await loadManifest();
@@ -172,7 +176,6 @@ export async function initArticlePage() {
     const container = document.getElementById('article-render-target');
     if (!container) return;
 
-    // Get article ID from data attribute or URL
     const articleId = container.dataset.articleId
         || window.location.pathname.split('/').pop().replace('.html', '');
 
@@ -182,14 +185,10 @@ export async function initArticlePage() {
 
         if (!meta) throw new Error(`Article "${articleId}" not found in manifest`);
 
-        // Article body is embedded directly in the manifest — no extra fetch needed.
-        // This avoids GitHub Pages blocking .md file requests.
         const bodyHtml = parseMarkdown(meta.body || '');
 
-        // Update page title
         document.title = `${meta.title} — OSIS SMKN 68 Jakarta`;
 
-        // Render article
         container.innerHTML = `
             <div class="reading-content-wrapper">
                 <a href="${ROOT}static/articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
@@ -223,7 +222,7 @@ export async function initArticlePage() {
         console.error('Article render failed:', err);
         container.innerHTML = `
             <div class="reading-content-wrapper">
-                <a href="../articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
+                <a href="${ROOT}static/articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
                 <p style="color:red; margin-top: 2rem;">Gagal memuat artikel: ${err.message}</p>
             </div>`;
     }

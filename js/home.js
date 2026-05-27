@@ -7,11 +7,16 @@
 
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
     }
-    return origin + '/' + parts[0] + '/';
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 // ─── Hero Slider ──────────────────────────────────────────────
@@ -62,7 +67,6 @@ export async function initHomeNews() {
         if (!res.ok) throw new Error('Manifest not found');
         const articles = await res.json();
 
-        // Show the 3 most recent articles (sorted by date descending)
         const recent = [...articles]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 3);
@@ -75,7 +79,6 @@ export async function initHomeNews() {
         grid.innerHTML = recent.map(a => renderNewsCard(a, ROOT)).join('');
     } catch (err) {
         console.error('Home news failed to load:', err);
-        // Silently fail on home page — fallback content below stays visible
         grid.innerHTML = '<p style="color:var(--text-muted)">Gagal memuat berita terkini.</p>';
     }
 }

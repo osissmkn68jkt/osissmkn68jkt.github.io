@@ -13,7 +13,7 @@ import { initProkerPage } from './proker.js';
 // 1. Inject nav + footer on every page
 injectComponents();
 
-// 2. Boot the correct page module
+// 2. Boot the correct page module based on the filename
 const page = window.location.pathname.split('/').pop() || 'index.html';
 
 if (page === 'index.html' || page === '') {
@@ -25,7 +25,7 @@ if (page === 'index.html' || page === '') {
     initArticleListPage();
 } else if (page === 'proker.html') {
     initProkerPage();
-} else {
+} else if (page.endsWith('.html') && window.location.pathname.includes('/articles/')) {
     // Static article pages — static/articles/[id].html
     initArticlePage();
 }

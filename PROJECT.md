@@ -3,17 +3,27 @@
 ## STRUCTURE 
 $ find .
 ./content
+./content/.DS_Store
 ./content/articles
-./content/articles/uji-coba-proker.md
+./content/articles/demo-proker-artikel-digital.md
+./content/articles/image-1.png
+./content/articles/image.png
 ./content/articles-manifest.json
 ./content/osis-data.json
+./content/proker-data.json
 ./css
 ./css/style.css
 ./img
+./img/.DS_Store
+./img/assets
+./img/assets/img1.jpeg
 ./img/covers
+./img/covers/12ewqda.jpeg
+./img/covers/demo-proker-artikel-digital.png
 ./img/covers/news1.jpg
 ./img/covers/news2.jpg
 ./img/covers/news3.jpg
+./img/covers/slad.jpeg
 ./img/icon.png
 ./img/slide1.jpg
 ./img/slide2.jpg
@@ -25,89 +35,68 @@ $ find .
 ./js/components.js
 ./js/home.js
 ./js/md-parser.js
+./js/proker.js
 ./js/struktur.js
 ./PROJECT.md
 ./README.md
 ./static
 ./static/about.html
 ./static/articles
-./static/articles/uji-coba-proker.html
+./static/articles/demo-proker-artikel-digital.html
 ./static/articles.html
 ./static/contacts.html
 ./static/proker.html
 ./static/struktur.html
 ./TODO.md
 ./tools
-./tools/build-manifest.py
+./tools/build.py
 
 ## FILES
 
-`content/articles/uji-coba-proker.md`
+`content/articles/demo-proker-artikel-digital.md`
 ```markdown
 ---
-title: Judul Artikel
-category: Teknologi
-author: Nama Kamu
+title: Demo Program Kerja Artikel Digital
+category: Edukasi
+author: Ikram Rahmani
 date: 25 Mei 2026
 date_iso: 2026-05-25
-excerpt: Kalimat singkat preview artikel.
-cover: https://link-gambar.jpg
+excerpt: Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi
+cover: https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/demo-proker-artikel-digital.png?raw=true
 featured: True
 ---
 
-[UJI COBA]Selamat datang di platform digital kami yang telah diperbarui! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.
+Selamat datang di platform digital kami yang baru saja kami buat! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.
 
-Banyak yang langsung lompat ke React atau Vue tanpa memahami dasar-dasarnya. Padahal, memahami Vanilla JS adalah fondasi terkuat untuk menjadi web developer yang handal.
+## Untuk apa adanya sebuah website?
 
-## Mengapa Vanilla JS?
+Kami mengharapkan dengan adanya website ini, organisasi OSIS dapat membentuk portofolio yang baik untuk kedepannya dan membentuk habit literasi digital yang baik. Kami juga ingin meningkatkan daya literasi siswa SMKN 68 Jakarta, dengan adanya artikel digital seperti ini kami timbulnya minat baca informasi untuk murid SMKN 68 Jakarta
 
-Vanilla JS adalah JavaScript murni — tanpa library, tanpa framework. Belajar dari dasar membuat kamu benar-benar paham bagaimana browser bekerja, bukan cuma hafal sintaks framework.
+## Lalu, Mengapa harus digital?
+![Manusia Gua](https://github.com/lkssmkn68/website-osis-test/blob/main/img/assets/img1.jpeg?raw=true)
+Di zaman serba canggih ini tidak memungkinkan untuk kita jika harus selalu menjadi manusia gua dan tidak mau update perkembangan zaman. Dengan kita mendigitalisasikan sarana informasi kita, secara tidak langsung kita telah berpartisipasi akan perkembangan zaman yang sekarang sangat cepat. Ini adalah salah satu tindakan kita untuk bisa melatih kemampuan siswa siswa untuk bisa terus mengikuti perkembangan zaman.
 
-## Langkah Belajar yang Tepat
-
-### 1. Kuasai DOM Manipulation
-
-DOM (Document Object Model) adalah cara JavaScript berkomunikasi dengan HTML. Mulai dari sini:
-
-- `document.getElementById()` — ambil elemen berdasarkan ID
-- `element.addEventListener()` — dengarkan event seperti klik dan ketikan
-- `element.innerHTML` — ubah konten HTML secara dinamis
-
-### 2. Pelajari Fetch API
-
-Setelah DOM, pelajari cara mengambil data dari internet menggunakan `fetch()`. Ini adalah skill paling penting di web modern.
-
-### 3. Latihan Membuat Project Kecil
-
-Teori tanpa praktik tidak akan kemana-mana. Coba buat:
-
-- To-do list sederhana
-- Kalkulator
-- Filter gambar/artikel seperti di website ini!
-
-> "Seorang programmer hebat tidak lahir dari membaca buku, tapi dari menulis kode setiap hari."
-
-Semangat terus belajarnya! OSIS SMKN 68 selalu mendukung perkembangan digital literacy anggotanya.
+> Tetap lah memiliki rasa penasaran karena kita adalah manusia!
 ```
 
 `content/articles-manifest.json`
 ```json
 [
   {
-    "id": "uji-coba-proker",
-    "file": "content/articles/uji-coba-proker.md",
-    "title": "Judul Artikel",
-    "author": "Nama Kamu",
+    "id": "demo-proker-artikel-digital",
+    "file": "content/articles/demo-proker-artikel-digital.md",
+    "title": "Demo Program Kerja Artikel Digital",
+    "author": "Ikram Rahmani",
     "date": "2026-05-25",
     "date_display": "25 Mei 2026",
-    "readtime": "",
-    "cover": "https://link-gambar.jpg",
+    "readtime": "1 menit",
+    "cover": "https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/demo-proker-artikel-digital.png?raw=true",
     "cover_caption": "",
-    "category": "teknologi",
-    "category_display": "Teknologi",
-    "excerpt": "Kalimat singkat preview artikel.",
+    "category": "edukasi",
+    "category_display": "Edukasi",
+    "excerpt": "Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi",
     "featured": true,
-    "body": "[UJI COBA]Selamat datang di platform digital kami yang telah diperbarui! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.\n\nBanyak yang langsung lompat ke React atau Vue tanpa memahami dasar-dasarnya. Padahal, memahami Vanilla JS adalah fondasi terkuat untuk menjadi web developer yang handal.\n\n## Mengapa Vanilla JS?\n\nVanilla JS adalah JavaScript murni — tanpa library, tanpa framework. Belajar dari dasar membuat kamu benar-benar paham bagaimana browser bekerja, bukan cuma hafal sintaks framework.\n\n## Langkah Belajar yang Tepat\n\n### 1. Kuasai DOM Manipulation\n\nDOM (Document Object Model) adalah cara JavaScript berkomunikasi dengan HTML. Mulai dari sini:\n\n- `document.getElementById()` — ambil elemen berdasarkan ID\n- `element.addEventListener()` — dengarkan event seperti klik dan ketikan\n- `element.innerHTML` — ubah konten HTML secara dinamis\n\n### 2. Pelajari Fetch API\n\nSetelah DOM, pelajari cara mengambil data dari internet menggunakan `fetch()`. Ini adalah skill paling penting di web modern.\n\n### 3. Latihan Membuat Project Kecil\n\nTeori tanpa praktik tidak akan kemana-mana. Coba buat:\n\n- To-do list sederhana\n- Kalkulator\n- Filter gambar/artikel seperti di website ini!\n\n> \"Seorang programmer hebat tidak lahir dari membaca buku, tapi dari menulis kode setiap hari.\"\n\nSemangat terus belajarnya! OSIS SMKN 68 selalu mendukung perkembangan digital literacy anggotanya."
+    "body": "Selamat datang di platform digital kami yang baru saja kami buat! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.\n\n## Untuk apa adanya sebuah website?\n\nKami mengharapkan dengan adanya website ini, organisasi OSIS dapat membentuk portofolio yang baik untuk kedepannya dan membentuk habit literasi digital yang baik. Kami juga ingin meningkatkan daya literasi siswa SMKN 68 Jakarta, dengan adanya artikel digital seperti ini kami timbulnya minat baca informasi untuk murid SMKN 68 Jakarta\n\n## Lalu, Mengapa harus digital?\n![Manusia Gua](https://github.com/lkssmkn68/website-osis-test/blob/main/img/assets/img1.jpeg?raw=true)\nDi zaman serba canggih ini tidak memungkinkan untuk kita jika harus selalu menjadi manusia gua dan tidak mau update perkembangan zaman. Dengan kita mendigitalisasikan sarana informasi kita, secara tidak langsung kita telah berpartisipasi akan perkembangan zaman yang sekarang sangat cepat. Ini adalah salah satu tindakan kita untuk bisa melatih kemampuan siswa siswa untuk bisa terus mengikuti perkembangan zaman.\n\n> Tetap lah memiliki rasa penasaran karena kita adalah manusia!"
   }
 ]
 ```
@@ -175,6 +164,252 @@ Semangat terus belajarnya! OSIS SMKN 68 selalu mendukung perkembangan digital li
     }
   ]
 }
+
+```
+
+`content/proker-data.json`
+```json
+[
+    {
+        "id": "bph",
+        "nama": "Badan Pengurus Harian",
+        "proker": [
+          {
+            "judul": "Solve It!",
+            "deskripsi": "Mengadakan diskusi mingguan tiap divisi OSIS membuat solusi kecil terhadap masalah di bidangnya masing-masing. Misalnya, divisi yang merasa programnya belum berjalan maksimal dan hampir mendekati programnya. Dapat mengadakan diskusi internal untuk mencari tahu penyebab dan merancang langkah yang realistis",
+            "periode": "Unggulan",
+            "status": "Aktif",
+            "status_class": "status-running"
+          },
+          {
+            "judul": "Seminar Inspiratif OSIS Per Sekbid",
+            "deskripsi": "Mengadakan seminar atau sharing session secara bergiliran untuk setiap seksi bidang (sekbid) OSIS serta menanamkan nilai budi pekerti melalui kegiatan harian.",
+            "periode": "Berkelanjutan",
+            "status": "Aktif",
+            "status_class": "status-running"
+          },
+          {
+            "judul": "Kunjungan antar Sekolah OSIS",
+            "deskripsi": "Melakukan kunjugan ke sekolah lain dan berkomunikasi dengan anggota OSIS dari sekolah yang dikunjungi untuk berbagi aspirasi satu golongan OSIS.",
+            "periode": "Berkelanjutan",
+            "status": "Tahap Perencanaan",
+            "status_class": ""
+          }
+        ]
+    },
+    {
+      "id": "humas-it",
+      "nama": "Seksi Bidang Humas IT",
+      "proker": [
+        {
+          "judul": "Jurnalistik Kegiatan OSIS",
+          "deskripsi": "Mebuat kreasi berupa  artikel yang harus dibuat per sekbid dengan judul dan tema sesuai tugas masing masing serta dapat di ekspan ke lingkup siswa.",
+          "periode": "Unggulan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Website Resmi OSIS SMKN 68 Jakarta",
+          "deskripsi": "Membangun dan memelihara website resmi OSIS sebagai pusat informasi digital sekolah.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Merangkum Kegiatan OSIS",
+          "deskripsi": "Meringkas event atau acara yang dilaksanakan osis.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Penjadwalan Konten Sosial Media",
+          "deskripsi": "Membuat jadwal untuk konten yang akan dibuat berdasarkan yang trending.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Pembuatan Sarana Sumber Informasi & Layanan Aduan",
+          "deskripsi": "Membuat sumber informasi berupa saluran whatsapp serta terdapat layanan aduan siswa dalam bentuk nomor aduan osis.",
+          "periode": "Berkelanjutan",
+          "status": "Tahap Perencanaan",
+          "status_class": ""
+        }
+      ]
+    },
+    {
+      "id": "kerohanian",
+      "nama": "Seksi Bidang Kerohanian",
+      "proker": [
+        {
+          "judul": "Challange Muslim",
+          "deskripsi": "Mengadakan event kegiatan lomba setiap minggu untuk siswa 68 mendekatkan diri kepada Allah",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Memperingati Hari Besar Islam",
+          "deskripsi": "Mengadakan lomba atau acara saat peringatan hari besar Islam seperti Maulid Nabi dan Isra Mi'raj.",
+          "periode": "Q1X",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Kajian Rohani",
+          "deskripsi": "Kegiatan kajian yang membahas tentang akhlak atau hal yang relevan dengan Islam, khususnya untuk remaja.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Ibadah Jumat & Renungan Harian bagi Siswa Beragama Kristen",
+          "deskripsi": "Mengadakan ibadah bagi umat Kristen.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Perayaan Hari Besar Umat Kristiani",
+          "deskripsi": "Mengadakan ibadah khusus untuk memperingati hari besar keagamaan.",
+          "periode": "Q3",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Retret untuk Agama Kristen",
+          "deskripsi": "Kegiatan di luar sekolah untuk meningkatkan keimanan.",
+          "periode": "Q2",
+          "status": "Tahap Perencanaan",
+          "status_class": ""
+        }
+      ]
+    },
+    {
+      "id": "kedisiplinan",
+      "nama": "Seksi Bidang Kedisiplinan",
+      "proker": [
+        {
+          "judul": "SEKAR (Seminar Karakter Siswa)",
+          "deskripsi": "Sekbid kedisiplinan  Kolaborasi dengan Guru, kerohanian, BK dan kesiswaan.",
+          "periode": "Unggulan",
+          "status": "Tahap Perencanaan",
+          "status_class": ""
+        },
+        {
+          "judul": "Kegiatan Kerja Bakti Sosial dan Lingkungan",
+          "deskripsi": "Membersihkan area di sekolah seperti lapangan, taman, koridor, dan lainnya karena kebersihan sebagian dari iman.",
+          "periode": "Unggulan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Mempersiapkan perlengkapan upacara/apel dll.",
+          "deskripsi": "Mempersiapkan keperluan-keperluan untuk pembiasaan pagi.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Piket Gerbang dengan Sistem 3S (Senyum, Salam dan Sapa)",
+          "deskripsi": "Melakukan pembiasaan pagi dengan (salam, senyum dan sapa).",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Pengecekan Ruang Kelas sebelum Upacara/Apel Dimulai",
+          "deskripsi": "Mengecek ruang kelas/toilet guna memperhatikan tidak adanya siswa yang tidak mengikuti upacara/apel.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Pengecekan Kebersihan Kelas Setiap Pulang Sekolah",
+          "deskripsi": "Menertibkan kebersihan tiap kelas SMKN 68 Jakarta dengan inspeksi terhadap setiap kelas.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        }
+      ]
+    },
+    {
+      "id": "jasmani-kreativitas",
+      "nama": "Seksi Bidang Jasmani & Kreativitas",
+      "proker": [
+        {
+          "judul": "EKI RUN",
+          "deskripsi": "Kegiatan Siswa/Siswi untuk mengikuti lomba lari estavet",
+          "periode": "Unggulan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Mading Bulanan",
+          "deskripsi": "Mengganti mading tiap bulannya dengan hasil kreativitas siswa atau tentang informasi' lowongan kerja yang diberikan bkk",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "68 CHALLENGE",
+          "deskripsi": "Kegiatan Siswa/Siswi untuk membugarkan tubuh seperti push up, sit up, dll",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "Lomba Kelas Kreativitas",
+          "deskripsi": "Melakukan kegiatan seperti menggambar, menulis cerita pendek, membuat poster, mengarang puisi, dan membuat kerajinan tangan.",
+          "periode": "Berkelanjutan",
+          "status": "Tahap Perencanaan",
+          "status_class": ""
+        },
+        {
+          "judul": "Plastik Reborn",
+          "deskripsi": "Mengubah sampah plastik menjadi karya seni yang indah dan bernilai. Mengajak siswa-siswa untuk mengumpulkan sampah plastik, memilah-lpilahnya, dan kemudian membuat karya seni dari bahan tersebut.",
+          "periode": "Berkelanjutan",
+          "status": "Tahap Perencanaan",
+          "status_class": ""
+        }
+      ]
+    },
+    {
+      "id": "dana-usaha",
+      "nama": "Seksi Bidang Dana Usaha",
+      "proker": [
+        {
+          "judul": "68 Street Sale",
+          "deskripsi": "Berjualan di Car Free Day dengan produk sederhana dan modal minim",
+          "periode": "Unggulan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "OSIS Refreshment Duty",
+          "deskripsi": "Menjaga dan membantu berjualan di gerai minuman yang sudah ada di kantin sekolah, dengan sistem bagi hasil atau komisi tetap",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "68 Partnership Program",
+          "deskripsi": "Menjalin kerja sama dengan brand lokal (contoh: toko alat tulis, kedai kopi, percetakan, atau clothing brand) untuk menyediakan sponsor berupa dana, produk, atau kebutuhan acara OSIS",
+          "periode": "Q1",
+          "status": "Aktif",
+          "status_class": "status-running"
+        },
+        {
+          "judul": "68 Media Partner",
+          "deskripsi": "Mengajak usaha kecil sekitar sekolah (toko, kuliner, percetakan, kedai kopi) untuk menjadi media partner. Sebagai imbalan promosi lewat akun OSIS, mereka memberi donasi atau sponsor kecil.",
+          "periode": "Berkelanjutan",
+          "status": "Aktif",
+          "status_class": "status-running"
+        }
+      ]
+    }
+  ]
 ```
 
 `css/style.css`
@@ -519,6 +754,14 @@ body {
     color: var(--text-muted);
     font-weight: 600;
     box-shadow: var(--shadow-sm);
+    overflow: hidden; /* Tambahkan ini agar sudut gambar ikut membulat */
+}
+
+.graphic-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Membuat gambar memenuhi kotak dengan proporsional */
+    display: block;
 }
 
 .graphic-box.tall { grid-row: span 2; height: 420px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: #ffffff; font-size: 24px; }
@@ -956,50 +1199,41 @@ textarea.form-input { resize: vertical; min-height: 120px; }
     .article-header h1 { font-size: 28px; }
     .article-content p:first-child { font-size: 17px; }
 }
-
 ```
 
 `js/app.js`
 ```javascript
 /**
- * app.js — Main entry point for OSIS SMKN 68 Jakarta website.
- *
- * Each page imports only what it needs.
- * Shared functionality (nav, footer) is injected automatically by components.js.
+ * app.js
+ * Entry point — injects shared components and boots the correct
+ * page module based on the current URL.
  */
 
 import { injectComponents } from './components.js';
+import { initHomeSlider, initHomeNews } from './home.js';
 import { initArticleListPage, initArticlePage } from './articles.js';
 import { renderOsisTree } from './struktur.js';
-import { initHomeSlider } from './home.js';
+import { initProkerPage } from './proker.js';
 
-document.addEventListener('DOMContentLoaded', async () => {
+// 1. Inject nav + footer on every page
+injectComponents();
 
-    // 1. Always inject shared nav + footer
-    injectComponents();
+// 2. Boot the correct page module
+const page = window.location.pathname.split('/').pop() || 'index.html';
 
-    // 2. Page-specific logic based on filename
-    const page = window.location.pathname.split('/').pop() || 'index.html';
-
-    if (page === 'index.html' || page === '') {
-        initHomeSlider();
-    }
-
-    if (page === 'struktur.html') {
-        await renderOsisTree();
-    }
-
-    if (page === 'articles.html') {
-        await initArticleListPage();
-    }
-
-    // Single article pages live in /static/articles/[id].html
-    if (document.getElementById('article-render-target')) {
-        await initArticlePage();
-    }
-
-});
-
+if (page === 'index.html' || page === '') {
+    initHomeSlider();
+    initHomeNews();
+} else if (page === 'struktur.html') {
+    renderOsisTree();
+} else if (page === 'articles.html') {
+    initArticleListPage();
+} else if (page === 'proker.html') {
+    initProkerPage();
+} else {
+    // Static article pages — static/articles/[id].html
+    initArticlePage();
+}
 ```
 
 `js/articles.js`
@@ -1317,6 +1551,7 @@ export function renderFooter() {
                 <h4>Kontak</h4>
                 <p>Email: osissmkn68jakarta@gmail.com</p>
                 <p>Telepon: +62 896-1672-7118 (Mutia)</p>
+                <p>Telepon: +62 823-1151-1050 (Samuel)</p>
                 <p>Jam Kerja: Senin–Jumat, 09.00–17.00 WIB</p>
             </div>
             <div class="footer-section socials">
@@ -1346,8 +1581,21 @@ export function injectComponents() {
 ```javascript
 /**
  * home.js
- * Hero image slider for the index.html home page.
+ * Hero image slider + dynamic "Berita Terkini" for index.html.
+ * The news section is auto-populated from content/articles-manifest.json —
+ * no need to edit index.html when new articles are added.
  */
+
+function getSiteRoot() {
+    const { origin, pathname } = window.location;
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
+        return origin + '/';
+    }
+    return origin + '/' + parts[0] + '/';
+}
+
+// ─── Hero Slider ──────────────────────────────────────────────
 
 export function initHomeSlider() {
     const slides = document.querySelectorAll('.hero-slide');
@@ -1363,10 +1611,59 @@ export function initHomeSlider() {
     }, 5000);
 }
 
+// ─── Berita Terkini ───────────────────────────────────────────
+
+function renderNewsCard(article, ROOT) {
+    const coverHtml = article.cover
+        ? `<img src="${article.cover}" alt="${article.title}" class="news-image" loading="lazy">`
+        : `<div class="news-image" style="background:var(--bg-main);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;">Tanpa Gambar</div>`;
+
+    return `
+    <article class="news-card">
+        <div class="news-image-wrapper">
+            ${coverHtml}
+        </div>
+        <div class="news-body">
+            <span class="news-date">${article.date_display || article.date}</span>
+            <h3 class="news-title">${article.title}</h3>
+            <p class="news-excerpt">${article.excerpt}</p>
+            <a href="${ROOT}static/articles/${article.id}.html" class="news-link">Baca Selengkapnya →</a>
+        </div>
+    </article>`;
+}
+
+export async function initHomeNews() {
+    const grid = document.getElementById('home-news-grid');
+    if (!grid) return;
+
+    const ROOT = getSiteRoot();
+
+    try {
+        const res = await fetch(`${ROOT}content/articles-manifest.json`);
+        if (!res.ok) throw new Error('Manifest not found');
+        const articles = await res.json();
+
+        // Show the 3 most recent articles (sorted by date descending)
+        const recent = [...articles]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 3);
+
+        if (recent.length === 0) {
+            grid.innerHTML = '<p style="color:var(--text-muted)">Belum ada artikel.</p>';
+            return;
+        }
+
+        grid.innerHTML = recent.map(a => renderNewsCard(a, ROOT)).join('');
+    } catch (err) {
+        console.error('Home news failed to load:', err);
+        // Silently fail on home page — fallback content below stays visible
+        grid.innerHTML = '<p style="color:var(--text-muted)">Gagal memuat berita terkini.</p>';
+    }
+}
 ```
 
 `js/md-parser.js`
-```javascript
+```json
 /**
  * md-parser.js
  * Lightweight Markdown parser for OSIS article system.
@@ -1528,7 +1825,74 @@ export function parseMarkdown(markdown) {
 
     return html.join('\n');
 }
+```
 
+`js/proker.js`
+```json
+/**
+ * proker.js
+ * Renders the Program Kerja accordion from content/proker-data.json.
+ * To add, edit, or delete a program kerja: only edit proker-data.json.
+ */
+
+function getSiteRoot() {
+    const { origin, pathname } = window.location;
+    const parts = pathname.split('/').filter(Boolean);
+    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
+        return origin + '/';
+    }
+    return origin + '/' + parts[0] + '/';
+}
+
+function renderProkerCard(item) {
+    const statusClass = item.status_class ? ` ${item.status_class}` : '';
+    return `
+    <div class="proker-item-card">
+        <div class="proker-meta">
+            <span class="badge">${item.periode}</span>
+            <span class="badge${statusClass}">${item.status}</span>
+        </div>
+        <h4>${item.judul}</h4>
+        <p>${item.deskripsi}</p>
+    </div>`;
+}
+
+function renderSekbidAccordion(sekbid, index) {
+    const checkboxId = `sec-${sekbid.id}`;
+    // Open the first accordion by default
+    const checkedAttr = index === 0 ? ' checked' : '';
+    const cards = sekbid.proker.map(renderProkerCard).join('');
+
+    return `
+    <div class="sekbid-accordion">
+        <input type="checkbox" id="${checkboxId}" class="accordion-toggle"${checkedAttr}>
+        <label for="${checkboxId}" class="accordion-header">
+            ${sekbid.nama}
+            <span class="accordion-icon">+</span>
+        </label>
+        <div class="accordion-content">
+            ${cards}
+        </div>
+    </div>`;
+}
+
+export async function initProkerPage() {
+    const container = document.getElementById('proker-render-target');
+    if (!container) return;
+
+    const ROOT = getSiteRoot();
+
+    try {
+        const res = await fetch(`${ROOT}content/proker-data.json`);
+        if (!res.ok) throw new Error('Gagal memuat data program kerja.');
+        const data = await res.json();
+
+        container.innerHTML = data.map((sekbid, i) => renderSekbidAccordion(sekbid, i)).join('');
+    } catch (err) {
+        console.error('Proker render failed:', err);
+        container.innerHTML = `<p style="color:red;padding:2rem">Gagal memuat program kerja: ${err.message}</p>`;
+    }
+}
 ```
 
 `js/struktur.js`
@@ -1629,9 +1993,10 @@ export async function renderOsisTree() {
         container.innerHTML = `<p style="color:red;padding:2rem">Gagal memuat data struktur: ${err.message}</p>`;
     }
 }
+
 ```
 
-`static/articles/uji-coba-proker.html`
+`static/articles/demo-proker-artikel-digital.html`
 ```html
 <!DOCTYPE html>
 <html lang="id">
@@ -1647,7 +2012,7 @@ export async function renderOsisTree() {
     <div id="nav-placeholder"></div>
 
     <main class="single-reading-view">
-        <div id="article-render-target" data-article-id="uji-coba-proker">
+        <div id="article-render-target" data-article-id="demo-proker-artikel-digital">
             <div class="reading-content-wrapper">
                 <p style="color: var(--text-muted); padding: 2rem 0">Memuat artikel...</p>
             </div>
@@ -1659,6 +2024,7 @@ export async function renderOsisTree() {
     <script type="module" src="../../js/app.js"></script>
 </body>
 </html>
+
 ```
 
 `static/about.html`
@@ -1679,17 +2045,23 @@ export async function renderOsisTree() {
 
     <header class="subpage-banner">
         <h1>Tentang Kami</h1>
-        <p>Mengenal lebih dekat visi, misi, serta komitmen pergerakan organisasi kami.</p>
+        <p>Mengenal lebih dekat visi, misi, serta komitmen kami sebagai organisasi intra sekolah.</p>
     </header>
 
     <section class="about-grid">
         <div class="about-graphics">
-            <div class="graphic-box tall">OSIS</div>
-            <div class="graphic-box">Kreativitas</div>
-            <div class="graphic-box">Inovasi</div>
+            <div class="graphic-box tall">
+                <img src="https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/12ewqda.jpeg?raw=true" alt="Kegiatan OSIS">
+            </div>
+            <div class="graphic-box">
+                <img src="https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/news3.jpg?raw=true" alt="Kreativitas Siswa">
+            </div>
+            <div class="graphic-box">
+                <img src="https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/slad.jpeg?raw=true" alt="Inovasi Teknik">
+            </div>
         </div>
         <div class="about-text-content">
-            <h2>Membangun Solusi Kreatif & Berdampak Jangka Panjang</h2>
+            <h2>Membangun cita inovasi melalui kreativitas teknik.</h2>
             <p>Didirikan berlandaskan semangat kolaborasi inovatif, organisasi kami terus bergerak aktif menyelaraskan perkembangan IPTEK modern dengan fungsionalitas harian masyarakat luas. Kami percaya bahwa perbaikan berkelanjutan adalah kunci utama menuju kemajuan yang stabil.</p>
             <p>Setiap langkah koordinasi seksi bidang dirancang secara terukur demi mewujudkan program kerja transparan, akuntabel, dan berorientasi penuh pada solusi nyata.</p>
         </div>
@@ -1698,37 +2070,50 @@ export async function renderOsisTree() {
     <section class="stats-bar">
         <div class="stats-grid">
             <div class="stat-item">
-                <h3>15+</h3>
-                <p>Program Sukses</p>
+                <h3>30</h3>
+                <p>Program Berjalan</p>
             </div>
             <div class="stat-item">
-                <h3>40+</h3>
-                <p>Anggota Aktif</p>
+                <h3>30</h3>
+                <p>Anggota OSIS</p>
             </div>
             <div class="stat-item">
-                <h3>5K+</h3>
-                <p>Penerima Manfaat</p>
+                <h3>1.7K+</h3>
+                <p>Masyarakat penerima dampak</p>
             </div>
         </div>
     </section>
 
     <section class="pillars-section">
-        <h2 class="section-title">Pilar Pergerakan Kami</h2>
+        <h2 class="section-title">Visi Dan Misi SMKN 68 Jakarta</h2>
+        <h2 style="text-align: center;">VISI</h3>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <h3 style="text-align: center;">Mewujudkan Tamatan yang Beriman dan Bertakwa, Unggul dalam IPTEK, serta Berbudaya Lingkungan dan Mencerminkan Profil Pelajar Pancasila</h3>
+                </div>
+            </div>
+
+        <h2 style="text-align: center; margin-top: 5%;">MISI</h3>
         <div class="pillars-grid">
             <div class="pillar-card">
                 <div class="pillar-icon">01</div>
-                <h3>Inovasi Terbuka</h3>
-                <p>Mengembangkan ide kreatif tanpa batas dan mengadaptasi teknologi modern untuk memecahkan masalah struktural komunitas.</p>
+                <h3>Meningkatkan Keimanan dan Ketaqwaan Peserta Didik</h3>
+                <p>Membentuk fondasi spiritual dan akhlak mulia melalui pembiasaan ibadah dan kegiatan keagamaan, agar kecerdasan intelektual siswa seimbang dengan kompas moral yang kuat.</p>
             </div>
             <div class="pillar-card">
                 <div class="pillar-icon">02</div>
-                <h3>Sinergitas Tim</h3>
-                <p>Menyelaraskan komunikasi antar seksi bidang agar roda program kerja dapat berputar cepat secara harmonis dan efisien.</p>
+                <h3>Menyelenggarakan Pendidikan Vokasi sesuai dengan Kemajuan Ilmu dan Teknologi</h3>
+                <p>Menyelaraskan kurikulum dan praktik kejuruan dengan teknologi terkini serta kebutuhan industri (Link and Match), guna mencetak lulusan yang kompeten, tanggap teknologi, dan siap bersaing.</p>
             </div>
             <div class="pillar-card">
                 <div class="pillar-icon">03</div>
-                <h3>Integritas Nyata</h3>
-                <p>Menjalankan roda kepengurusan secara profesional, transparan, serta mengutamakan akuntabilitas penuh pada publik.</p>
+                <h3>Menciptakan Lingkungan Sekolah yang Ramah Anak, Sehat, dan Asri</h3>
+                <p>Mewujudkan ekosistem belajar yang aman, inklusif, dan bebas perundungan, serta didukung oleh lingkungan fisik yang bersih dan hijau untuk kenyamanan belajar siswa.</p>
+            </div>
+            <div class="pillar-card">
+                <div class="pillar-icon">03</div>
+                <h3>Menerapkan Pembelajaran yang Berkarakter Pelajar Pancasila</h3>
+                <p>Mengintegrasikan nilai-nilai kebangsaan dalam pembelajaran untuk mencetak generasi yang tidak hanya terampil, tetapi juga mandiri, bernalar kritis, bergotong royong, dan beretika.</p>
             </div>
         </div>
     </section>
@@ -1909,366 +2294,9 @@ export async function renderOsisTree() {
     </header>
 
     <main class="proker-container">
-
-         <!-- SEKBID Badan Pengurus Harian -->
-
-         <div class="sekbid-accordion">
-            <input type="checkbox" id="sec-dana-usaha" class="accordion-toggle">
-            <label for="sec-dana-usaha" class="accordion-header">
-                Badan Pengurus Harian
-                <span class="accordion-icon">+</span>
-            </label>
-
-            <div class="accordion-content">
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Patroli Tata Tertib & Budi Pekerti</h4>
-                    <p>Memantau dan mendampingi pelaksanaan tata tertib sekolah serta menanamkan nilai budi pekerti melalui kegiatan harian.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Piket gerbang dengan sistem 3s (senyum, salam dan sapa)</h4>
-                    <p>Melakukan pembiasaan pagi dengan ( salam , senyum dan sapa ).</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan ruang kelas , dll sebelum upacara/apel dimulai</h4>
-                    <p>Mengecek ruang kelas/toilet guna memperhatikan tidak ada nya siswa yang tidak mengikuti upacara/apel.</p>
-                </div>
-
-                  <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan kebersihan kelas setiap pulang sekolah</h4>
-                    <p>Menertibkan kebersihan tiap kelas SMKN 68 Jakarta dengean inspeksi terhadap setiap kelas</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>SEKAR (Seminar Karakter Siswa)</h4>
-                    <p>Sekbid kedisiplinan  Kolaborasi dengan Guru, kerohanian, BK dan kesiswaan.</p>
-                </div>
-            </div>
+        <div id="proker-render-target">
+            <p style="color: var(--text-muted); padding: 2rem 0">Memuat program kerja...</p>
         </div>
-
-        <!-- SEKBID HUMAS IT -->
-
-        <div class="sekbid-accordion">
-            <input type="checkbox" id="sec-humas-it" class="accordion-toggle" checked>
-            <label for="sec-humas-it" class="accordion-header">
-                Seksi Bidang Humas dan IT
-                <span class="accordion-icon">+</span>
-            </label>
-
-            <div class="accordion-content">
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q1</span>
-                        <span class="badge status-running">Sedang Berjalan</span>
-                    </div>
-                    <h4>Jurnalistik Kegiatan OSIS</h4>
-                    <p>Mebuat kreasi berupa  artikel yang harus dibuat per sekbid dengan judul dan tema sesuai tugas masing masing serta dapat di ekspan ke lingkup siswa.</p>
-                </div>
-                
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q2</span>
-                        <span class="badge status-running">Sedang Berjalan</span>
-                    </div>
-                    <h4>Merangkum Kegiatan OSIS</h4>
-                    <p>Meringkas event atau acara yang dilaksanakan osis.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q3</span>
-                        <span class="badge">Tahap Perencanaan</span>
-                    </div>
-                    <h4>Pembuatan sarana sumber informasi & layanan aduan</h4>
-                    <p>Membuat sumber informasi berupa saluran whatsapp serta terdapat layanan aduan siswa dalam bentuk “nomor aduan osis”.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q4</span>
-                        <span class="badge status-running">Sedang Berjalan</span>
-                    </div>
-                    <h4>Penjadwalan konten</h4>
-                    <p>Membuat jadwal untuk konten yang akan dibuat berdasarkan yang trending.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SEKBID KEROHANIAN -->
-
-        <div class="sekbid-accordion">
-            <input type="checkbox" id="sec-kreativitas" class="accordion-toggle">
-            <label for="sec-kreativitas" class="accordion-header">
-                Seksi Bidang Kerohanian
-                <span class="accordion-icon">+</span>
-            </label>
-            <div class="accordion-content">
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q1</span>
-                        <span class="badge status-running">Sedang Berjalan</span>
-                    </div>
-                    <h4>Memperingati Hari Besar Islam</h4>
-                    <p>Mengadakan Lomba Atau Acara Saat Peringatan Hari Besar Islam Seperti Maulid Nabi, Isra Mi’raj.</p>
-                </div>
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q2</span>
-                        <span class="badge">Tahap Perencanaan</span>
-                    </div>
-                    <h4>Kajian Rohani</h4>
-                    <p>Kegiatan Kajian Yang Membahas Tentang Akhlak Atau Hal Yang Relavan Dengan Islam Khususnya Remaja.</p>
-                </div>
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q2</span>
-                        <span class="badge">Tahap Perencanaan</span>
-                    </div>
-                    <h4>Ibadah Jumat Dan Renungan Harian Bagi Siswa Beragama Kristen</h4>
-                    <p>Mengadakan ibadah Bagi Umat Kristen.</p>
-                </div>
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q2</span>
-                        <span class="badge">Tahap Perencanaan</span>
-                    </div>
-                    <h4>Retret Untuk Agama Kristen.</h4>
-                    <p>Kegiatan Diluar Sekolah Untuk Meningkatkan Keimanan.</p>
-                </div>
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Q2</span>
-                        <span class="badge">Tahap Perencanaan</span>
-                    </div>
-                    <h4>Perayaan Hari Besar Umat Kristiani.</h4>
-                    <p>Mengadakan Ibadah Khusus Untuk Memperingati Hari Besar Keagamaan.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SEKBID KEDISIPLINAN -->
-
-        <div class="sekbid-accordion">
-            <input type="checkbox" id="sec-kedisiplinan" class="accordion-toggle">
-            <label for="sec-kedisiplinan" class="accordion-header">
-                Seksi Bidang Kedisiplinan
-                <span class="accordion-icon">+</span>
-            </label>
-
-            <div class="accordion-content">
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Patroli Tata Tertib & Budi Pekerti</h4>
-                    <p>Memantau dan mendampingi pelaksanaan tata tertib sekolah serta menanamkan nilai budi pekerti melalui kegiatan harian.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Piket gerbang dengan sistem 3s (senyum, salam dan sapa)</h4>
-                    <p>Melakukan pembiasaan pagi dengan ( salam , senyum dan sapa ).</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan ruang kelas , dll sebelum upacara/apel dimulai</h4>
-                    <p>Mengecek ruang kelas/toilet guna memperhatikan tidak ada nya siswa yang tidak mengikuti upacara/apel.</p>
-                </div>
-
-                  <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan kebersihan kelas setiap pulang sekolah</h4>
-                    <p>Menertibkan kebersihan tiap kelas SMKN 68 Jakarta dengean inspeksi terhadap setiap kelas</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>SEKAR (Seminar Karakter Siswa)</h4>
-                    <p>Sekbid kedisiplinan  Kolaborasi dengan Guru, kerohanian, BK dan kesiswaan.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Kegiatan kerja bakti sosial dan lingkungan</h4>
-                    <p>Membersihkan area di sekolah seperti lapangan , taman , koridor dan lain” nya karena kebersihan sebagian dari iman.</p>
-                </div>            
-            </div>
-        </div>
-        <!-- SEKBID Jasmani & Kreativitas  -->
-
-        <div class="sekbid-accordion">
-            <input type="checkbox" id="sec-jasmani-kreativitas" class="accordion-toggle">
-            <label for="sec-jasmani-kreativitas" class="accordion-header">
-                Seksi Bidang Jasmani & Kreativitas
-                <span class="accordion-icon">+</span>
-            </label>
-
-            <div class="accordion-content">
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Lomba Kelas Kreativitas </h4>
-                    <p>Melakukan kegiatan seperti menggambar, menulis cerita pendek, membuat poster, mengarang puisi, membuat kerajinan tangan.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Piket gerbang dengan sistem 3s (senyum, salam dan sapa)</h4>
-                    <p>Melakukan pembiasaan pagi dengan ( salam , senyum dan sapa ).</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan ruang kelas , dll sebelum upacara/apel dimulai</h4>
-                    <p>Mengecek ruang kelas/toilet guna memperhatikan tidak ada nya siswa yang tidak mengikuti upacara/apel.</p>
-                </div>
-
-                  <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan kebersihan kelas setiap pulang sekolah</h4>
-                    <p>Menertibkan kebersihan tiap kelas SMKN 68 Jakarta dengean inspeksi terhadap setiap kelas</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>SEKAR (Seminar Karakter Siswa)</h4>
-                    <p>Sekbid kedisiplinan  Kolaborasi dengan Guru, kerohanian, BK dan kesiswaan.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Kegiatan kerja bakti sosial dan lingkungan</h4>
-                    <p>Membersihkan area di sekolah seperti lapangan , taman , koridor dan lain” nya karena kebersihan sebagian dari iman</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- SEKBID DANA USAHA  -->
-
-        <div class="sekbid-accordion">
-            <input type="checkbox" id="sec-dana-usaha" class="accordion-toggle">
-            <label for="sec-dana-usaha" class="accordion-header">
-                Seksi Bidang Dana Usaha
-                <span class="accordion-icon">+</span>
-            </label>
-
-            <div class="accordion-content">
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                <span class="accordion-icon">+</span>
-            </label>
-
-            <div class="accordion-content">
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Patroli Tata Tertib & Budi Pekerti</h4>
-                    <p>Memantau dan mendampingi pelaksanaan tata tertib sekolah serta menanamkan nilai budi pekerti melalui kegiatan harian.</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Piket gerbang dengan sistem 3s (senyum, salam dan sapa)</h4>
-                    <p>Melakukan pembiasaan pagi dengan ( salam , senyum dan sapa ).</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan ruang kelas , dll sebelum upacara/apel dimulai</h4>
-                    <p>Mengecek ruang kelas/toilet guna memperhatikan tidak ada nya siswa yang tidak mengikuti upacara/apel.</p>
-                </div>
-
-                  <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>Pengecekan kebersihan kelas setiap pulang sekolah</h4>
-                    <p>Menertibkan kebersihan tiap kelas SMKN 68 Jakarta dengean inspeksi terhadap setiap kelas</p>
-                </div>
-
-                <div class="proker-item-card">
-                    <div class="proker-meta">
-                        <span class="badge">Berkelanjutan</span>
-                        <span class="badge status-running">Aktif</span>
-                    </div>
-                    <h4>SEKAR (Seminar Karakter Siswa)</h4>
-                    <p>Sekbid kedisiplinan  Kolaborasi dengan Guru, kerohanian, BK dan kesiswaan.</p>
-                </div>
-            </div>
-        </div>
-
     </main>
 
     <div id="footer-placeholder"></div>
@@ -2312,39 +2340,50 @@ export async function renderOsisTree() {
 
 ```
 
-`tools/build-manifest.py`
+`tools/build.py`
 
 ```python
+#!/usr/bin/env python3
 """
-tools/build-manifest.py
-=======================
-Automatically detects new/updated .md files in content/articles/,
-updates content/articles-manifest.json, and generates the HTML page
-in static/articles/ for each article.
+tools/build.py
+==============
+One command to rule them all. Run this after writing/editing any .md file in
+content/articles/ and it will:
+
+  1. Parse every .md file's frontmatter + body
+  2. Update content/articles-manifest.json  (add new, update changed, keep removed)
+  3. Generate / overwrite static/articles/<slug>.html for each article
 
 Usage:
-    python3 tools/build-manifest.py
+    python3 tools/build.py            # process all articles
+    python3 tools/build.py --clean    # also remove orphaned HTML + manifest entries
+                                      # for .md files that no longer exist
 
-Requirements: Python 3 (no extra packages needed)
+Workflow:
+    1. Create content/articles/my-new-article.md
+    2. Run: python3 tools/build.py
+    3. git add . && git commit -m "new article: my-new-article" && git push
+
+Requirements: Python 3.6+ (stdlib only — no pip installs needed)
 """
 
 import json, re, sys
 from pathlib import Path
 from datetime import date
 
-ROOT         = Path(__file__).parent.parent
-ARTICLES_DIR = ROOT / 'content' / 'articles'
+# ── Paths ─────────────────────────────────────────────────────
+ROOT          = Path(__file__).parent.parent
+ARTICLES_DIR  = ROOT / 'content' / 'articles'
 MANIFEST_PATH = ROOT / 'content' / 'articles-manifest.json'
-HTML_OUT_DIR = ROOT / 'static' / 'articles'
-
+HTML_OUT_DIR  = ROOT / 'static' / 'articles'
 
 # ── Helpers ───────────────────────────────────────────────────
 
-def parse_md(raw):
+def parse_md(raw: str):
     """Split a markdown file into frontmatter dict + body string."""
     fm = {}
     body = raw
-    m = re.match(r'^---\n([\s\S]*?)\n---\n', raw)
+    m = re.match(r'^---\n([\s\S]*?)\n---\n?', raw)
     if m:
         body = raw[m.end():].strip()
         for line in m.group(1).split('\n'):
@@ -2357,16 +2396,45 @@ def parse_md(raw):
     return fm, body
 
 
-def slugify(text):
-    """Turn a title into a safe filename slug."""
-    text = text.lower()
-    text = re.sub(r'[^a-z0-9\s-]', '', text)
-    text = re.sub(r'[\s]+', '-', text.strip())
-    return text
+def estimate_readtime(body: str) -> str:
+    """Estimate reading time based on ~200 words per minute."""
+    words = len(body.split())
+    minutes = max(1, round(words / 200))
+    return f"{minutes} menit"
 
 
-def make_html(article_id):
-    """Generate the HTML page content for a given article id."""
+def build_entry(md_path: Path) -> dict:
+    """Parse one .md file and return a complete manifest entry dict."""
+    article_id = md_path.stem
+    raw        = md_path.read_text(encoding='utf-8')
+    fm, body   = parse_md(raw)
+
+    excerpt = fm.get('excerpt', '')
+    if not excerpt:
+        # Auto-generate from first non-empty body line, capped at 160 chars
+        first_line = next((l.strip() for l in body.split('\n') if l.strip() and not l.startswith('#')), '')
+        excerpt = first_line[:160] + ('...' if len(first_line) > 160 else '')
+
+    return {
+        'id':               article_id,
+        'file':             f'content/articles/{md_path.name}',
+        'title':            fm.get('title', article_id),
+        'author':           fm.get('author', 'Tim OSIS'),
+        'date':             fm.get('date_iso', str(date.today())),
+        'date_display':     fm.get('date', ''),
+        'readtime':         fm.get('readtime', estimate_readtime(body)),
+        'cover':            fm.get('cover', ''),
+        'cover_caption':    fm.get('cover_caption', ''),
+        'category':         fm.get('category', 'Umum').lower(),
+        'category_display': fm.get('category', 'Umum'),
+        'excerpt':          excerpt,
+        'featured':         fm.get('featured', 'false').lower() == 'true',
+        'body':             body,
+    }
+
+
+def make_html(article_id: str) -> str:
+    """Generate the minimal HTML shell for a given article id."""
     return f"""<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -2395,21 +2463,22 @@ def make_html(article_id):
 </html>
 """
 
-
 # ── Main ──────────────────────────────────────────────────────
 
 def main():
+    clean_mode = '--clean' in sys.argv
+
     # Load existing manifest (or start fresh)
     if MANIFEST_PATH.exists():
         with open(MANIFEST_PATH, 'r', encoding='utf-8') as f:
-            manifest = json.load(f)
+            manifest: list = json.load(f)
     else:
         manifest = []
 
-    # Build a set of already-known ids for quick lookup
-    known_ids = {entry['id'] for entry in manifest}
+    # Index existing manifest by id for fast lookup
+    manifest_map: dict = {e['id']: e for e in manifest}
 
-    # Scan all .md files in content/articles/
+    # Scan all .md files
     md_files = sorted(ARTICLES_DIR.glob('*.md'))
     if not md_files:
         print("No .md files found in content/articles/")
@@ -2420,66 +2489,66 @@ def main():
     added   = []
     updated = []
 
+    md_ids = set()
     for md_path in md_files:
-        article_id = md_path.stem          # filename without .md
-        raw        = md_path.read_text(encoding='utf-8')
-        fm, body   = parse_md(raw)
+        article_id = md_path.stem
+        md_ids.add(article_id)
 
-        # ── Build the manifest entry ──────────────────────────
-        entry = {
-            'id':               article_id,
-            'file':             f'content/articles/{md_path.name}',
-            'title':            fm.get('title', article_id),
-            'author':           fm.get('author', 'Tim OSIS'),
-            'date':             fm.get('date_iso', str(date.today())),
-            'date_display':     fm.get('date', ''),
-            'readtime':         fm.get('readtime', ''),
-            'cover':            fm.get('cover', ''),
-            'cover_caption':    fm.get('cover_caption', ''),
-            'category':         fm.get('category', 'umum').lower(),
-            'category_display': fm.get('category', 'Umum'),
-            'excerpt':          fm.get('excerpt', body[:120].replace('\n', ' ') + '...'),
-            'featured':         fm.get('featured', 'false').lower() == 'true',
-            'body':             body,
-        }
+        new_entry = build_entry(md_path)
 
-        if article_id in known_ids:
-            # Update existing entry in-place (preserve field order)
-            for i, existing in enumerate(manifest):
-                if existing['id'] == article_id:
-                    manifest[i] = entry
-                    break
+        if article_id in manifest_map:
+            manifest_map[article_id] = new_entry
             updated.append(article_id)
         else:
-            # New article — append to manifest
-            manifest.append(entry)
-            known_ids.add(article_id)
+            manifest_map[article_id] = new_entry
             added.append(article_id)
 
-        # ── Generate / overwrite the HTML page ───────────────
+        # Generate / overwrite the HTML shell
         html_path = HTML_OUT_DIR / f'{article_id}.html'
         html_path.write_text(make_html(article_id), encoding='utf-8')
 
+    # ── Optional cleanup: remove entries for deleted .md files ──
+    removed = []
+    if clean_mode:
+        orphans = [aid for aid in manifest_map if aid not in md_ids]
+        for aid in orphans:
+            del manifest_map[aid]
+            orphan_html = HTML_OUT_DIR / f'{aid}.html'
+            if orphan_html.exists():
+                orphan_html.unlink()
+            removed.append(aid)
+
+    # Re-build manifest list sorted by date descending (newest first)
+    final_manifest = sorted(
+        manifest_map.values(),
+        key=lambda e: e.get('date', '1970-01-01'),
+        reverse=True
+    )
+
     # Save manifest
     with open(MANIFEST_PATH, 'w', encoding='utf-8') as f:
-        json.dump(manifest, f, ensure_ascii=False, indent=2)
+        json.dump(final_manifest, f, ensure_ascii=False, indent=2)
 
     # ── Summary ───────────────────────────────────────────────
-    print(f"\n{'─'*50}")
+    print(f"\n{'─' * 52}")
     print(f"  Articles scanned : {len(md_files)}")
     if added:
-        print(f"  NEW  (+{len(added)})        : {', '.join(added)}")
+        print(f"  NEW  (+{len(added):<3})       : {', '.join(added)}")
     if updated:
         print(f"  Updated          : {', '.join(updated)}")
-    print(f"  Manifest saved   : content/articles-manifest.json")
-    print(f"  HTML pages saved : static/articles/")
-    print(f"{'─'*50}")
-    print("\nNext step: commit and push all changed files to GitHub.\n")
+    if removed:
+        print(f"  Removed (--clean): {', '.join(removed)}")
+    print(f"  Manifest saved   → content/articles-manifest.json")
+    print(f"  HTML pages saved → static/articles/")
+    print(f"{'─' * 52}")
+    print()
+    print("  Next step:")
+    print("    git add . && git commit -m 'update articles' && git push")
+    print()
 
 
 if __name__ == '__main__':
     main()
-
 ```
 
 `index.html`
@@ -2522,40 +2591,9 @@ if __name__ == '__main__':
 
     <section class="news-section">
         <h2 class="section-title">Berita Terkini</h2>
-        <div class="news-grid">
-            <article class="news-card">
-                <div class="news-image-wrapper">
-                    <img src="img/covers/news1.jpg" alt="Berita 1" class="news-image">
-                </div>
-                <div class="news-body">
-                    <span class="news-date">22 Mei 2026</span>
-                    <h3 class="news-title">Peluncuran Fitur Terbaru Website OSIS</h3>
-                    <p class="news-excerpt">Sistem artikel baru berbasis Markdown memudahkan penulisan konten tanpa keahlian coding.</p>
-                    <a href="static/articles/artikel-fitur-baru.html" class="news-link">Baca Selengkapnya →</a>
-                </div>
-            </article>
-            <article class="news-card">
-                <div class="news-image-wrapper">
-                    <img src="img/covers/news2.jpg" alt="Berita 2" class="news-image">
-                </div>
-                <div class="news-body">
-                    <span class="news-date">20 Mei 2026</span>
-                    <h3 class="news-title">Tips Belajar Vanilla JavaScript</h3>
-                    <p class="news-excerpt">Mengenal dasar DOM manipulation adalah langkah pertama menuju web developer handal.</p>
-                    <a href="static/articles/belajar-javascript.html" class="news-link">Baca Selengkapnya →</a>
-                </div>
-            </article>
-            <article class="news-card">
-                <div class="news-image-wrapper">
-                    <img src="img/covers/news3.jpg" alt="Berita 3" class="news-image">
-                </div>
-                <div class="news-body">
-                    <span class="news-date">15 Mei 2026</span>
-                    <h3 class="news-title">Workshop Desain Kreatif Bersama Sekbid</h3>
-                    <p class="news-excerpt">Pelatihan UI/UX design dan manajemen aset kreatif untuk anggota aktif OSIS.</p>
-                    <a href="static/articles.html" class="news-link">Baca Selengkapnya →</a>
-                </div>
-            </article>
+        <!-- Populated dynamically from articles-manifest.json by home.js -->
+        <div class="news-grid" id="home-news-grid">
+            <p style="color: var(--text-muted)">Memuat berita...</p>
         </div>
     </section>
 
@@ -2564,5 +2602,4 @@ if __name__ == '__main__':
     <script type="module" src="js/app.js"></script>
 </body>
 </html>
-
 ```
