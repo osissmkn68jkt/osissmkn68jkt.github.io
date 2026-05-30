@@ -1,0 +1,17 @@
+# robots.txt for OSIS SMKN 68 Jakarta
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://osissmkn68jkt.github.io/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1
+
+# Block access to tools and build files
+Disallow: /tools/
+Disallow: /content/articles/*.md
+
+# Allow all static pages and articles
+Allow: /static/
+Allow: /content/articles-manifest.json

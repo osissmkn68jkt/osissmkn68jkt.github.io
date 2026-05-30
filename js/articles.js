@@ -1,4 +1,32 @@
 import { parseMarkdown } from './md-parser.js';
+import { injectSEOMeta, updateCanonicalURL } from './seo.js';
+
+function renderNewsCardSkeleton() {
+    return `
+    <div class="news-card-skeleton">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-body">
+            <div class="skeleton-text" style="width: 40%"></div>
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 80%"></div>
+        </div>
+    </div>`;
+}
+
+function renderFeaturedCardSkeleton() {
+    return `
+    <div class="featured-card-skeleton">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-body">
+            <div class="skeleton-text" style="width: 30%"></div>
+            <div class="skeleton-title" style="width: 90%"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 60%"></div>
+        </div>
+    </div>`;
+}
 
 function getSiteRoot() {
     const { origin, pathname } = window.location;
@@ -129,6 +157,12 @@ export async function initArticleListPage() {
 
     if (!gridContainer) return;
 
+    // Show skeletons while loading
+    if (featuredContainer) {
+        featuredContainer.innerHTML = renderFeaturedCardSkeleton();
+    }
+    gridContainer.innerHTML = Array(3).fill(renderNewsCardSkeleton()).join('');
+
     try {
         const manifest = await loadManifest();
 
@@ -141,6 +175,9 @@ export async function initArticleListPage() {
         gridContainer.innerHTML = regular.map(renderArticleCard).join('');
 
         buildCategorySidebar(manifest, categoryListId);
+        
+        // Initialize search
+        initArticleSearch(regular);
 
     } catch (err) {
         console.error('Articles failed to load:', err);
@@ -166,6 +203,20 @@ export async function initArticlePage() {
         const bodyHtml = parseMarkdown(meta.body || '');
 
         document.title = `${meta.title} — OSIS SMKN 68 Jakarta`;
+
+        injectSEOMeta({
+            title: meta.title,
+            description: meta.excerpt,
+            image: meta.cover,
+            url: window.location.href,
+            type: 'article',
+            article: {
+                date: meta.date,
+                author: meta.author,
+                category: meta.category
+            }
+        });
+        updateCanonicalURL();
 
         container.innerHTML = `
             <div class="reading-content-wrapper">
@@ -204,4 +255,41 @@ export async function initArticlePage() {
                 <p style="color:red; margin-top: 2rem;">Gagal memuat artikel: ${err.message}</p>
             </div>`;
     }
+}
+
+function initArticleSearch(articles) {
+    const searchBox = document.getElementById('article-search-box');
+    if (!searchBox) return;
+
+    const searchInput = searchBox.querySelector('.search-input');
+    const gridContainer = document.getElementById('articles-grid-container');
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query.length === 0) {
+            // Show all articles
+            gridContainer.innerHTML = articles.map(renderArticleCard).join('');
+            return;
+        }
+
+        // Filter articles
+        const filtered = articles.filter(article => {
+            const titleMatch = article.title.toLowerCase().includes(query);
+            const excerptMatch = article.excerpt.toLowerCase().includes(query);
+            const categoryMatch = article.category.toLowerCase().includes(query);
+            return titleMatch || excerptMatch || categoryMatch;
+        });
+
+        if (filtered.length === 0) {
+            gridContainer.innerHTML = `
+                <div class="search-no-results">
+                    <p style="font-size: 48px; margin-bottom: 10px;">🔍</p>
+                    <p><strong>Tidak ada artikel ditemukan</strong></p>
+                    <p style="margin-top: 8px;">Coba kata kunci lain atau browse semua kategori</p>
+                </div>`;
+        } else {
+            gridContainer.innerHTML = filtered.map(renderArticleCard).join('');
+        }
+    });
 }

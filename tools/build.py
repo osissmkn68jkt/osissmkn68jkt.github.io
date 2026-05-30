@@ -184,6 +184,8 @@ def main():
     with open(MANIFEST_PATH, 'w', encoding='utf-8') as f:
         json.dump(final_manifest, f, ensure_ascii=False, indent=2)
 
+    generate_sitemap(final_manifest)
+
     # ── Summary ───────────────────────────────────────────────
     print(f"\n{'─' * 52}")
     print(f"  Articles scanned : {len(md_files)}")
@@ -200,6 +202,63 @@ def main():
     print("  Next step:")
     print("    git add . && git commit -m 'update articles' && git push")
     print()
+
+def generate_sitemap(manifest: list, root_url: str = "https://osissmkn68jkt.github.io"):
+    """Generate sitemap.xml from manifest and static pages"""
+    
+    # Static pages
+    static_pages = [
+        '',
+        'static/about.html',
+        'static/articles.html',
+        'static/contacts.html',
+        'static/proker.html',
+        'static/struktur.html',
+    ]
+    
+    # Article pages
+    article_pages = [f"static/articles/{entry['id']}.html" for entry in manifest]
+    
+    # Build XML
+    xml_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    
+    # Add static pages
+    for page in static_pages:
+        url = f"{root_url}/{page}" if page else f"{root_url}/"
+        priority = "1.0" if page == '' else "0.8"
+        changefreq = "weekly" if page == '' else "monthly"
+        
+        xml_lines.extend([
+            '  <url>',
+            f'    <loc>{url}</loc>',
+            f'    <changefreq>{changefreq}</changefreq>',
+            f'    <priority>{priority}</priority>',
+            '  </url>',
+        ])
+    
+    # Add article pages
+    for entry in manifest:
+        url = f"{root_url}/static/articles/{entry['id']}.html"
+        lastmod = entry.get('date', '')
+        
+        xml_lines.extend([
+            '  <url>',
+            f'    <loc>{url}</loc>',
+            f'    <lastmod>{lastmod}</lastmod>' if lastmod else '',
+            '    <changefreq>monthly</changefreq>',
+            '    <priority>0.7</priority>',
+            '  </url>',
+        ])
+    
+    xml_lines.append('</urlset>')
+    
+    # Write sitemap
+    sitemap_path = ROOT / 'sitemap.xml'
+    sitemap_path.write_text('\n'.join(xml_lines), encoding='utf-8')
+    print(f"  Sitemap generated → sitemap.xml ({len(static_pages) + len(article_pages)} URLs)")
 
 
 if __name__ == '__main__':

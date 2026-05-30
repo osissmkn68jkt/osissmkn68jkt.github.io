@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan | OSIS SMKN 68 Jakarta</title>
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="robots" content="noindex">
+    <style>
+        .error-container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 60px 40px;
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 var(--bg-main);
+        }
+        
+        .error-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+        
+        .error-message {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .error-btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .error-btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .error-btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .error-btn-secondary {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            border: 2px solid #e2e8f0;
+        }
+        
+        .error-btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 80px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .error-container {
+                padding: 40px 20px;
+                margin: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <main class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Halaman Tidak Ditemukan</h1>
+        <p class="error-message">
+            Maaf, halaman yang Anda cari tidak dapat ditemukan. <br>
+            Mungkin halaman telah dipindahkan atau dihapus.
+        </p>
+        <div class="error-actions">
+            <a href="index.html" class="error-btn error-btn-primary">
+                ← Kembali ke Beranda
+            </a>
+            <a href="static/articles.html" class="error-btn error-btn-secondary">
+                Baca Artikel 📚
+            </a>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module">
+        import { injectComponents } from './js/components.js';
+        import { initBackToTop } from './js/backtotop.js';
+        
+        injectComponents();
+        initBackToTop();
+    </script>
+</body>
+</html>

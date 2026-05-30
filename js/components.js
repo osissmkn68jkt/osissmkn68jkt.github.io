@@ -35,7 +35,7 @@ export function renderNav() {
     const current = getCurrentPage();
 
     const linksHtml = NAV_LINKS.map(link => {
-        const pageFile = link.href.split('/').pop(); // e.g. "about.html"
+        const pageFile = link.href.split('/').pop();
         const isActive = current === pageFile ? 'active' : '';
         return `<a href="${ROOT}${link.href}" class="nav-btn ${isActive}">${link.label}</a>`;
     }).join('');
@@ -47,6 +47,7 @@ export function renderNav() {
         </div>
         <div class="nav-links">
             ${linksHtml}
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
         </div>
     </nav>`;
 }
@@ -79,10 +80,38 @@ export function renderFooter() {
     </footer>`;
 }
 
+export function initDarkMode() {
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    
+    // Check localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        root.setAttribute('data-theme', 'dark');
+        if (toggle) toggle.textContent = '☀️';
+    }
+    
+    if (toggle) {
+        toggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            toggle.textContent = newTheme === 'dark' ? '☀️' : '🌓';
+        });
+    }
+}
+
 export function injectComponents() {
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) navPlaceholder.outerHTML = renderNav();
 
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) footerPlaceholder.outerHTML = renderFooter();
+    
+    // Initialize dark mode after nav is injected
+    setTimeout(() => initDarkMode(), 0);
 }
