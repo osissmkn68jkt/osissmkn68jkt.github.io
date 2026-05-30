@@ -29,3 +29,22 @@ if (page === 'index.html' || page === '') {
     // Static article pages — static/articles/[id].html
     initArticlePage();
 }
+
+let lastScrollY = window.scrollY;
+const topbarEl = document.querySelector('.topbar');
+
+window.addEventListener('scroll', () => {
+    if (!topbarEl) return;
+    const currentScrollY = window.scrollY;
+
+    // Scroll down past 100px → fade & slide away
+    if (currentScrollY > 100 && currentScrollY > lastScrollY) {
+        topbarEl.classList.add('topbar--scrolled');
+    } 
+    // Scroll up OR back to top → reappear
+    else if (currentScrollY < 50 || currentScrollY < lastScrollY) {
+        topbarEl.classList.remove('topbar--scrolled');
+    }
+
+    lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+}, { passive: true });

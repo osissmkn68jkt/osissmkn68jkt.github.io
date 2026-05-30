@@ -62,6 +62,7 @@ function getSiteRoot() {
 const ROOT = getSiteRoot();
 
 const NAV_LINKS = [
+    { href: 'index.html',    label: 'Beranda' }, // ✅ Added on the left
     { href: 'static/about.html',    label: 'Tentang Kami' },
     { href: 'static/proker.html',   label: 'Program Kerja' },
     { href: 'static/struktur.html', label: 'Struktur' },

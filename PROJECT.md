@@ -1521,14 +1521,22 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 ## File: `../osissmkn68jkt.github.io/js/app.js`
 
 ```js
+/**
+ * app.js
+ * Entry point — injects shared components and boots the correct
+ * page module based on the current URL.
+ */
+
 import { injectComponents } from './components.js';
 import { initHomeSlider, initHomeNews } from './home.js';
 import { initArticleListPage, initArticlePage } from './articles.js';
 import { renderOsisTree } from './struktur.js';
 import { initProkerPage } from './proker.js';
 
+// 1. Inject nav + footer on every page
 injectComponents();
 
+// 2. Boot the correct page module based on the filename
 const page = window.location.pathname.split('/').pop() || 'index.html';
 
 if (page === 'index.html' || page === '') {
@@ -1541,6 +1549,7 @@ if (page === 'index.html' || page === '') {
 } else if (page === 'proker.html') {
     initProkerPage();
 } else if (page.endsWith('.html') && window.location.pathname.includes('/articles/')) {
+    // Static article pages — static/articles/[id].html
     initArticlePage();
 }
 ```
@@ -1550,8 +1559,18 @@ if (page === 'index.html' || page === '') {
 ## File: `../osissmkn68jkt.github.io/js/articles.js`
 
 ```js
+/**
+ * articles.js
+ * Handles everything related to articles:
+ *   - Loading the manifest (content/articles-manifest.json)
+ *   - Rendering article cards on articles.html
+ *   - Rendering a full article page from a .md file
+ *   - Category filtering with correct counts
+ */
+
 import { parseMarkdown } from './md-parser.js';
 
+/** Site root — same robust logic as components.js */
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -1568,10 +1587,12 @@ function getSiteRoot() {
 
 const ROOT = getSiteRoot();
 
+/** Resolve path to content/ folder using absolute ROOT */
 function contentPath(rel) {
     return ROOT + 'content/' + rel;
 }
 
+/** Format ISO date to human-readable Indonesian */
 function formatDate(isoDate) {
     const months = ['Januari','Februari','Maret','April','Mei','Juni',
                     'Juli','Agustus','September','Oktober','November','Desember'];
@@ -1579,15 +1600,21 @@ function formatDate(isoDate) {
     return `${d} ${months[m - 1]} ${y}`;
 }
 
+/** Build URL to a single article page using absolute ROOT */
 function articleUrl(id) {
     return ROOT + 'static/articles/' + id + '.html';
 }
 
+/** Load the articles manifest JSON */
 async function loadManifest() {
     const res = await fetch(contentPath('articles-manifest.json'));
     if (!res.ok) throw new Error('Could not load articles manifest');
     return res.json();
 }
+
+// ─────────────────────────────────────────────────────────────
+// ARTICLES LIST PAGE (articles.html)
+// ─────────────────────────────────────────────────────────────
 
 function renderFeaturedCard(article) {
     return `
@@ -1667,7 +1694,7 @@ function initCategoryFilter(articles) {
 
             if (feedTitle) {
                 feedTitle.textContent = filter === 'all'
-                    ? 'Update Berita'
+                    ? 'Berita Terkini'
                     : `Kategori: ${btn.childNodes[0].textContent.trim()}`;
             }
         });
@@ -1768,8 +1795,45 @@ export async function initArticlePage() {
 ## File: `../osissmkn68jkt.github.io/js/components.js`
 
 ```js
+/**
+ * components.js
+ * Injects shared navigation and footer into every page.
+ *
+ * ROOT is determined once by finding the deepest path that contains index.html.
+ * This works correctly on GitHub Pages (with or without a repo subfolder),
+ * local dev servers, and any other static host.
+ */
+
+/**
+ * Detects the root URL of the site robustly.
+ *
+ * Strategy: walk up the path segments until we find the one that is the
+ * actual site root. We do this by checking <base> tag (if set by build tool),
+ * or by using the fact that index.html always lives at root.
+ *
+ * The reliable approach: if the site lives at origin/ (no subfolder), root = origin/
+ * If the site lives at origin/repo/, root = origin/repo/
+ *
+ * We detect this by looking at the <link rel="canonical"> or simply by
+ * checking if the first path segment is a known repo name. Since we can't
+ * know the repo name at runtime, we use a smarter heuristic:
+ *
+ * - All static pages live under /static/ or at root /
+ * - All article pages live under /static/articles/
+ * - So the root is everything BEFORE the first occurrence of:
+ *     "static/", "index.html", or end of meaningful path
+ */
 function getSiteRoot() {
     const { origin, pathname } = window.location;
+
+    // Find the root by stripping known subpaths
+    // Known page locations relative to root:
+    //   /                          → index.html
+    //   /index.html                → root
+    //   /static/about.html         → root is everything before "static/"
+    //   /static/articles/foo.html  → root is everything before "static/"
+    //   /repo/                     → root (GitHub Pages with repo subfolder)
+    //   /repo/static/about.html    → root is everything before "static/"
 
     const staticIdx = pathname.indexOf('/static/');
     if (staticIdx !== -1) {
@@ -1868,6 +1932,13 @@ export function injectComponents() {
 ## File: `../osissmkn68jkt.github.io/js/home.js`
 
 ```js
+/**
+ * home.js
+ * Hero image slider + dynamic "Berita Terkini" for index.html.
+ * The news section is auto-populated from content/articles-manifest.json —
+ * no need to edit index.html when new articles are added.
+ */
+
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -1952,6 +2023,31 @@ export async function initHomeNews() {
 ## File: `../osissmkn68jkt.github.io/js/md-parser.js`
 
 ```js
+/**
+ * md-parser.js
+ * Lightweight Markdown parser for OSIS article system.
+ * Supports: frontmatter, headings, paragraphs, bold, italic,
+ * blockquote, unordered lists, ordered lists, inline images with captions,
+ * and horizontal rules.
+ *
+ * HOW TO WRITE AN ARTICLE:
+ * ─────────────────────────
+ * Start the file with a "frontmatter" block (between --- lines).
+ * Supported frontmatter keys:
+ *   title, category, author, date, readtime, cover, cover_caption
+ *
+ * Then write your article body using simple Markdown:
+ *   ## Heading 2         →  large section heading
+ *   ### Heading 3        →  sub-section heading
+ *   **bold text**        →  bold
+ *   *italic text*        →  italic
+ *   - item               →  bullet list item
+ *   1. item              →  numbered list item
+ *   > quote text         →  blockquote / pull quote
+ *   ![alt|caption](url) →  image with optional caption (use | to split alt from caption)
+ *   ---                  →  horizontal divider
+ */
+
 export function parseFrontmatter(raw) {
     const fm = {};
     const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
@@ -1977,13 +2073,13 @@ function escapeHtml(str) {
 }
 
 function inlineFormat(text) {
-
+    // Bold + Italic combined
     text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
-
+    // Bold
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
+    // Italic
     text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-
+    // Inline code
     text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
     return text;
 }
@@ -1996,7 +2092,7 @@ export function parseMarkdown(markdown) {
     while (i < lines.length) {
         const line = lines[i];
 
-
+        // ── Headings ──────────────────────────────────
         if (line.startsWith('### ')) {
             html.push(`<h3>${inlineFormat(line.slice(4))}</h3>`);
             i++; continue;
@@ -2010,16 +2106,19 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
+        // ── Horizontal Rule ───────────────────────────
         if (line.trim() === '---') {
             html.push('<hr>');
             i++; continue;
         }
 
+        // ── Blockquote ────────────────────────────────
         if (line.startsWith('> ')) {
             html.push(`<blockquote>${inlineFormat(line.slice(2))}</blockquote>`);
             i++; continue;
         }
 
+        // ── Unordered list ────────────────────────────
         if (line.startsWith('- ')) {
             html.push('<ul>');
             while (i < lines.length && lines[i].startsWith('- ')) {
@@ -2030,6 +2129,7 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
+        // ── Ordered list ──────────────────────────────
         if (/^\d+\. /.test(line)) {
             html.push('<ol>');
             while (i < lines.length && /^\d+\. /.test(lines[i])) {
@@ -2040,6 +2140,8 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
+        // ── Image with optional caption ───────────────
+        // Syntax: ![alt text|Caption text here](url)
         const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
         if (imgMatch) {
             const [altRaw, url] = [imgMatch[1], imgMatch[2]];
@@ -2054,10 +2156,13 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
+        // ── Empty line ────────────────────────────────
         if (line.trim() === '') {
             i++; continue;
         }
 
+        // ── Paragraph ─────────────────────────────────
+        // Collect consecutive non-empty, non-special lines as one paragraph
         const paraLines = [];
         while (
             i < lines.length &&
@@ -2087,6 +2192,12 @@ export function parseMarkdown(markdown) {
 ## File: `../osissmkn68jkt.github.io/js/proker.js`
 
 ```js
+/**
+ * proker.js
+ * Renders the Program Kerja accordion from content/proker-data.json.
+ * To add, edit, or delete a program kerja: only edit proker-data.json.
+ */
+
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -2156,6 +2267,12 @@ export async function initProkerPage() {
 ## File: `../osissmkn68jkt.github.io/js/struktur.js`
 
 ```js
+/**
+ * struktur.js
+ * Renders the OSIS organizational chart from content/osis-data.json.
+ * Data is fully separated from logic — edit osis-data.json to update org structure.
+ */
+
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -2197,7 +2314,7 @@ export async function renderOsisTree() {
 
         let html = '<div class="org-chart">';
 
-
+        // ── Top chain (Kepsek → Waket) ──────────────────
         html += '<div class="org-col org-col--spine">';
         data.pimpinanAtas.forEach((p, idx) => {
             html += node(p.nama, p.jabatan, 'main');
@@ -2205,20 +2322,20 @@ export async function renderOsisTree() {
         });
         html += '</div>';
 
-
+        // ── Three-column row: Sekretaris | Koordinator | Bendahara ──
         html += '<div class="org-row org-row--mid">';
 
-
+        // Left wing
         html += '<div class="org-col org-col--wing">';
         data.sekretaris.forEach(s => html += node(s.nama, s.jabatan, 'wing'));
         html += '</div>';
 
-
+        // Center: Koordinator + Sekbid branches
         html += '<div class="org-col org-col--center">';
         html += node(data.koordinator.nama, data.koordinator.jabatan, 'main');
         html += connector();
 
-
+        // Sekbid row
         html += '<div class="org-row org-row--sekbid">';
         data.sekbid.forEach(sek => {
             html += '<div class="org-col org-col--sekbid">';
@@ -2232,16 +2349,17 @@ export async function renderOsisTree() {
             });
             html += '</div>';
         });
-        html += '</div>';
-        html += '</div>';
+        html += '</div>'; // .org-row--sekbid
 
+        html += '</div>'; // .org-col--center
 
+        // Right wing
         html += '<div class="org-col org-col--wing">';
         data.bendahara.forEach(b => html += node(b.nama, b.jabatan, 'wing'));
         html += '</div>';
 
-        html += '</div>';
-        html += '</div>';
+        html += '</div>'; // .org-row--mid
+        html += '</div>'; // .org-chart
 
         container.innerHTML = html;
 
@@ -2472,14 +2590,15 @@ Lalu buka `http://localhost:8000` di browser.
 
     <section class="pillars-section">
         <h2 class="section-title">Visi Dan Misi SMKN 68 Jakarta</h2>
-        <h2 style="text-align: center;">VISI</h3>
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <h3 style="text-align: center;">Mewujudkan Tamatan yang Beriman dan Bertakwa, Unggul dalam IPTEK, serta Berbudaya Lingkungan dan Mencerminkan Profil Pelajar Pancasila</h3>
-                </div>
-            </div>
 
-        <h2 style="text-align: center; margin-top: 5%;">MISI</h3>
+        <h3 style="text-align: center;">VISI</h3>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <h3 style="text-align: center;">Mewujudkan Tamatan yang Beriman dan Bertakwa, Unggul dalam IPTEK, serta Berbudaya Lingkungan dan Mencerminkan Profil Pelajar Pancasila</h3>
+            </div>
+        </div>
+
+        <h3 style="text-align: center; margin-top: 5%;">MISI</h3>
         <div class="pillars-grid">
             <div class="pillar-card">
                 <div class="pillar-icon">01</div>
@@ -2497,7 +2616,7 @@ Lalu buka `http://localhost:8000` di browser.
                 <p>Mewujudkan ekosistem belajar yang aman, inklusif, dan bebas perundungan, serta didukung oleh lingkungan fisik yang bersih dan hijau untuk kenyamanan belajar siswa.</p>
             </div>
             <div class="pillar-card">
-                <div class="pillar-icon">03</div>
+                <div class="pillar-icon">04</div>
                 <h3>Menerapkan Pembelajaran yang Berkarakter Pelajar Pancasila</h3>
                 <p>Mengintegrasikan nilai-nilai kebangsaan dalam pembelajaran untuk mencetak generasi yang tidak hanya terampil, tetapi juga mandiri, bernalar kritis, bergotong royong, dan beretika.</p>
             </div>
