@@ -1,10 +1,3 @@
-/**
- * home.js
- * Hero image slider + dynamic "Berita Terkini" for index.html.
- * The news section is auto-populated from content/articles-manifest.json —
- * no need to edit index.html when new articles are added.
- */
-
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');

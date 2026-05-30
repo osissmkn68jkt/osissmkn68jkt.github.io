@@ -1,9 +1,3 @@
-/**
- * struktur.js
- * Renders the OSIS organizational chart from content/osis-data.json.
- * Data is fully separated from logic — edit osis-data.json to update org structure.
- */
-
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -45,7 +39,7 @@ export async function renderOsisTree() {
 
         let html = '<div class="org-chart">';
 
-        // ── Top chain (Kepsek → Waket) ──────────────────
+
         html += '<div class="org-col org-col--spine">';
         data.pimpinanAtas.forEach((p, idx) => {
             html += node(p.nama, p.jabatan, 'main');
@@ -53,20 +47,20 @@ export async function renderOsisTree() {
         });
         html += '</div>';
 
-        // ── Three-column row: Sekretaris | Koordinator | Bendahara ──
+
         html += '<div class="org-row org-row--mid">';
 
-        // Left wing
+
         html += '<div class="org-col org-col--wing">';
         data.sekretaris.forEach(s => html += node(s.nama, s.jabatan, 'wing'));
         html += '</div>';
 
-        // Center: Koordinator + Sekbid branches
+
         html += '<div class="org-col org-col--center">';
         html += node(data.koordinator.nama, data.koordinator.jabatan, 'main');
         html += connector();
 
-        // Sekbid row
+
         html += '<div class="org-row org-row--sekbid">';
         data.sekbid.forEach(sek => {
             html += '<div class="org-col org-col--sekbid">';
@@ -80,17 +74,16 @@ export async function renderOsisTree() {
             });
             html += '</div>';
         });
-        html += '</div>'; // .org-row--sekbid
+        html += '</div>';
+        html += '</div>';
 
-        html += '</div>'; // .org-col--center
 
-        // Right wing
         html += '<div class="org-col org-col--wing">';
         data.bendahara.forEach(b => html += node(b.nama, b.jabatan, 'wing'));
         html += '</div>';
 
-        html += '</div>'; // .org-row--mid
-        html += '</div>'; // .org-chart
+        html += '</div>';
+        html += '</div>';
 
         container.innerHTML = html;
 

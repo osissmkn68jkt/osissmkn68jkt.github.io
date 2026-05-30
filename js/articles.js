@@ -1,15 +1,5 @@
-/**
- * articles.js
- * Handles everything related to articles:
- *   - Loading the manifest (content/articles-manifest.json)
- *   - Rendering article cards on articles.html
- *   - Rendering a full article page from a .md file
- *   - Category filtering with correct counts
- */
-
 import { parseMarkdown } from './md-parser.js';
 
-/** Site root — same robust logic as components.js */
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -26,12 +16,10 @@ function getSiteRoot() {
 
 const ROOT = getSiteRoot();
 
-/** Resolve path to content/ folder using absolute ROOT */
 function contentPath(rel) {
     return ROOT + 'content/' + rel;
 }
 
-/** Format ISO date to human-readable Indonesian */
 function formatDate(isoDate) {
     const months = ['Januari','Februari','Maret','April','Mei','Juni',
                     'Juli','Agustus','September','Oktober','November','Desember'];
@@ -39,21 +27,15 @@ function formatDate(isoDate) {
     return `${d} ${months[m - 1]} ${y}`;
 }
 
-/** Build URL to a single article page using absolute ROOT */
 function articleUrl(id) {
     return ROOT + 'static/articles/' + id + '.html';
 }
 
-/** Load the articles manifest JSON */
 async function loadManifest() {
     const res = await fetch(contentPath('articles-manifest.json'));
     if (!res.ok) throw new Error('Could not load articles manifest');
     return res.json();
 }
-
-// ─────────────────────────────────────────────────────────────
-// ARTICLES LIST PAGE (articles.html)
-// ─────────────────────────────────────────────────────────────
 
 function renderFeaturedCard(article) {
     return `
@@ -133,7 +115,7 @@ function initCategoryFilter(articles) {
 
             if (feedTitle) {
                 feedTitle.textContent = filter === 'all'
-                    ? 'Berita Terkini'
+                    ? 'Update Berita'
                     : `Kategori: ${btn.childNodes[0].textContent.trim()}`;
             }
         });

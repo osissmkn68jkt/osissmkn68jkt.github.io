@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. GLOBAL SYSTEM SETTINGS & VARIABLES
-   ========================================================================== */
    :root {
     --primary: #007bff;
     --primary-hover: #0056b3;
@@ -33,9 +30,6 @@ body {
     line-height: 1.6;
 }
 
-/* ==========================================================================
-   2. NAVIGATION & FOOTER (shared components)
-   ========================================================================== */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -141,9 +135,6 @@ body {
     color: #64748b;
 }
 
-/* ==========================================================================
-   3. SUBPAGE BANNER
-   ========================================================================== */
 .subpage-banner {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: #ffffff;
@@ -164,9 +155,6 @@ body {
     margin: 0 auto;
 }
 
-/* ==========================================================================
-   4. HOME PAGE
-   ========================================================================== */
 .hero-container {
     position: relative;
     width: 100%;
@@ -174,8 +162,8 @@ body {
     min-height: 450px;
     overflow: hidden;
     display: flex;
-    align-items: center;        /* vertical center */
-    justify-content: flex-start; /* horizontal left */
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .hero-slide {
@@ -206,19 +194,19 @@ body {
     padding: 0 60px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;    /* children align left */
+    align-items: flex-start;
 }
 
 .hero-logo {
     position: absolute;
-    right: 60px; /* Pushes the logo to the right edge */
-    top: 50%; /* Pushes it down to the middle */
-    transform: translateY(-50%); /* Ensures it is perfectly centered vertically */
-    width: 120px; /* You can adjust this size */
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
     height: 120px;
     object-fit: contain;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
-    z-index: 4; /* Keeps it above the slideshow overlay */
+    z-index: 4;
 }
 
 .hero-title { font-size: 52px; font-weight: 800; margin-bottom: 15px; line-height: 1.15; }
@@ -309,9 +297,6 @@ body {
 .news-link { font-size: 14px; color: var(--primary); text-decoration: none; font-weight: 700; margin-top: auto; }
 .news-link:hover { text-decoration: underline; }
 
-/* ==========================================================================
-   5. ABOUT PAGE
-   ========================================================================== */
 .about-grid {
     max-width: 1200px;
     width: calc(100% - 40px);
@@ -338,13 +323,13 @@ body {
     color: var(--text-muted);
     font-weight: 600;
     box-shadow: var(--shadow-sm);
-    overflow: hidden; /* Tambahkan ini agar sudut gambar ikut membulat */
+    overflow: hidden;
 }
 
 .graphic-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Membuat gambar memenuhi kotak dengan proporsional */
+    object-fit: cover;
     display: block;
 }
 
@@ -380,9 +365,6 @@ body {
 .pillar-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 700; }
 .pillar-card p { color: var(--text-muted); font-size: 15px; }
 
-/* ==========================================================================
-   6. PROGRAM KERJA
-   ========================================================================== */
 .proker-container { max-width: 900px; width: calc(100% - 40px); margin: 60px auto; }
 .sekbid-accordion { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 20px; overflow: hidden; border: 1px solid #e2e8f0; }
 
@@ -422,9 +404,6 @@ body {
 .proker-item-card h4 { font-size: 18px; margin-bottom: 10px; font-weight: 700; }
 .proker-item-card p { color: var(--text-muted); font-size: 14px; }
 
-/* ==========================================================================
-   7. STRUKTUR ORGANISASI — Clean data-driven org chart
-   ========================================================================== */
 .structure-wrapper {
     max-width: 1400px;
     width: calc(100% - 40px);
@@ -440,7 +419,6 @@ body {
     min-width: 900px;
 }
 
-/* Shared node appearance */
 .org-node {
     background: var(--bg-card);
     border: 1px solid #e2e8f0;
@@ -469,34 +447,29 @@ body {
     color: var(--text-muted);
 }
 
-/* Main nodes (spine) — slightly accented */
 .org-node--main {
     border-top: 3px solid var(--primary);
     min-width: 240px;
 }
 
-/* Wing nodes (sekretaris / bendahara) */
 .org-node--wing {
     background: #f0f7ff;
     border-color: #bfdbfe;
     min-width: 180px;
 }
 
-/* Sekbid leader nodes */
 .org-node--sekbid {
     border-top: 3px solid #10b981;
     min-width: 170px;
     font-size: 13px;
 }
 
-/* Vertical spine column */
 .org-col--spine {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Connector line between nodes */
 .org-connector {
     width: 2px;
     height: 30px;
@@ -504,7 +477,6 @@ body {
     margin: 0 auto;
 }
 
-/* Three-column mid row */
 .org-row--mid {
     display: grid;
     grid-template-columns: 220px 1fr 220px;
@@ -515,7 +487,6 @@ body {
     margin-top: 0;
 }
 
-/* Horizontal connector above mid-row (line from spine to wings) */
 .org-row--mid::before {
     content: '';
     position: absolute;
@@ -523,7 +494,7 @@ body {
     left: 0; right: 0;
     height: 2px;
     background: var(--line-color);
-    display: none; /* Handled via padding top of each col */
+    display: none;
 }
 
 .org-col--wing {
@@ -540,7 +511,6 @@ body {
     align-items: center;
 }
 
-/* Sekbid row — horizontal strip of columns */
 .org-row--sekbid {
     display: flex;
     gap: 16px;
@@ -559,7 +529,6 @@ body {
     max-width: 200px;
 }
 
-/* Department card */
 .org-dept {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
@@ -583,9 +552,6 @@ body {
     line-height: 1.6;
 }
 
-/* ==========================================================================
-   8. CONTACTS PAGE
-   ========================================================================== */
 .contact-grid {
     max-width: 1200px;
     width: calc(100% - 40px);
@@ -617,9 +583,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .submit-btn { width: 100%; background-color: var(--primary); color: #ffffff; border: none; padding: 14px; font-size: 16px; font-weight: 700; border-radius: 8px; cursor: pointer; transition: var(--transition); }
 .submit-btn:hover { background-color: var(--primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
-/* ==========================================================================
-   9. ARTICLES LIST PAGE
-   ========================================================================== */
 .news-portal-layout {
     max-width: 1200px;
     width: calc(100% - 40px);
@@ -675,7 +638,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 }
 .featured-read-btn:hover { background-color: var(--primary-hover); }
 
-/* Sidebar */
 .news-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 25px; }
 .sidebar-widget { background: var(--bg-card); padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid #e2e8f0; }
 .sidebar-widget h3 { font-size: 16px; font-weight: 800; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
@@ -686,9 +648,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .widget-list li a:hover, .widget-list li a.active { background-color: #eff6ff; color: var(--primary); }
 .widget-list li a span { background-color: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 11px; color: #333; }
 
-/* ==========================================================================
-   10. SINGLE ARTICLE READER
-   ========================================================================== */
 .single-reading-view { max-width: 860px; width: calc(100% - 40px); margin: 50px auto 80px; }
 .reading-content-wrapper { background-color: var(--bg-card); padding: 60px; border-radius: var(--radius); box-shadow: var(--shadow-md); border: 1px solid #e2e8f0; }
 
@@ -711,7 +670,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .article-inline-image { margin: 36px 0; }
 .article-inline-image img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
 
-/* Article body typography */
 .article-content { max-width: 700px; margin: 0 auto; }
 .article-content p:first-child { font-size: 19px; color: #334155; line-height: 1.8; font-weight: 500; }
 .article-content h2 { font-size: 26px; font-weight: 800; margin: 40px 0 18px; color: var(--text-dark); line-height: 1.3; }
@@ -724,9 +682,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .article-content hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
 .article-content code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 14px; font-family: 'Courier New', monospace; }
 
-/* ==========================================================================
-   11. RESPONSIVE
-   ========================================================================== */
 @media (max-width: 1024px) {
     .org-row--mid {
         grid-template-columns: 1fr;
