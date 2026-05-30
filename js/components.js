@@ -23,11 +23,28 @@ const NAV_LINKS = [
         <div class="logo">
           <a href="${rootUrl}index.html">OSIS SMKN 68 Jakarta</a>
         </div>
-        <div class="nav-links">
+        <button class="hamburger" id="mobile-menu-btn" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="nav-links-menu">
           ${linksHtml}
         </div>
       </nav>
     `;
+  };
+  
+  export const initNavListeners = () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('nav-links-menu');
+    
+    if (btn && menu) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('show');
+        btn.classList.toggle('active');
+      });
+    }
   };
   
   export const renderFooter = () => {

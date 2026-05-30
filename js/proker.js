@@ -1,4 +1,5 @@
 import { ROOT } from './app.js';
+import { renderNav, renderFooter, initNavListeners } from './components.js';
 
 const renderProkerCard = (item) => {
   const statusClass = item.status_class ? ` ${item.status_class}` : '';
@@ -34,7 +35,16 @@ const renderSekbidAccordion = (sekbid, index) => {
   `;
 };
 
+const setupLayout = () => {
+  const header = document.getElementById('header-container');
+  const footer = document.getElementById('footer-container');
+  if (header) header.innerHTML = renderNav(ROOT);
+  if (footer) footer.innerHTML = renderFooter();
+  initNavListeners();
+};
+
 export const initProkerPage = async () => {
+  setupLayout();
   const container = document.getElementById('proker-render-target');
   if (!container) return;
 

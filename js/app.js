@@ -1,3 +1,5 @@
+initNavListeners();
+
 export const getSiteRoot = () => {
     const { origin, pathname } = window.location;
     
