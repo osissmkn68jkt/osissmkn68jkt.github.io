@@ -1,9 +1,3 @@
-/**
- * struktur.js
- * Renders the OSIS organizational chart from content/osis-data.json.
- * Data is fully separated from logic — edit osis-data.json to update org structure.
- */
-
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');

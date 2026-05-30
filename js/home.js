@@ -1,10 +1,3 @@
-/**
- * home.js
- * Hero image slider + dynamic "Berita Terkini" for index.html.
- * The news section is auto-populated from content/articles-manifest.json —
- * no need to edit index.html when new articles are added.
- */
-
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -18,8 +11,6 @@ function getSiteRoot() {
     }
     return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
-
-// ─── Hero Slider ──────────────────────────────────────────────
 
 export function initHomeSlider() {
     const slides = document.querySelectorAll('.hero-slide');
@@ -35,13 +26,12 @@ export function initHomeSlider() {
     }, 5000);
 }
 
-// ─── Berita Terkini ───────────────────────────────────────────
 
 function renderNewsCard(article, ROOT) {
     const coverHtml = article.cover
-        ? `<img src="${article.cover}" alt="${article.title}" class="news-image" loading="lazy">`
-        : `<div class="news-image" style="background:var(--bg-main);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;">Tanpa Gambar</div>`;
-
+    ? `<img src="${article.cover}" alt="${article.title}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">`
+    : `<div class="news-image" style="background:var(--bg-main);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;">Tanpa Gambar</div>`;
+    
     return `
     <article class="news-card">
         <div class="news-image-wrapper">

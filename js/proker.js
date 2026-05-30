@@ -1,9 +1,3 @@
-/**
- * proker.js
- * Renders the Program Kerja accordion from content/proker-data.json.
- * To add, edit, or delete a program kerja: only edit proker-data.json.
- */
-
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');

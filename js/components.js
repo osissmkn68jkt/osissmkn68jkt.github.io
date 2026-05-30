@@ -1,61 +1,18 @@
-/**
- * components.js
- * Injects shared navigation and footer into every page.
- *
- * ROOT is determined once by finding the deepest path that contains index.html.
- * This works correctly on GitHub Pages (with or without a repo subfolder),
- * local dev servers, and any other static host.
- */
-
-/**
- * Detects the root URL of the site robustly.
- *
- * Strategy: walk up the path segments until we find the one that is the
- * actual site root. We do this by checking <base> tag (if set by build tool),
- * or by using the fact that index.html always lives at root.
- *
- * The reliable approach: if the site lives at origin/ (no subfolder), root = origin/
- * If the site lives at origin/repo/, root = origin/repo/
- *
- * We detect this by looking at the <link rel="canonical"> or simply by
- * checking if the first path segment is a known repo name. Since we can't
- * know the repo name at runtime, we use a smarter heuristic:
- *
- * - All static pages live under /static/ or at root /
- * - All article pages live under /static/articles/
- * - So the root is everything BEFORE the first occurrence of:
- *     "static/", "index.html", or end of meaningful path
- */
 function getSiteRoot() {
     const { origin, pathname } = window.location;
 
-    // Find the root by stripping known subpaths
-    // Known page locations relative to root:
-    //   /                          → index.html
-    //   /index.html                → root
-    //   /static/about.html         → root is everything before "static/"
-    //   /static/articles/foo.html  → root is everything before "static/"
-    //   /repo/                     → root (GitHub Pages with repo subfolder)
-    //   /repo/static/about.html    → root is everything before "static/"
-
     const staticIdx = pathname.indexOf('/static/');
     if (staticIdx !== -1) {
-        // Root is the path up to (and including) the slash before "static/"
         return origin + pathname.slice(0, staticIdx + 1);
     }
 
-    // We're at root level (index.html or /)
-    // The root is everything up to the last path segment if it's a file,
-    // or the full path if it ends with /
     const lastSlash = pathname.lastIndexOf('/');
     const afterLastSlash = pathname.slice(lastSlash + 1);
 
     if (afterLastSlash.includes('.')) {
-        // It's a file (e.g. index.html) — root is the directory
         return origin + pathname.slice(0, lastSlash + 1);
     }
 
-    // It's a directory path — use as-is (ensure trailing slash)
     return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 

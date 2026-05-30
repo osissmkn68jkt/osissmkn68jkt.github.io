@@ -1,28 +1,3 @@
-/**
- * md-parser.js
- * Lightweight Markdown parser for OSIS article system.
- * Supports: frontmatter, headings, paragraphs, bold, italic,
- * blockquote, unordered lists, ordered lists, inline images with captions,
- * and horizontal rules.
- *
- * HOW TO WRITE AN ARTICLE:
- * ─────────────────────────
- * Start the file with a "frontmatter" block (between --- lines).
- * Supported frontmatter keys:
- *   title, category, author, date, readtime, cover, cover_caption
- *
- * Then write your article body using simple Markdown:
- *   ## Heading 2         →  large section heading
- *   ### Heading 3        →  sub-section heading
- *   **bold text**        →  bold
- *   *italic text*        →  italic
- *   - item               →  bullet list item
- *   1. item              →  numbered list item
- *   > quote text         →  blockquote / pull quote
- *   ![alt|caption](url) →  image with optional caption (use | to split alt from caption)
- *   ---                  →  horizontal divider
- */
-
 export function parseFrontmatter(raw) {
     const fm = {};
     const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
@@ -48,13 +23,9 @@ function escapeHtml(str) {
 }
 
 function inlineFormat(text) {
-    // Bold + Italic combined
     text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
-    // Bold
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Italic
     text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    // Inline code
     text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
     return text;
 }
@@ -67,7 +38,6 @@ export function parseMarkdown(markdown) {
     while (i < lines.length) {
         const line = lines[i];
 
-        // ── Headings ──────────────────────────────────
         if (line.startsWith('### ')) {
             html.push(`<h3>${inlineFormat(line.slice(4))}</h3>`);
             i++; continue;
@@ -81,19 +51,16 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
-        // ── Horizontal Rule ───────────────────────────
         if (line.trim() === '---') {
             html.push('<hr>');
             i++; continue;
         }
 
-        // ── Blockquote ────────────────────────────────
         if (line.startsWith('> ')) {
             html.push(`<blockquote>${inlineFormat(line.slice(2))}</blockquote>`);
             i++; continue;
         }
 
-        // ── Unordered list ────────────────────────────
         if (line.startsWith('- ')) {
             html.push('<ul>');
             while (i < lines.length && lines[i].startsWith('- ')) {
@@ -104,7 +71,6 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // ── Ordered list ──────────────────────────────
         if (/^\d+\. /.test(line)) {
             html.push('<ol>');
             while (i < lines.length && /^\d+\. /.test(lines[i])) {
@@ -115,8 +81,6 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // ── Image with optional caption ───────────────
-        // Syntax: ![alt text|Caption text here](url)
         const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
         if (imgMatch) {
             const [altRaw, url] = [imgMatch[1], imgMatch[2]];
@@ -131,13 +95,10 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
-        // ── Empty line ────────────────────────────────
         if (line.trim() === '') {
             i++; continue;
         }
 
-        // ── Paragraph ─────────────────────────────────
-        // Collect consecutive non-empty, non-special lines as one paragraph
         const paraLines = [];
         while (
             i < lines.length &&
