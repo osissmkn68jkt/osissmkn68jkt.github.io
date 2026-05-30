@@ -1,69 +1,87 @@
-import { ROOT } from './app.js';
+import { getSiteRoot } from './utils.js';
 
-const node = (name, role, type) => `
-  <div class="org-node org-node--${type}">
-    <div class="org-node__name">${name}</div>
-    <div class="org-node__role">${role}</div>
-  </div>
-`;
+// ─── Node Builders ────────────────────────────────────────────
 
-const connector = () => `<div class="org-line-vertical"></div>`;
+function orgNode(nama, jabatan, level = 'main') {
+    return `
+    <div class="org-node org-node--${level}">
+        <div class="org-node__name">${nama}</div>
+        <div class="org-node__role">${jabatan}</div>
+    </div>`;
+}
 
-export const initStrukturPage = async () => {
-  const container = document.getElementById('struktur-render-target');
-  if (!container) return;
+function connector() {
+    return `<div class="org-connector"></div>`;
+}
 
-  try {
-    const res = await fetch(`${ROOT}content/osis-data.json`);
-    if (!res.ok) throw new Error('Data struktur gagal dimuat');
-    
-    const data = await res.json();
-    let html = '<div class="org-chart">';
+function orgDept({ nama, anggota }) {
+    return `
+    <div class="org-dept">
+        <div class="org-dept__name">${nama}</div>
+        <div class="org-dept__members">${anggota.join('<br>')}</div>
+    </div>`;
+}
 
-    data.pimpinanAtas.forEach((p, i) => {
-      html += node(p.nama, p.jabatan, 'main');
-      if (i < data.pimpinanAtas.length - 1) html += connector();
-    });
+function renderSekbidColumn(sek) {
+    return `
+    <div class="org-col org-col--sekbid">
+        ${orgNode(sek.ketua, `Ketua Sekbid ${sek.nama}`, 'sekbid')}
+        ${sek.departemen.map(orgDept).join('')}
+    </div>`;
+}
 
-    html += connector();
-    html += '<div class="org-row org-row--mid">';
-    
-    html += '<div class="org-col org-col--wing">';
-    data.sekretaris.forEach(s => html += node(s.nama, s.jabatan, 'wing'));
-    html += '</div>';
+function renderOrgChart(data) {
+    const spineNodes = data.pimpinanAtas
+        .map((p, i) => orgNode(p.nama, p.jabatan) + (i < data.pimpinanAtas.length - 1 ? connector() : ''))
+        .join('');
 
-    html += '<div class="org-col org-col--center">';
-    html += node(data.koordinator.nama, data.koordinator.jabatan, 'main');
-    html += connector();
-    
-    html += '<div class="org-row org-row--sekbid">';
-    data.sekbid.forEach(sek => {
-      html += '<div class="org-col org-col--sekbid">';
-      html += node(sek.ketua, `Ketua Sekbid ${sek.nama}`, 'sekbid');
-      
-      sek.departemen.forEach(dept => {
-        html += `
-          <div class="org-dept">
-            <div class="org-dept__name">${dept.nama}</div>
-            <div class="org-dept__members">${dept.anggota.join('<br>')}</div>
-          </div>
-        `;
-      });
-      html += '</div>';
-    });
-    html += '</div>';
-    html += '</div>';
+    const sekretarisNodes = data.sekretaris.map(s => orgNode(s.nama, s.jabatan, 'wing')).join('');
+    const bendaharaNodes  = data.bendahara.map(b => orgNode(b.nama, b.jabatan, 'wing')).join('');
+    const sekbidColumns   = data.sekbid.map(renderSekbidColumn).join('');
 
-    html += '<div class="org-col org-col--wing">';
-    data.bendahara.forEach(b => html += node(b.nama, b.jabatan, 'wing'));
-    html += '</div>';
+    return `
+    <div class="org-chart">
+        <div class="org-col org-col--spine">
+            ${spineNodes}
+        </div>
 
-    html += '</div>';
-    html += '</div>';
+        <div class="org-row org-row--mid">
+            <div class="org-col org-col--wing">
+                ${sekretarisNodes}
+            </div>
 
-    container.innerHTML = html;
-  } catch (err) {
-    console.error('Org tree failed:', err);
-    container.innerHTML = `<p style="color:red;padding:2rem">Gagal memuat data struktur: ${err.message}</p>`;
-  }
-};
+            <div class="org-col org-col--center">
+                ${orgNode(data.koordinator.nama, data.koordinator.jabatan)}
+                ${connector()}
+                <div class="org-row org-row--sekbid">
+                    ${sekbidColumns}
+                </div>
+            </div>
+
+            <div class="org-col org-col--wing">
+                ${bendaharaNodes}
+            </div>
+        </div>
+    </div>`;
+}
+
+// ─── Page Init ────────────────────────────────────────────────
+
+export async function renderOsisTree() {
+    const container = document.getElementById('osis-tree-container');
+    if (!container) return;
+
+    const dataUrl = getSiteRoot() + 'content/osis-data.json';
+
+    try {
+        const res = await fetch(dataUrl);
+        if (!res.ok) throw new Error('Cannot load osis-data.json');
+        const data = await res.json();
+
+        container.innerHTML = renderOrgChart(data);
+
+    } catch (err) {
+        console.error('Org tree failed:', err);
+        container.innerHTML = `<p style="color:red;padding:2rem">Gagal memuat data struktur: ${err.message}</p>`;
+    }
+}
