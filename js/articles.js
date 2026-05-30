@@ -1,6 +1,5 @@
 import { ROOT } from './app.js';
 import { parseMarkdown } from './md-parser.js';
-import { renderNav, renderFooter, initNavListeners } from './components.js';
 
 const contentPath = (rel) => `${ROOT}content/${rel}`;
 const articleUrl = (id) => `${ROOT}static/articles/${id}.html`;
@@ -44,16 +43,7 @@ const renderArticleCard = (article) => `
   </article>
 `;
 
-const setupLayout = () => {
-  const header = document.getElementById('header-container');
-  const footer = document.getElementById('footer-container');
-  if (header) header.innerHTML = renderNav(ROOT);
-  if (footer) footer.innerHTML = renderFooter();
-  initNavListeners();
-};
-
 export const initArticlesPage = async () => {
-  setupLayout();
   const gridContainer = document.getElementById('articles-grid');
   const featuredContainer = document.getElementById('featured-article-container');
   const categoryListId = 'category-list';
@@ -81,7 +71,6 @@ export const initArticlesPage = async () => {
 };
 
 export const initArticlePage = async () => {
-  setupLayout();
   const container = document.getElementById('article-render-target');
   if (!container) return;
 

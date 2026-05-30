@@ -1,5 +1,5 @@
 import { ROOT } from './app.js';
-import { renderNav, renderFooter, initNavListeners } from './components.js';
+import { renderNav, renderFooter } from './components.js';
 
 const initHomePage = () => {
   const header = document.getElementById('header-container');
@@ -16,8 +16,6 @@ const initHomePage = () => {
   } else {
     document.body.insertAdjacentHTML('beforeend', renderFooter());
   }
-
-  initNavListeners();
 };
 
 document.addEventListener('DOMContentLoaded', initHomePage);
