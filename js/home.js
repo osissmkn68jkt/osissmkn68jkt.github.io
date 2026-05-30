@@ -1,4 +1,23 @@
-import { getSiteRoot } from './utils.js';
+/**
+ * home.js
+ * Hero image slider + dynamic "Berita Terkini" for index.html.
+ * The news section is auto-populated from content/articles-manifest.json —
+ * no need to edit index.html when new articles are added.
+ */
+
+function getSiteRoot() {
+    const { origin, pathname } = window.location;
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
+    }
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
+}
 
 // ─── Hero Slider ──────────────────────────────────────────────
 
@@ -7,6 +26,7 @@ export function initHomeSlider() {
     if (!slides.length) return;
 
     let current = 0;
+    slides[0].classList.add('active');
 
     setInterval(() => {
         slides[current].classList.remove('active');
@@ -51,10 +71,12 @@ export async function initHomeNews() {
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 3);
 
-        grid.innerHTML = recent.length
-            ? recent.map(a => renderNewsCard(a, ROOT)).join('')
-            : '<p style="color:var(--text-muted)">Belum ada artikel.</p>';
+        if (recent.length === 0) {
+            grid.innerHTML = '<p style="color:var(--text-muted)">Belum ada artikel.</p>';
+            return;
+        }
 
+        grid.innerHTML = recent.map(a => renderNewsCard(a, ROOT)).join('');
     } catch (err) {
         console.error('Home news failed to load:', err);
         grid.innerHTML = '<p style="color:var(--text-muted)">Gagal memuat berita terkini.</p>';

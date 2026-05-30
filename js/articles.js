@@ -1,34 +1,59 @@
-import { getSiteRoot } from './utils.js';
+/**
+ * articles.js
+ * Handles everything related to articles:
+ *   - Loading the manifest (content/articles-manifest.json)
+ *   - Rendering article cards on articles.html
+ *   - Rendering a full article page from a .md file
+ *   - Category filtering with correct counts
+ */
+
 import { parseMarkdown } from './md-parser.js';
+
+/** Site root — same robust logic as components.js */
+function getSiteRoot() {
+    const { origin, pathname } = window.location;
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
+    }
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
+}
 
 const ROOT = getSiteRoot();
 
-// ─── Helpers ──────────────────────────────────────────────────
-
+/** Resolve path to content/ folder using absolute ROOT */
 function contentPath(rel) {
     return ROOT + 'content/' + rel;
 }
 
+/** Format ISO date to human-readable Indonesian */
+function formatDate(isoDate) {
+    const months = ['Januari','Februari','Maret','April','Mei','Juni',
+                    'Juli','Agustus','September','Oktober','November','Desember'];
+    const [y, m, d] = isoDate.split('-').map(Number);
+    return `${d} ${months[m - 1]} ${y}`;
+}
+
+/** Build URL to a single article page using absolute ROOT */
 function articleUrl(id) {
     return ROOT + 'static/articles/' + id + '.html';
 }
 
-function formatDate(isoDate) {
-    const MONTHS = [
-        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember',
-    ];
-    const [y, m, d] = isoDate.split('-').map(Number);
-    return `${d} ${MONTHS[m - 1]} ${y}`;
-}
-
+/** Load the articles manifest JSON */
 async function loadManifest() {
     const res = await fetch(contentPath('articles-manifest.json'));
     if (!res.ok) throw new Error('Could not load articles manifest');
     return res.json();
 }
 
-// ─── Card Renderers ───────────────────────────────────────────
+// ─────────────────────────────────────────────────────────────
+// ARTICLES LIST PAGE (articles.html)
+// ─────────────────────────────────────────────────────────────
 
 function renderFeaturedCard(article) {
     return `
@@ -60,36 +85,35 @@ function renderArticleCard(article) {
     </article>`;
 }
 
-// ─── Category Sidebar ─────────────────────────────────────────
-
 function buildCategorySidebar(articles, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const counts = articles.reduce((acc, { category }) => {
-        acc[category] = (acc[category] || 0) + 1;
-        return acc;
-    }, {});
+    const counts = {};
+    articles.forEach(a => {
+        counts[a.category] = (counts[a.category] || 0) + 1;
+    });
 
-    const allItem = `
+    const total = articles.length;
+    let html = `
         <li><a href="#" class="category-btn active" data-filter="all">
-            Semua Kategori <span>${articles.length}</span>
+            Semua Kategori <span>${total}</span>
         </a></li>`;
 
-    const categoryItems = Object.entries(counts).map(([cat, count]) => {
+    Object.entries(counts).forEach(([cat, count]) => {
         const label = cat.charAt(0).toUpperCase() + cat.slice(1);
-        return `
+        html += `
         <li><a href="#" class="category-btn" data-filter="${cat}">
             ${label} <span>${count}</span>
         </a></li>`;
-    }).join('');
+    });
 
-    container.innerHTML = allItem + categoryItems;
+    container.innerHTML = html;
     initCategoryFilter(articles);
 }
 
-function initCategoryFilter() {
-    const buttons   = document.querySelectorAll('.category-btn');
+function initCategoryFilter(articles) {
+    const buttons = document.querySelectorAll('.category-btn');
     const feedTitle = document.getElementById('feed-title-text');
 
     buttons.forEach(btn => {
@@ -101,31 +125,31 @@ function initCategoryFilter() {
             const filter = btn.dataset.filter;
 
             document.querySelectorAll('[data-category]').forEach(el => {
-                const isMatch = filter === 'all' || el.dataset.category === filter;
-                el.style.display = isMatch
+                const match = filter === 'all' || el.dataset.category === filter;
+                el.style.display = match
                     ? (el.classList.contains('featured-news-hero-card') ? 'grid' : '')
                     : 'none';
             });
 
             if (feedTitle) {
                 feedTitle.textContent = filter === 'all'
-                    ? 'Update Berita'
+                    ? 'Berita Terkini'
                     : `Kategori: ${btn.childNodes[0].textContent.trim()}`;
             }
         });
     });
 }
 
-// ─── Article List Page ────────────────────────────────────────
-
 export async function initArticleListPage() {
     const featuredContainer = document.getElementById('featured-article-container');
     const gridContainer     = document.getElementById('articles-grid-container');
+    const categoryListId    = 'category-list';
 
     if (!gridContainer) return;
 
     try {
         const manifest = await loadManifest();
+
         const featured = manifest.filter(a => a.featured);
         const regular  = manifest.filter(a => !a.featured);
 
@@ -134,7 +158,7 @@ export async function initArticleListPage() {
         }
         gridContainer.innerHTML = regular.map(renderArticleCard).join('');
 
-        buildCategorySidebar(manifest, 'category-list');
+        buildCategorySidebar(manifest, categoryListId);
 
     } catch (err) {
         console.error('Articles failed to load:', err);
@@ -144,7 +168,9 @@ export async function initArticleListPage() {
     }
 }
 
-// ─── Single Article Page ──────────────────────────────────────
+// ─────────────────────────────────────────────────────────────
+// SINGLE ARTICLE PAGE (static/articles/[id].html)
+// ─────────────────────────────────────────────────────────────
 
 export async function initArticlePage() {
     const container = document.getElementById('article-render-target');
@@ -153,27 +179,19 @@ export async function initArticlePage() {
     const articleId = container.dataset.articleId
         || window.location.pathname.split('/').pop().replace('.html', '');
 
-    const backLink = `<a href="${ROOT}static/articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>`;
-
     try {
         const manifest = await loadManifest();
         const meta = manifest.find(a => a.id === articleId);
 
         if (!meta) throw new Error(`Article "${articleId}" not found in manifest`);
 
+        const bodyHtml = parseMarkdown(meta.body || '');
+
         document.title = `${meta.title} — OSIS SMKN 68 Jakarta`;
-
-        const coverHtml = meta.cover ? `
-            <figure class="article-featured-image">
-                <img src="${meta.cover}" alt="${meta.title}" loading="lazy">
-                ${meta.cover_caption ? `<figcaption>${meta.cover_caption}</figcaption>` : ''}
-            </figure>` : '';
-
-        const readtimeHtml = meta.readtime ? ` • Waktu baca: ${meta.readtime}` : '';
 
         container.innerHTML = `
             <div class="reading-content-wrapper">
-                ${backLink}
+                <a href="${ROOT}static/articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
                 <article>
                     <header class="article-header">
                         <span class="article-category">${meta.category_display || meta.category}</span>
@@ -183,13 +201,19 @@ export async function initArticlePage() {
                                  alt="${meta.author}" class="author-avatar">
                             <div class="meta-details">
                                 <span class="author-name">Ditulis oleh ${meta.author}</span>
-                                <span class="publish-date">${meta.date_display || formatDate(meta.date)}${readtimeHtml}</span>
+                                <span class="publish-date">${meta.date_display || formatDate(meta.date)}${meta.readtime ? ` • Waktu baca: ${meta.readtime}` : ''}</span>
                             </div>
                         </div>
                     </header>
-                    ${coverHtml}
+
+                    ${meta.cover ? `
+                    <figure class="article-featured-image">
+                        <img src="${meta.cover}" alt="${meta.title}" loading="lazy">
+                        ${meta.cover_caption ? `<figcaption>${meta.cover_caption}</figcaption>` : ''}
+                    </figure>` : ''}
+
                     <div class="article-content">
-                        ${parseMarkdown(meta.body || '')}
+                        ${bodyHtml}
                     </div>
                 </article>
             </div>`;
@@ -198,7 +222,7 @@ export async function initArticlePage() {
         console.error('Article render failed:', err);
         container.innerHTML = `
             <div class="reading-content-wrapper">
-                ${backLink}
+                <a href="${ROOT}static/articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
                 <p style="color:red; margin-top: 2rem;">Gagal memuat artikel: ${err.message}</p>
             </div>`;
     }

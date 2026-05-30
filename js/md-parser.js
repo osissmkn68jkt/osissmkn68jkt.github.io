@@ -1,23 +1,44 @@
-// ─── Frontmatter ─────────────────────────────────────────────
+/**
+ * md-parser.js
+ * Lightweight Markdown parser for OSIS article system.
+ * Supports: frontmatter, headings, paragraphs, bold, italic,
+ * blockquote, unordered lists, ordered lists, inline images with captions,
+ * and horizontal rules.
+ *
+ * HOW TO WRITE AN ARTICLE:
+ * ─────────────────────────
+ * Start the file with a "frontmatter" block (between --- lines).
+ * Supported frontmatter keys:
+ *   title, category, author, date, readtime, cover, cover_caption
+ *
+ * Then write your article body using simple Markdown:
+ *   ## Heading 2         →  large section heading
+ *   ### Heading 3        →  sub-section heading
+ *   **bold text**        →  bold
+ *   *italic text*        →  italic
+ *   - item               →  bullet list item
+ *   1. item              →  numbered list item
+ *   > quote text         →  blockquote / pull quote
+ *   ![alt|caption](url) →  image with optional caption (use | to split alt from caption)
+ *   ---                  →  horizontal divider
+ */
 
 export function parseFrontmatter(raw) {
-    const fm       = {};
-    const fmMatch  = raw.match(/^---\n([\s\S]*?)\n---/);
-    let   body     = raw;
-
+    const fm = {};
+    const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
+    let body = raw;
     if (fmMatch) {
         body = raw.slice(fmMatch[0].length).trim();
         fmMatch[1].split('\n').forEach(line => {
             const colon = line.indexOf(':');
             if (colon === -1) return;
-            fm[line.slice(0, colon).trim()] = line.slice(colon + 1).trim();
+            const key = line.slice(0, colon).trim();
+            const val = line.slice(colon + 1).trim();
+            fm[key] = val;
         });
     }
-
     return { fm, body };
 }
-
-// ─── Helpers ─────────────────────────────────────────────────
 
 function escapeHtml(str) {
     return str
@@ -27,35 +48,52 @@ function escapeHtml(str) {
 }
 
 function inlineFormat(text) {
-    return text
-        .replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>')
-        .replace(/\*\*(.*?)\*\*/g,     '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g,         '<em>$1</em>')
-        .replace(/`([^`]+)`/g,         '<code>$1</code>');
+    // Bold + Italic combined
+    text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
+    // Bold
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Italic
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    // Inline code
+    text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
+    return text;
 }
-
-// ─── Block-level Parser ───────────────────────────────────────
 
 export function parseMarkdown(markdown) {
     const lines = markdown.split('\n');
-    const html  = [];
+    const html = [];
     let i = 0;
 
     while (i < lines.length) {
         const line = lines[i];
 
-        // Headings
-        if (line.startsWith('### ')) { html.push(`<h3>${inlineFormat(line.slice(4))}</h3>`);  i++; continue; }
-        if (line.startsWith('## '))  { html.push(`<h2>${inlineFormat(line.slice(3))}</h2>`);   i++; continue; }
-        if (line.startsWith('# '))   { html.push(`<h1>${inlineFormat(line.slice(2))}</h1>`);   i++; continue; }
+        // ── Headings ──────────────────────────────────
+        if (line.startsWith('### ')) {
+            html.push(`<h3>${inlineFormat(line.slice(4))}</h3>`);
+            i++; continue;
+        }
+        if (line.startsWith('## ')) {
+            html.push(`<h2>${inlineFormat(line.slice(3))}</h2>`);
+            i++; continue;
+        }
+        if (line.startsWith('# ')) {
+            html.push(`<h1>${inlineFormat(line.slice(2))}</h1>`);
+            i++; continue;
+        }
 
-        // Thematic break
-        if (line.trim() === '---')   { html.push('<hr>'); i++; continue; }
+        // ── Horizontal Rule ───────────────────────────
+        if (line.trim() === '---') {
+            html.push('<hr>');
+            i++; continue;
+        }
 
-        // Blockquote
-        if (line.startsWith('> '))   { html.push(`<blockquote>${inlineFormat(line.slice(2))}</blockquote>`); i++; continue; }
+        // ── Blockquote ────────────────────────────────
+        if (line.startsWith('> ')) {
+            html.push(`<blockquote>${inlineFormat(line.slice(2))}</blockquote>`);
+            i++; continue;
+        }
 
-        // Unordered list
+        // ── Unordered list ────────────────────────────
         if (line.startsWith('- ')) {
             html.push('<ul>');
             while (i < lines.length && lines[i].startsWith('- ')) {
@@ -66,7 +104,7 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // Ordered list
+        // ── Ordered list ──────────────────────────────
         if (/^\d+\. /.test(line)) {
             html.push('<ol>');
             while (i < lines.length && /^\d+\. /.test(lines[i])) {
@@ -77,39 +115,43 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // Inline image (standalone line)
+        // ── Image with optional caption ───────────────
+        // Syntax: ![alt text|Caption text here](url)
         const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
         if (imgMatch) {
-            const [altRaw, url]      = [imgMatch[1], imgMatch[2]];
-            const [alt, caption = ''] = altRaw.includes('|')
+            const [altRaw, url] = [imgMatch[1], imgMatch[2]];
+            const [alt, caption] = altRaw.includes('|')
                 ? altRaw.split('|').map(s => s.trim())
-                : [altRaw];
-
-            const figcaption = caption ? `<figcaption>${escapeHtml(caption)}</figcaption>` : '';
-            html.push(`<figure class="article-inline-image"><img src="${url}" alt="${escapeHtml(alt)}" loading="lazy">${figcaption}</figure>`);
-            i++;
-            continue;
+                : [altRaw, ''];
+            if (caption) {
+                html.push(`<figure class="article-inline-image"><img src="${url}" alt="${escapeHtml(alt)}" loading="lazy"><figcaption>${escapeHtml(caption)}</figcaption></figure>`);
+            } else {
+                html.push(`<figure class="article-inline-image"><img src="${url}" alt="${escapeHtml(alt)}" loading="lazy"></figure>`);
+            }
+            i++; continue;
         }
 
-        // Blank line
-        if (line.trim() === '') { i++; continue; }
+        // ── Empty line ────────────────────────────────
+        if (line.trim() === '') {
+            i++; continue;
+        }
 
-        // Paragraph — consume until a block-level marker or blank line
+        // ── Paragraph ─────────────────────────────────
+        // Collect consecutive non-empty, non-special lines as one paragraph
         const paraLines = [];
         while (
-            i < lines.length        &&
-            lines[i].trim() !== ''  &&
-            !lines[i].startsWith('#')  &&
+            i < lines.length &&
+            lines[i].trim() !== '' &&
+            !lines[i].startsWith('#') &&
             !lines[i].startsWith('> ') &&
             !lines[i].startsWith('- ') &&
-            !/^\d+\. /.test(lines[i])  &&
-            !lines[i].startsWith('!')  &&
+            !/^\d+\. /.test(lines[i]) &&
+            !lines[i].startsWith('!') &&
             lines[i].trim() !== '---'
         ) {
             paraLines.push(lines[i]);
             i++;
         }
-
         if (paraLines.length > 0) {
             html.push(`<p>${inlineFormat(paraLines.join(' '))}</p>`);
         }
