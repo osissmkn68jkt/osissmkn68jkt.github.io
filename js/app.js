@@ -1,22 +1,19 @@
-import { injectComponents } from './components.js';
-import { initHomeSlider, initHomeNews } from './home.js';
-import { initArticleListPage, initArticlePage } from './articles.js';
-import { renderOsisTree } from './struktur.js';
-import { initProkerPage } from './proker.js';
-
-injectComponents();
-
-const page = window.location.pathname.split('/').pop() || 'index.html';
-
-if (page === 'index.html' || page === '') {
-    initHomeSlider();
-    initHomeNews();
-} else if (page === 'struktur.html') {
-    renderOsisTree();
-} else if (page === 'articles.html') {
-    initArticleListPage();
-} else if (page === 'proker.html') {
-    initProkerPage();
-} else if (page.endsWith('.html') && window.location.pathname.includes('/articles/')) {
-    initArticlePage();
-}
+export const getSiteRoot = () => {
+    const { origin, pathname } = window.location;
+    
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+      return origin + pathname.slice(0, staticIdx + 1);
+    }
+    
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    
+    if (afterLastSlash.includes('.')) {
+      return origin + pathname.slice(0, lastSlash + 1);
+    }
+    
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
+  };
+  
+  export const ROOT = getSiteRoot();

@@ -1,60 +1,220 @@
-# PROJECT WEBSITE OSIS SMKN 68 JAKARTA
+# Project Structure
+```
+osissmkn68jkt.github.io
+├─.gitignore
+├─content
+│   ├─articles
+│   │   ├─anak-smk-jangan-cuma-jadi-pengguna-ai.md
+│   │   ├─demo-proker-artikel-digital.md
+│   │   ├─kadang-portofolio-bisa-mengalahkan-nilai.md
+│   │   └─lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.md
+│   ├─articles-manifest.json
+│   ├─osis-data.json
+│   └─proker-data.json
+├─css
+│   └─style.css
+├─img
+│   ├─assets
+│   │   └─img1.jpeg
+│   ├─covers
+│   │   ├─12ewqda.jpeg
+│   │   ├─anak-smk-jangan-cuma-jadi-pengguna-ai.jpeg
+│   │   ├─demo-proker-artikel-digital.png
+│   │   ├─kadang-portofolio-bisa-mengalahkan-nilai.jpeg
+│   │   ├─lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.jpeg
+│   │   ├─news1.jpg
+│   │   ├─news2.jpg
+│   │   ├─news3.jpg
+│   │   └─slad.jpeg
+│   ├─icon.png
+│   ├─slide1.jpg
+│   ├─slide2.jpg
+│   └─slide3.jpg
+├─index.html
+├─js
+│   ├─app.js
+│   ├─articles.js
+│   ├─components.js
+│   ├─home.js
+│   ├─md-parser.js
+│   ├─proker.js
+│   └─struktur.js
+├─README.md
+├─static
+│   ├─about.html
+│   ├─articles
+│   │   ├─anak-smk-jangan-cuma-jadi-pengguna-ai.html
+│   │   ├─demo-proker-artikel-digital.html
+│   │   ├─kadang-portofolio-bisa-mengalahkan-nilai.html
+│   │   └─lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.html
+│   ├─articles.html
+│   ├─contacts.html
+│   ├─proker.html
+│   └─struktur.html
+├─TODO.md
+└─tools
+│   └─build.py
+```
 
-## STRUCTURE 
-$ find .
-./content
-./content/.DS_Store
-./content/articles
-./content/articles/demo-proker-artikel-digital.md
-./content/articles/image-1.png
-./content/articles/image.png
-./content/articles-manifest.json
-./content/osis-data.json
-./content/proker-data.json
-./css
-./css/style.css
-./img
-./img/.DS_Store
-./img/assets
-./img/assets/img1.jpeg
-./img/covers
-./img/covers/12ewqda.jpeg
-./img/covers/demo-proker-artikel-digital.png
-./img/covers/news1.jpg
-./img/covers/news2.jpg
-./img/covers/news3.jpg
-./img/covers/slad.jpeg
-./img/icon.png
-./img/slide1.jpg
-./img/slide2.jpg
-./img/slide3.jpg
-./index.html
-./js
-./js/app.js
-./js/articles.js
-./js/components.js
-./js/home.js
-./js/md-parser.js
-./js/proker.js
-./js/struktur.js
-./PROJECT.md
-./README.md
-./static
-./static/about.html
-./static/articles
-./static/articles/demo-proker-artikel-digital.html
-./static/articles.html
-./static/contacts.html
-./static/proker.html
-./static/struktur.html
-./TODO.md
-./tools
-./tools/build.py
+---
 
-## FILES
+# Source Code
 
-`content/articles/demo-proker-artikel-digital.md`
-```markdown
+## File: `../osissmkn68jkt.github.io/content/articles-manifest.json`
+
+```json
+[
+  {
+    "id": "anak-smk-jangan-cuma-jadi-pengguna-ai",
+    "file": "content/articles/anak-smk-jangan-cuma-jadi-pengguna-ai.md",
+    "title": "Anak SMK Jangan Cuma Jadi Pengguna AI",
+    "author": "Ikram Rahmani x https://mulamula.id/",
+    "date": "2026-05-27",
+    "date_display": "27 Mei 2026",
+    "readtime": "2 menit",
+    "cover": "https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/anak-smk-jangan-cuma-jadi-pengguna-ai.jpeg?raw=true",
+    "cover_caption": "",
+    "category": "edukasi",
+    "category_display": "Edukasi",
+    "excerpt": "Banyak orang memakai AI hanya untuk mencari jawaban tugas sekolah atau membuat caption media sosial. Padahal kemampuan paling penting sebenarnya bukan sekadar “bertanya ke AI”.",
+    "featured": true,
+    "body": "Artificial Intelligence atau AI adalah teknologi yang membuat komputer mampu membantu manusia berpikir, menganalisis, membuat teks, mengenali gambar, hingga membantu pekerjaan digital sehari-hari.\n\nAI sekarang ada di mana-mana. Mulai dari media sosial, aplikasi belanja, desain, editing video, sampai dunia kerja. Banyak anak muda sudah memakai AI setiap hari. Tetapi sebagian besar masih sebatas menjadi pengguna.\n\nPadahal, dunia kerja mulai mencari orang yang bisa memanfaatkan AI untuk membuat sesuatu.\n\nItulah kenapa anak SMK punya peluang besar jika mau belajar lebih jauh. Terutama mereka yang dekat dengan teknologi, komputer, desain, multimedia, atau bisnis digital.\n\nAI bukan lagi sekadar tren internet. AI mulai menjadi skill kerja baru.\n\n## Bukan Sekadar Tanya AI\n\nBanyak orang memakai AI hanya untuk mencari jawaban tugas sekolah atau membuat caption media sosial. Padahal kemampuan paling penting sebenarnya bukan sekadar “bertanya ke AI”.\n\nYang lebih penting adalah bagaimana AI dipakai untuk membantu menyelesaikan masalah dan membuat karya.\n\nAnak SMK jurusan coding bisa memakai AI untuk membantu membuat website atau memperbaiki program. Anak multimedia bisa memakai AI untuk mencari ide desain dan editing. Bahkan siswa pemasaran bisa menggunakan AI untuk membuat konsep promosi digital.\n\nAI dapat membantu pekerjaan menjadi lebih cepat, tetapi kreativitas manusia tetap menjadi penentu utama.\n\nKarena itu, anak muda tidak cukup hanya menjadi pengguna teknologi. Mereka juga harus belajar menjadi pembuat karya dengan bantuan teknologi.\n\n## Dunia Kerja Sedang Berubah\n\nPerusahaan saat ini mulai mencari pekerja yang mampu beradaptasi dengan perubahan digital.\n\nMenurut berbagai laporan industri global, kemampuan AI dan literasi digital mulai menjadi salah satu skill yang paling dibutuhkan dalam beberapa tahun ke depan.\n\nLiterasi digital adalah kemampuan memahami, menggunakan, dan memanfaatkan teknologi secara cerdas dan produktif.\n\nPerubahan ini membuat persaingan kerja ikut berubah. Anak muda yang cepat belajar teknologi baru biasanya memiliki peluang lebih besar untuk berkembang.\n\nTetapi ada satu hal penting, AI tidak otomatis menggantikan semua pekerjaan manusia.\n\nJustru orang yang mampu bekerja bersama teknologi biasanya akan lebih dibutuhkan.\nMulai dari Hal Sederhana\n\nBelajar AI tidak harus langsung rumit. Tidak harus menjadi programmer hebat sejak awal.\n\nAnak SMK bisa mulai dari hal sederhana:\n\n- belajar membuat prompt yang jelas,\n- mencoba tools desain AI,\n- membuat website sederhana,\n- atau membantu kegiatan digital sekolah.\n\nProyek kecil sering kali menjadi langkah pertama menuju kemampuan besar.\n\nBahkan website sekolah, desain acara OSIS, atau konten media sosial bisa menjadi latihan penting untuk membangun portofolio.\n\nSemakin sering mencoba, semakin cepat kemampuan berkembang.\n\n## Masa Depan Tidak Menunggu\n\nTeknologi bergerak sangat cepat. Dunia kerja juga ikut berubah.\n\nAnak muda yang mau belajar hari ini akan memiliki keuntungan lebih besar beberapa tahun ke depan.\n\nKarena di era sekarang, yang dicari bukan hanya siapa yang paling pintar. Tetapi siapa yang paling siap belajar dan beradaptasi.\n\nDan kadang, langkah kecil seperti mencoba membuat sesuatu sendiri bisa menjadi awal perjalanan besar di masa depan. **(Kolaborasi Ikram Rahmani x mulamula.id)**"
+  },
+  {
+    "id": "kadang-portofolio-bisa-mengalahkan-nilai",
+    "file": "content/articles/kadang-portofolio-bisa-mengalahkan-nilai.md",
+    "title": "Kadang Portofolio Bisa Mengalahkan Nilai",
+    "author": "Ikram Rahmani x https://mulamula.id/",
+    "date": "2026-05-27",
+    "date_display": "27 Mei 2026",
+    "readtime": "2 menit",
+    "cover": "https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/kadang-portofolio-bisa-mengalahkan-nilai.jpeg?raw=true",
+    "cover_caption": "",
+    "category": "edukasi",
+    "category_display": "Edukasi",
+    "excerpt": "Nilai tetap penting. Tetapi kemampuan menunjukkan karya nyata sering kali membuat seseorang lebih mudah terlihat.",
+    "featured": false,
+    "body": "Banyak siswa masih percaya bahwa nilai tinggi adalah tiket utama untuk mendapatkan pekerjaan. Padahal di dunia kerja sekarang, perusahaan mulai melihat hal lain yang tidak selalu muncul di raport, karya nyata.\n\nPortofolio adalah kumpulan hasil kerja, proyek, atau pengalaman yang menunjukkan kemampuan seseorang secara langsung.\n\nKarena itu, anak SMK sebenarnya punya keunggulan besar. Mereka terbiasa praktik. Terbiasa membuat sesuatu. Terbiasa belajar lewat proyek dan simulasi kerja.\n\nMasalahnya, banyak siswa belum sadar bahwa hal-hal yang mereka buat di sekolah bisa menjadi modal penting setelah lulus.\n\nWebsite sederhana, desain poster, video editing, aplikasi kecil, dokumentasi acara sekolah, sampai konten media sosial bisa menjadi bagian dari portofolio.\n\nDan kadang, itu lebih menarik di mata HRD dibanding angka raport semata.\n\n## Dunia Kerja Ingin Bukti\n\nPerusahaan saat ini menerima ribuan lamaran kerja. Mereka tidak mungkin mengenal semua pelamar hanya lewat kertas CV.\n\nKarena itu, hasil karya menjadi penting.\n\nKetika seseorang bisa menunjukkan website yang pernah dibuat, desain yang pernah dipakai, atau proyek digital yang pernah dikerjakan, perusahaan lebih mudah melihat kemampuan nyata calon pekerja.\n\nPortofolio membantu orang lain memahami apa yang benar-benar bisa kita lakukan.\n\nDi era digital, banyak perusahaan mulai mencari orang yang sudah terbiasa membuat sesuatu, meski masih sederhana.\n\n## Proyek Kecil Tetap Berharga\n\nBanyak anak muda merasa portofolio harus besar dan hebat. Padahal tidak selalu begitu.\n\nJustru proyek kecil sering menjadi awal perjalanan besar.\n\nMembuat website OSIS, membantu desain acara sekolah, mengelola media sosial kelas, atau membuat video kegiatan sekolah tetap memiliki nilai.\n\nKarena dari situ terlihat:\n\n- kemampuan bekerja,\n- rasa tanggung jawab,\n- kreativitas,\n- dan kemauan belajar.\n\nPerusahaan biasanya lebih tertarik pada orang yang pernah mencoba dibanding orang yang hanya berkata “siap belajar”.\n\n## Jangan Menunggu Lulus\n\nKesalahan yang sering terjadi adalah menunggu lulus untuk mulai membangun kemampuan.\n\nPadahal portofolio bisa dibangun sejak sekolah.\n\nAnak coding bisa mulai menyimpan proyek di GitHub. Anak desain bisa mengunggah karya di Instagram atau Behance. Anak multimedia bisa mulai membuat video dokumentasi sekolah.\n\nSemua itu akan membantu membangun identitas profesional sejak muda.\n\nJejak digital yang positif juga mulai menjadi nilai tambah di dunia kerja modern.\n\n## Dunia Sudah Berubah\n\nPersaingan kerja hari ini berbeda dengan beberapa tahun lalu.\n\nBanyak perusahaan mulai melihat kemampuan adaptasi, kreativitas, dan pengalaman nyata sebagai hal penting.\n\nKarena itu, anak SMK tidak perlu merasa kecil selama mau terus belajar dan berkarya.\n\nNilai tetap penting. Tetapi kemampuan menunjukkan karya nyata sering kali membuat seseorang lebih mudah terlihat.\n\nDan kadang, langkah sederhana seperti membuat satu proyek kecil di sekolah bisa menjadi pintu pertama menuju masa depan yang lebih besar. **(Kolaborasi Ikram Rahmani x mulamula.id)**"
+  },
+  {
+    "id": "lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja",
+    "file": "content/articles/lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.md",
+    "title": "Lulus SMK Bukan Akhir, Tapi Tes Pertama Dunia Kerja",
+    "author": "Ikram Rahmani x https://mulamula.id/",
+    "date": "2026-05-27",
+    "date_display": "27 Mei 2026",
+    "readtime": "3 menit",
+    "cover": "https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.jpeg?raw=true",
+    "cover_caption": "",
+    "category": "edukasi",
+    "category_display": "Edukasi",
+    "excerpt": "Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi",
+    "featured": false,
+    "body": "Banyak siswa SMK punya satu tujuan yang sama setelah lulus, bekerja secepat mungkin. Sebagian ingin membantu orang tua. Sebagian lagi ingin mandiri lebih cepat. Tetapi di tengah persaingan kerja yang makin padat, ijazah saja sering kali tidak cukup.\n\n## Perkembangan zaman yang memaksa perubahan\nDunia kerja sekarang berubah cepat. Perusahaan mulai melihat lebih dari sekadar nilai raport. Mereka ingin melihat siapa yang punya inisiatif, mau belajar, dan pernah membuat sesuatu.\n\n**Portofolio** adalah kumpulan karya atau proyek yang pernah dibuat seseorang untuk menunjukkan kemampuan nyata yang dimilikinya.\n\nKarena itu, anak SMK hari ini sebenarnya punya peluang besar. Mereka terbiasa praktik. Terbiasa membuat proyek. Terbiasa bekerja dalam simulasi dunia industri. Masalahnya, banyak yang belum sadar bahwa hal-hal kecil yang mereka buat di sekolah bisa menjadi nilai penting saat mencari kerja.\n\nWebsite OSIS, desain poster acara sekolah, video dokumentasi kegiatan, sampai proyek coding sederhana bisa menjadi bukti kemampuan.\n\n> Di era digital, karya sering kali berbicara lebih kuat daripada kata-kata.\n\n## Bukan Sekadar Nilai\n\nBanyak lulusan SMK merasa minder ketika melihat persaingan kerja. Padahal, perusahaan kini mulai mencari orang yang bisa menunjukkan hasil kerja nyata.\n\nHRD tidak hanya mendengar kalimat seperti “saya cepat belajar” atau “saya pekerja keras”. Mereka ingin melihat bukti.\n\nKarena itu, penting bagi siswa SMK mulai menyimpan hasil karya sejak sekarang. Tidak harus proyek besar. Bahkan hal sederhana bisa berguna jika dikerjakan serius.\n\nSiswa jurusan RPL bisa menyimpan hasil website atau aplikasi sederhana. Anak multimedia bisa mengumpulkan desain atau video editing. Jurusan pemasaran bisa membuat contoh konten media sosial atau desain promosi digital.\n\nSemua itu bisa menjadi modal awal memasuki dunia kerja.\n\n## Dunia Kerja Mencari Inisiatif\n\nPerusahaan saat ini hidup di tengah perubahan teknologi yang cepat. Mereka membutuhkan orang yang mau belajar hal baru dan berani mencoba.\n\nInisiatif menjadi salah satu kemampuan yang mulai banyak dicari.\n\nAnak muda yang membuat proyek sendiri sering kali terlihat lebih menarik dibanding mereka yang hanya menunggu tugas dari sekolah.\n\nKarena itu, siswa SMK sebaiknya mulai aktif mengikuti lomba, komunitas, atau membuat proyek kecil bersama teman-teman. Pengalaman seperti itu akan membantu membangun rasa percaya diri sekaligus kemampuan kerja tim.\n\nHal sederhana seperti membuat website sekolah atau membantu kegiatan digital OSIS juga bisa menjadi pengalaman penting.\n\n## Mulai Bangun Jejak Digital\n\nSaat ini banyak perusahaan mulai melihat media sosial dan jejak digital calon pekerja.\n\nKarena itu, penting bagi siswa SMK mulai membangun identitas digital yang positif.\n\nLinkedIn bisa menjadi tempat untuk menampilkan pengalaman, sertifikat, dan portofolio. GitHub bisa dipakai siswa coding untuk menyimpan proyek. Bahkan akun Instagram yang berisi karya desain atau video juga bisa menjadi nilai tambah.\n\nJejak digital yang baik dapat membantu seseorang terlihat lebih siap dan profesional.\n\n## Dunia Kerja Sudah Berubah\n\nPersaingan kerja tidak akan semakin mudah. Tetapi kesempatan juga semakin terbuka bagi mereka yang mau belajar.\n\nTeknologi membuat anak muda kini bisa menunjukkan karya tanpa harus menunggu kesempatan besar datang.\n\nAnak SMK tidak harus menunggu lulus untuk mulai membangun masa depan. Langkah kecil yang dimulai hari ini bisa menjadi pintu pertama menuju dunia kerja yang lebih besar.\n\nKarena kadang, yang paling dicari perusahaan bukan hanya siapa yang paling pintar. Tetapi siapa yang sudah mulai bergerak lebih dulu. **(Kolaborasi Ikram Rahmani x mulamula.id)**"
+  },
+  {
+    "id": "demo-proker-artikel-digital",
+    "file": "content/articles/demo-proker-artikel-digital.md",
+    "title": "Demo Program Kerja Artikel Digital",
+    "author": "Ikram Rahmani",
+    "date": "2026-05-25",
+    "date_display": "25 Mei 2026",
+    "readtime": "1 menit",
+    "cover": "https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/demo-proker-artikel-digital.png?raw=true",
+    "cover_caption": "",
+    "category": "edukasi",
+    "category_display": "Edukasi",
+    "excerpt": "Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi",
+    "featured": false,
+    "body": "Selamat datang di platform digital kami yang baru saja kami buat! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.\n\n## Untuk apa adanya sebuah website?\n\nKami mengharapkan dengan adanya website ini, organisasi OSIS dapat membentuk portofolio yang baik untuk kedepannya dan membentuk habit literasi digital yang baik. Kami juga ingin meningkatkan daya literasi siswa SMKN 68 Jakarta, dengan adanya artikel digital seperti ini kami timbulnya minat baca informasi untuk murid SMKN 68 Jakarta\n\n## Lalu, Mengapa harus digital?\n![Manusia Gua](https://github.com/lkssmkn68/website-osis-test/blob/main/img/assets/img1.jpeg?raw=true)\nDi zaman serba canggih ini tidak memungkinkan untuk kita jika harus selalu menjadi manusia gua dan tidak mau update perkembangan zaman. Dengan kita mendigitalisasikan sarana informasi kita, secara tidak langsung kita telah berpartisipasi akan perkembangan zaman yang sekarang sangat cepat. Ini adalah salah satu tindakan kita untuk bisa melatih kemampuan siswa siswa untuk bisa terus mengikuti perkembangan zaman.\n\n> Tetap lah memiliki rasa penasaran karena kita adalah manusia!"
+  }
+]
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/content/articles/anak-smk-jangan-cuma-jadi-pengguna-ai.md`
+
+```md
+---
+title: Anak SMK Jangan Cuma Jadi Pengguna AI
+category: Edukasi
+author: Ikram Rahmani x https://mulamula.id/
+date: 27 Mei 2026
+date_iso: 2026-05-27
+excerpt: Banyak orang memakai AI hanya untuk mencari jawaban tugas sekolah atau membuat caption media sosial. Padahal kemampuan paling penting sebenarnya bukan sekadar “bertanya ke AI”.
+cover: https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/anak-smk-jangan-cuma-jadi-pengguna-ai.jpeg?raw=true
+featured: True
+---
+
+Artificial Intelligence atau AI adalah teknologi yang membuat komputer mampu membantu manusia berpikir, menganalisis, membuat teks, mengenali gambar, hingga membantu pekerjaan digital sehari-hari.
+
+AI sekarang ada di mana-mana. Mulai dari media sosial, aplikasi belanja, desain, editing video, sampai dunia kerja. Banyak anak muda sudah memakai AI setiap hari. Tetapi sebagian besar masih sebatas menjadi pengguna.
+
+Padahal, dunia kerja mulai mencari orang yang bisa memanfaatkan AI untuk membuat sesuatu.
+
+Itulah kenapa anak SMK punya peluang besar jika mau belajar lebih jauh. Terutama mereka yang dekat dengan teknologi, komputer, desain, multimedia, atau bisnis digital.
+
+AI bukan lagi sekadar tren internet. AI mulai menjadi skill kerja baru.
+
+## Bukan Sekadar Tanya AI
+
+Banyak orang memakai AI hanya untuk mencari jawaban tugas sekolah atau membuat caption media sosial. Padahal kemampuan paling penting sebenarnya bukan sekadar “bertanya ke AI”.
+
+Yang lebih penting adalah bagaimana AI dipakai untuk membantu menyelesaikan masalah dan membuat karya.
+
+Anak SMK jurusan coding bisa memakai AI untuk membantu membuat website atau memperbaiki program. Anak multimedia bisa memakai AI untuk mencari ide desain dan editing. Bahkan siswa pemasaran bisa menggunakan AI untuk membuat konsep promosi digital.
+
+AI dapat membantu pekerjaan menjadi lebih cepat, tetapi kreativitas manusia tetap menjadi penentu utama.
+
+Karena itu, anak muda tidak cukup hanya menjadi pengguna teknologi. Mereka juga harus belajar menjadi pembuat karya dengan bantuan teknologi.
+
+## Dunia Kerja Sedang Berubah
+
+Perusahaan saat ini mulai mencari pekerja yang mampu beradaptasi dengan perubahan digital.
+
+Menurut berbagai laporan industri global, kemampuan AI dan literasi digital mulai menjadi salah satu skill yang paling dibutuhkan dalam beberapa tahun ke depan.
+
+Literasi digital adalah kemampuan memahami, menggunakan, dan memanfaatkan teknologi secara cerdas dan produktif.
+
+Perubahan ini membuat persaingan kerja ikut berubah. Anak muda yang cepat belajar teknologi baru biasanya memiliki peluang lebih besar untuk berkembang.
+
+Tetapi ada satu hal penting, AI tidak otomatis menggantikan semua pekerjaan manusia.
+
+Justru orang yang mampu bekerja bersama teknologi biasanya akan lebih dibutuhkan.
+Mulai dari Hal Sederhana
+
+Belajar AI tidak harus langsung rumit. Tidak harus menjadi programmer hebat sejak awal.
+
+Anak SMK bisa mulai dari hal sederhana:
+
+- belajar membuat prompt yang jelas,
+- mencoba tools desain AI,
+- membuat website sederhana,
+- atau membantu kegiatan digital sekolah.
+
+Proyek kecil sering kali menjadi langkah pertama menuju kemampuan besar.
+
+Bahkan website sekolah, desain acara OSIS, atau konten media sosial bisa menjadi latihan penting untuk membangun portofolio.
+
+Semakin sering mencoba, semakin cepat kemampuan berkembang.
+
+## Masa Depan Tidak Menunggu
+
+Teknologi bergerak sangat cepat. Dunia kerja juga ikut berubah.
+
+Anak muda yang mau belajar hari ini akan memiliki keuntungan lebih besar beberapa tahun ke depan.
+
+Karena di era sekarang, yang dicari bukan hanya siapa yang paling pintar. Tetapi siapa yang paling siap belajar dan beradaptasi.
+
+Dan kadang, langkah kecil seperti mencoba membuat sesuatu sendiri bisa menjadi awal perjalanan besar di masa depan. **(Kolaborasi Ikram Rahmani x mulamula.id)**
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/content/articles/demo-proker-artikel-digital.md`
+
+```md
 ---
 title: Demo Program Kerja Artikel Digital
 category: Edukasi
@@ -63,7 +223,7 @@ date: 25 Mei 2026
 date_iso: 2026-05-25
 excerpt: Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi
 cover: https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/demo-proker-artikel-digital.png?raw=true
-featured: True
+featured: False
 ---
 
 Selamat datang di platform digital kami yang baru saja kami buat! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.
@@ -79,29 +239,166 @@ Di zaman serba canggih ini tidak memungkinkan untuk kita jika harus selalu menja
 > Tetap lah memiliki rasa penasaran karena kita adalah manusia!
 ```
 
-`content/articles-manifest.json`
-```json
-[
-  {
-    "id": "demo-proker-artikel-digital",
-    "file": "content/articles/demo-proker-artikel-digital.md",
-    "title": "Demo Program Kerja Artikel Digital",
-    "author": "Ikram Rahmani",
-    "date": "2026-05-25",
-    "date_display": "25 Mei 2026",
-    "readtime": "1 menit",
-    "cover": "https://github.com/lkssmkn68/website-osis-test/blob/main/img/covers/demo-proker-artikel-digital.png?raw=true",
-    "cover_caption": "",
-    "category": "edukasi",
-    "category_display": "Edukasi",
-    "excerpt": "Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi",
-    "featured": true,
-    "body": "Selamat datang di platform digital kami yang baru saja kami buat! Kami dengan bangga mengumumkan peluncuran serangkaian fitur interaktif baru yang dirancang khusus untuk meningkatkan kenyamanan akses informasi Anda.\n\n## Untuk apa adanya sebuah website?\n\nKami mengharapkan dengan adanya website ini, organisasi OSIS dapat membentuk portofolio yang baik untuk kedepannya dan membentuk habit literasi digital yang baik. Kami juga ingin meningkatkan daya literasi siswa SMKN 68 Jakarta, dengan adanya artikel digital seperti ini kami timbulnya minat baca informasi untuk murid SMKN 68 Jakarta\n\n## Lalu, Mengapa harus digital?\n![Manusia Gua](https://github.com/lkssmkn68/website-osis-test/blob/main/img/assets/img1.jpeg?raw=true)\nDi zaman serba canggih ini tidak memungkinkan untuk kita jika harus selalu menjadi manusia gua dan tidak mau update perkembangan zaman. Dengan kita mendigitalisasikan sarana informasi kita, secara tidak langsung kita telah berpartisipasi akan perkembangan zaman yang sekarang sangat cepat. Ini adalah salah satu tindakan kita untuk bisa melatih kemampuan siswa siswa untuk bisa terus mengikuti perkembangan zaman.\n\n> Tetap lah memiliki rasa penasaran karena kita adalah manusia!"
-  }
-]
+---
+
+## File: `../osissmkn68jkt.github.io/content/articles/kadang-portofolio-bisa-mengalahkan-nilai.md`
+
+```md
+---
+title: Kadang Portofolio Bisa Mengalahkan Nilai
+category: Edukasi
+author: Ikram Rahmani x https://mulamula.id/
+date: 27 Mei 2026
+date_iso: 2026-05-27
+excerpt: Nilai tetap penting. Tetapi kemampuan menunjukkan karya nyata sering kali membuat seseorang lebih mudah terlihat.
+cover: https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/kadang-portofolio-bisa-mengalahkan-nilai.jpeg?raw=true
+featured: False
+---
+
+Banyak siswa masih percaya bahwa nilai tinggi adalah tiket utama untuk mendapatkan pekerjaan. Padahal di dunia kerja sekarang, perusahaan mulai melihat hal lain yang tidak selalu muncul di raport, karya nyata.
+
+Portofolio adalah kumpulan hasil kerja, proyek, atau pengalaman yang menunjukkan kemampuan seseorang secara langsung.
+
+Karena itu, anak SMK sebenarnya punya keunggulan besar. Mereka terbiasa praktik. Terbiasa membuat sesuatu. Terbiasa belajar lewat proyek dan simulasi kerja.
+
+Masalahnya, banyak siswa belum sadar bahwa hal-hal yang mereka buat di sekolah bisa menjadi modal penting setelah lulus.
+
+Website sederhana, desain poster, video editing, aplikasi kecil, dokumentasi acara sekolah, sampai konten media sosial bisa menjadi bagian dari portofolio.
+
+Dan kadang, itu lebih menarik di mata HRD dibanding angka raport semata.
+
+## Dunia Kerja Ingin Bukti
+
+Perusahaan saat ini menerima ribuan lamaran kerja. Mereka tidak mungkin mengenal semua pelamar hanya lewat kertas CV.
+
+Karena itu, hasil karya menjadi penting.
+
+Ketika seseorang bisa menunjukkan website yang pernah dibuat, desain yang pernah dipakai, atau proyek digital yang pernah dikerjakan, perusahaan lebih mudah melihat kemampuan nyata calon pekerja.
+
+Portofolio membantu orang lain memahami apa yang benar-benar bisa kita lakukan.
+
+Di era digital, banyak perusahaan mulai mencari orang yang sudah terbiasa membuat sesuatu, meski masih sederhana.
+
+## Proyek Kecil Tetap Berharga
+
+Banyak anak muda merasa portofolio harus besar dan hebat. Padahal tidak selalu begitu.
+
+Justru proyek kecil sering menjadi awal perjalanan besar.
+
+Membuat website OSIS, membantu desain acara sekolah, mengelola media sosial kelas, atau membuat video kegiatan sekolah tetap memiliki nilai.
+
+Karena dari situ terlihat:
+
+- kemampuan bekerja,
+- rasa tanggung jawab,
+- kreativitas,
+- dan kemauan belajar.
+
+Perusahaan biasanya lebih tertarik pada orang yang pernah mencoba dibanding orang yang hanya berkata “siap belajar”.
+
+## Jangan Menunggu Lulus
+
+Kesalahan yang sering terjadi adalah menunggu lulus untuk mulai membangun kemampuan.
+
+Padahal portofolio bisa dibangun sejak sekolah.
+
+Anak coding bisa mulai menyimpan proyek di GitHub. Anak desain bisa mengunggah karya di Instagram atau Behance. Anak multimedia bisa mulai membuat video dokumentasi sekolah.
+
+Semua itu akan membantu membangun identitas profesional sejak muda.
+
+Jejak digital yang positif juga mulai menjadi nilai tambah di dunia kerja modern.
+
+## Dunia Sudah Berubah
+
+Persaingan kerja hari ini berbeda dengan beberapa tahun lalu.
+
+Banyak perusahaan mulai melihat kemampuan adaptasi, kreativitas, dan pengalaman nyata sebagai hal penting.
+
+Karena itu, anak SMK tidak perlu merasa kecil selama mau terus belajar dan berkarya.
+
+Nilai tetap penting. Tetapi kemampuan menunjukkan karya nyata sering kali membuat seseorang lebih mudah terlihat.
+
+Dan kadang, langkah sederhana seperti membuat satu proyek kecil di sekolah bisa menjadi pintu pertama menuju masa depan yang lebih besar. **(Kolaborasi Ikram Rahmani x mulamula.id)**
 ```
 
-`content/osis-data.json`
+---
+
+## File: `../osissmkn68jkt.github.io/content/articles/lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.md`
+
+```md
+---
+title: Lulus SMK Bukan Akhir, Tapi Tes Pertama Dunia Kerja
+category: Edukasi
+author: Ikram Rahmani x https://mulamula.id/
+date: 27 Mei 2026
+date_iso: 2026-05-27
+excerpt: Ini adalah cara baru kita untuk memberikan informasi dan transparansi serta membentuk portofolio yang baik untuk organisasi
+cover: https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.jpeg?raw=true
+featured: False
+---
+
+Banyak siswa SMK punya satu tujuan yang sama setelah lulus, bekerja secepat mungkin. Sebagian ingin membantu orang tua. Sebagian lagi ingin mandiri lebih cepat. Tetapi di tengah persaingan kerja yang makin padat, ijazah saja sering kali tidak cukup.
+
+## Perkembangan zaman yang memaksa perubahan
+Dunia kerja sekarang berubah cepat. Perusahaan mulai melihat lebih dari sekadar nilai raport. Mereka ingin melihat siapa yang punya inisiatif, mau belajar, dan pernah membuat sesuatu.
+
+**Portofolio** adalah kumpulan karya atau proyek yang pernah dibuat seseorang untuk menunjukkan kemampuan nyata yang dimilikinya.
+
+Karena itu, anak SMK hari ini sebenarnya punya peluang besar. Mereka terbiasa praktik. Terbiasa membuat proyek. Terbiasa bekerja dalam simulasi dunia industri. Masalahnya, banyak yang belum sadar bahwa hal-hal kecil yang mereka buat di sekolah bisa menjadi nilai penting saat mencari kerja.
+
+Website OSIS, desain poster acara sekolah, video dokumentasi kegiatan, sampai proyek coding sederhana bisa menjadi bukti kemampuan.
+
+> Di era digital, karya sering kali berbicara lebih kuat daripada kata-kata.
+
+## Bukan Sekadar Nilai
+
+Banyak lulusan SMK merasa minder ketika melihat persaingan kerja. Padahal, perusahaan kini mulai mencari orang yang bisa menunjukkan hasil kerja nyata.
+
+HRD tidak hanya mendengar kalimat seperti “saya cepat belajar” atau “saya pekerja keras”. Mereka ingin melihat bukti.
+
+Karena itu, penting bagi siswa SMK mulai menyimpan hasil karya sejak sekarang. Tidak harus proyek besar. Bahkan hal sederhana bisa berguna jika dikerjakan serius.
+
+Siswa jurusan RPL bisa menyimpan hasil website atau aplikasi sederhana. Anak multimedia bisa mengumpulkan desain atau video editing. Jurusan pemasaran bisa membuat contoh konten media sosial atau desain promosi digital.
+
+Semua itu bisa menjadi modal awal memasuki dunia kerja.
+
+## Dunia Kerja Mencari Inisiatif
+
+Perusahaan saat ini hidup di tengah perubahan teknologi yang cepat. Mereka membutuhkan orang yang mau belajar hal baru dan berani mencoba.
+
+Inisiatif menjadi salah satu kemampuan yang mulai banyak dicari.
+
+Anak muda yang membuat proyek sendiri sering kali terlihat lebih menarik dibanding mereka yang hanya menunggu tugas dari sekolah.
+
+Karena itu, siswa SMK sebaiknya mulai aktif mengikuti lomba, komunitas, atau membuat proyek kecil bersama teman-teman. Pengalaman seperti itu akan membantu membangun rasa percaya diri sekaligus kemampuan kerja tim.
+
+Hal sederhana seperti membuat website sekolah atau membantu kegiatan digital OSIS juga bisa menjadi pengalaman penting.
+
+## Mulai Bangun Jejak Digital
+
+Saat ini banyak perusahaan mulai melihat media sosial dan jejak digital calon pekerja.
+
+Karena itu, penting bagi siswa SMK mulai membangun identitas digital yang positif.
+
+LinkedIn bisa menjadi tempat untuk menampilkan pengalaman, sertifikat, dan portofolio. GitHub bisa dipakai siswa coding untuk menyimpan proyek. Bahkan akun Instagram yang berisi karya desain atau video juga bisa menjadi nilai tambah.
+
+Jejak digital yang baik dapat membantu seseorang terlihat lebih siap dan profesional.
+
+## Dunia Kerja Sudah Berubah
+
+Persaingan kerja tidak akan semakin mudah. Tetapi kesempatan juga semakin terbuka bagi mereka yang mau belajar.
+
+Teknologi membuat anak muda kini bisa menunjukkan karya tanpa harus menunggu kesempatan besar datang.
+
+Anak SMK tidak harus menunggu lulus untuk mulai membangun masa depan. Langkah kecil yang dimulai hari ini bisa menjadi pintu pertama menuju dunia kerja yang lebih besar.
+
+Karena kadang, yang paling dicari perusahaan bukan hanya siapa yang paling pintar. Tetapi siapa yang sudah mulai bergerak lebih dulu. **(Kolaborasi Ikram Rahmani x mulamula.id)**
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/content/osis-data.json`
+
 ```json
 {
   "pimpinanAtas": [
@@ -167,7 +464,10 @@ Di zaman serba canggih ini tidak memungkinkan untuk kita jika harus selalu menja
 
 ```
 
-`content/proker-data.json`
+---
+
+## File: `../osissmkn68jkt.github.io/content/proker-data.json`
+
 ```json
 [
     {
@@ -412,11 +712,11 @@ Di zaman serba canggih ini tidak memungkinkan untuk kita jika harus selalu menja
   ]
 ```
 
-`css/style.css`
+---
+
+## File: `../osissmkn68jkt.github.io/css/style.css`
+
 ```css
-/* ==========================================================================
-   1. GLOBAL SYSTEM SETTINGS & VARIABLES
-   ========================================================================== */
    :root {
     --primary: #007bff;
     --primary-hover: #0056b3;
@@ -449,9 +749,6 @@ body {
     line-height: 1.6;
 }
 
-/* ==========================================================================
-   2. NAVIGATION & FOOTER (shared components)
-   ========================================================================== */
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -557,9 +854,6 @@ body {
     color: #64748b;
 }
 
-/* ==========================================================================
-   3. SUBPAGE BANNER
-   ========================================================================== */
 .subpage-banner {
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: #ffffff;
@@ -580,9 +874,6 @@ body {
     margin: 0 auto;
 }
 
-/* ==========================================================================
-   4. HOME PAGE
-   ========================================================================== */
 .hero-container {
     position: relative;
     width: 100%;
@@ -590,8 +881,8 @@ body {
     min-height: 450px;
     overflow: hidden;
     display: flex;
-    align-items: center;        /* vertical center */
-    justify-content: flex-start; /* horizontal left */
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .hero-slide {
@@ -622,19 +913,19 @@ body {
     padding: 0 60px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;    /* children align left */
+    align-items: flex-start;
 }
 
 .hero-logo {
     position: absolute;
-    right: 60px; /* Pushes the logo to the right edge */
-    top: 50%; /* Pushes it down to the middle */
-    transform: translateY(-50%); /* Ensures it is perfectly centered vertically */
-    width: 120px; /* You can adjust this size */
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 120px;
     height: 120px;
     object-fit: contain;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
-    z-index: 4; /* Keeps it above the slideshow overlay */
+    z-index: 4;
 }
 
 .hero-title { font-size: 52px; font-weight: 800; margin-bottom: 15px; line-height: 1.15; }
@@ -725,9 +1016,6 @@ body {
 .news-link { font-size: 14px; color: var(--primary); text-decoration: none; font-weight: 700; margin-top: auto; }
 .news-link:hover { text-decoration: underline; }
 
-/* ==========================================================================
-   5. ABOUT PAGE
-   ========================================================================== */
 .about-grid {
     max-width: 1200px;
     width: calc(100% - 40px);
@@ -754,13 +1042,13 @@ body {
     color: var(--text-muted);
     font-weight: 600;
     box-shadow: var(--shadow-sm);
-    overflow: hidden; /* Tambahkan ini agar sudut gambar ikut membulat */
+    overflow: hidden;
 }
 
 .graphic-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Membuat gambar memenuhi kotak dengan proporsional */
+    object-fit: cover;
     display: block;
 }
 
@@ -796,9 +1084,6 @@ body {
 .pillar-card h3 { font-size: 20px; margin-bottom: 12px; font-weight: 700; }
 .pillar-card p { color: var(--text-muted); font-size: 15px; }
 
-/* ==========================================================================
-   6. PROGRAM KERJA
-   ========================================================================== */
 .proker-container { max-width: 900px; width: calc(100% - 40px); margin: 60px auto; }
 .sekbid-accordion { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow-md); margin-bottom: 20px; overflow: hidden; border: 1px solid #e2e8f0; }
 
@@ -838,9 +1123,6 @@ body {
 .proker-item-card h4 { font-size: 18px; margin-bottom: 10px; font-weight: 700; }
 .proker-item-card p { color: var(--text-muted); font-size: 14px; }
 
-/* ==========================================================================
-   7. STRUKTUR ORGANISASI — Clean data-driven org chart
-   ========================================================================== */
 .structure-wrapper {
     max-width: 1400px;
     width: calc(100% - 40px);
@@ -856,7 +1138,6 @@ body {
     min-width: 900px;
 }
 
-/* Shared node appearance */
 .org-node {
     background: var(--bg-card);
     border: 1px solid #e2e8f0;
@@ -885,34 +1166,29 @@ body {
     color: var(--text-muted);
 }
 
-/* Main nodes (spine) — slightly accented */
 .org-node--main {
     border-top: 3px solid var(--primary);
     min-width: 240px;
 }
 
-/* Wing nodes (sekretaris / bendahara) */
 .org-node--wing {
     background: #f0f7ff;
     border-color: #bfdbfe;
     min-width: 180px;
 }
 
-/* Sekbid leader nodes */
 .org-node--sekbid {
     border-top: 3px solid #10b981;
     min-width: 170px;
     font-size: 13px;
 }
 
-/* Vertical spine column */
 .org-col--spine {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Connector line between nodes */
 .org-connector {
     width: 2px;
     height: 30px;
@@ -920,7 +1196,6 @@ body {
     margin: 0 auto;
 }
 
-/* Three-column mid row */
 .org-row--mid {
     display: grid;
     grid-template-columns: 220px 1fr 220px;
@@ -931,7 +1206,6 @@ body {
     margin-top: 0;
 }
 
-/* Horizontal connector above mid-row (line from spine to wings) */
 .org-row--mid::before {
     content: '';
     position: absolute;
@@ -939,7 +1213,7 @@ body {
     left: 0; right: 0;
     height: 2px;
     background: var(--line-color);
-    display: none; /* Handled via padding top of each col */
+    display: none;
 }
 
 .org-col--wing {
@@ -956,7 +1230,6 @@ body {
     align-items: center;
 }
 
-/* Sekbid row — horizontal strip of columns */
 .org-row--sekbid {
     display: flex;
     gap: 16px;
@@ -975,7 +1248,6 @@ body {
     max-width: 200px;
 }
 
-/* Department card */
 .org-dept {
     background: #f8fafc;
     border: 1px solid #e2e8f0;
@@ -999,9 +1271,6 @@ body {
     line-height: 1.6;
 }
 
-/* ==========================================================================
-   8. CONTACTS PAGE
-   ========================================================================== */
 .contact-grid {
     max-width: 1200px;
     width: calc(100% - 40px);
@@ -1033,9 +1302,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .submit-btn { width: 100%; background-color: var(--primary); color: #ffffff; border: none; padding: 14px; font-size: 16px; font-weight: 700; border-radius: 8px; cursor: pointer; transition: var(--transition); }
 .submit-btn:hover { background-color: var(--primary-hover); transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
-/* ==========================================================================
-   9. ARTICLES LIST PAGE
-   ========================================================================== */
 .news-portal-layout {
     max-width: 1200px;
     width: calc(100% - 40px);
@@ -1091,7 +1357,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 }
 .featured-read-btn:hover { background-color: var(--primary-hover); }
 
-/* Sidebar */
 .news-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 25px; }
 .sidebar-widget { background: var(--bg-card); padding: 22px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border: 1px solid #e2e8f0; }
 .sidebar-widget h3 { font-size: 16px; font-weight: 800; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
@@ -1102,9 +1367,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .widget-list li a:hover, .widget-list li a.active { background-color: #eff6ff; color: var(--primary); }
 .widget-list li a span { background-color: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 11px; color: #333; }
 
-/* ==========================================================================
-   10. SINGLE ARTICLE READER
-   ========================================================================== */
 .single-reading-view { max-width: 860px; width: calc(100% - 40px); margin: 50px auto 80px; }
 .reading-content-wrapper { background-color: var(--bg-card); padding: 60px; border-radius: var(--radius); box-shadow: var(--shadow-md); border: 1px solid #e2e8f0; }
 
@@ -1127,7 +1389,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .article-inline-image { margin: 36px 0; }
 .article-inline-image img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
 
-/* Article body typography */
 .article-content { max-width: 700px; margin: 0 auto; }
 .article-content p:first-child { font-size: 19px; color: #334155; line-height: 1.8; font-weight: 500; }
 .article-content h2 { font-size: 26px; font-weight: 800; margin: 40px 0 18px; color: var(--text-dark); line-height: 1.3; }
@@ -1140,9 +1401,6 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .article-content hr { border: none; border-top: 2px solid #e2e8f0; margin: 40px 0; }
 .article-content code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 14px; font-family: 'Courier New', monospace; }
 
-/* ==========================================================================
-   11. RESPONSIVE
-   ========================================================================== */
 @media (max-width: 1024px) {
     .org-row--mid {
         grid-template-columns: 1fr;
@@ -1199,26 +1457,78 @@ textarea.form-input { resize: vertical; min-height: 120px; }
     .article-header h1 { font-size: 28px; }
     .article-content p:first-child { font-size: 17px; }
 }
+
 ```
 
-`js/app.js`
-```javascript
-/**
- * app.js
- * Entry point — injects shared components and boots the correct
- * page module based on the current URL.
- */
+---
 
+## File: `../osissmkn68jkt.github.io/index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSIS SMKN 68 Jakarta</title>
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    <div class="hero-container">
+        <div class="hero-slide active" style="background-image: url('img/slide1.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('img/slide2.jpg')"></div>
+        <div class="hero-slide" style="background-image: url('img/slide3.jpg')"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">OSIS SMKN 68 Jakarta</h1>
+            <p class="hero-subtitle">Bergerak bersama, berinovasi untuk masa depan.</p>
+        </div>
+    </div>
+
+    <section class="quote-section">
+        <span class="quote-tagline">Motto Kami</span>
+        <p class="quote-text">"Satu langkah bersama lebih berarti dari seribu langkah sendiri."</p>
+    </section>
+
+    <section class="about-section">
+        <div class="about-container">
+            <h2>Tentang OSIS SMKN 68 Jakarta</h2>
+            <p>Organisasi Siswa Intra Sekolah SMKN 68 Jakarta adalah wadah pengembangan diri, kreativitas, dan kepemimpinan bagi seluruh siswa. Kami berkomitmen untuk menjalankan program kerja yang transparan, inovatif, dan berdampak nyata bagi komunitas sekolah.</p>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <h2 class="section-title">Berita Terkini</h2>
+        <!-- Populated dynamically from articles-manifest.json by home.js -->
+        <div class="news-grid" id="home-news-grid">
+            <p style="color: var(--text-muted)">Memuat berita...</p>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/js/app.js`
+
+```js
 import { injectComponents } from './components.js';
 import { initHomeSlider, initHomeNews } from './home.js';
 import { initArticleListPage, initArticlePage } from './articles.js';
 import { renderOsisTree } from './struktur.js';
 import { initProkerPage } from './proker.js';
 
-// 1. Inject nav + footer on every page
 injectComponents();
 
-// 2. Boot the correct page module
 const page = window.location.pathname.split('/').pop() || 'index.html';
 
 if (page === 'index.html' || page === '') {
@@ -1230,43 +1540,38 @@ if (page === 'index.html' || page === '') {
     initArticleListPage();
 } else if (page === 'proker.html') {
     initProkerPage();
-} else {
-    // Static article pages — static/articles/[id].html
+} else if (page.endsWith('.html') && window.location.pathname.includes('/articles/')) {
     initArticlePage();
 }
 ```
 
-`js/articles.js`
-```javascript
-/**
- * articles.js
- * Handles everything related to articles:
- *   - Loading the manifest (content/articles-manifest.json)
- *   - Rendering article cards on articles.html
- *   - Rendering a full article page from a .md file
- *   - Category filtering with correct counts
- */
+---
 
+## File: `../osissmkn68jkt.github.io/js/articles.js`
+
+```js
 import { parseMarkdown } from './md-parser.js';
 
-/** Site root — same logic as components.js */
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
     }
-    return origin + '/' + parts[0] + '/';
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 const ROOT = getSiteRoot();
 
-/** Resolve path to content/ folder using absolute ROOT */
 function contentPath(rel) {
     return ROOT + 'content/' + rel;
 }
 
-/** Format ISO date to human-readable Indonesian */
 function formatDate(isoDate) {
     const months = ['Januari','Februari','Maret','April','Mei','Juni',
                     'Juli','Agustus','September','Oktober','November','Desember'];
@@ -1274,21 +1579,15 @@ function formatDate(isoDate) {
     return `${d} ${months[m - 1]} ${y}`;
 }
 
-/** Build URL to a single article page using absolute ROOT */
 function articleUrl(id) {
     return ROOT + 'static/articles/' + id + '.html';
 }
 
-/** Load the articles manifest JSON */
 async function loadManifest() {
     const res = await fetch(contentPath('articles-manifest.json'));
     if (!res.ok) throw new Error('Could not load articles manifest');
     return res.json();
 }
-
-// ─────────────────────────────────────────────────────────────
-// ARTICLES LIST PAGE (articles.html)
-// ─────────────────────────────────────────────────────────────
 
 function renderFeaturedCard(article) {
     return `
@@ -1324,7 +1623,6 @@ function buildCategorySidebar(articles, containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    // Count articles per category
     const counts = {};
     articles.forEach(a => {
         counts[a.category] = (counts[a.category] || 0) + 1;
@@ -1369,7 +1667,7 @@ function initCategoryFilter(articles) {
 
             if (feedTitle) {
                 feedTitle.textContent = filter === 'all'
-                    ? 'Berita Terkini'
+                    ? 'Update Berita'
                     : `Kategori: ${btn.childNodes[0].textContent.trim()}`;
             }
         });
@@ -1381,7 +1679,7 @@ export async function initArticleListPage() {
     const gridContainer     = document.getElementById('articles-grid-container');
     const categoryListId    = 'category-list';
 
-    if (!gridContainer) return; // not on articles.html
+    if (!gridContainer) return;
 
     try {
         const manifest = await loadManifest();
@@ -1412,7 +1710,6 @@ export async function initArticlePage() {
     const container = document.getElementById('article-render-target');
     if (!container) return;
 
-    // Get article ID from data attribute or URL
     const articleId = container.dataset.articleId
         || window.location.pathname.split('/').pop().replace('.html', '');
 
@@ -1422,14 +1719,10 @@ export async function initArticlePage() {
 
         if (!meta) throw new Error(`Article "${articleId}" not found in manifest`);
 
-        // Article body is embedded directly in the manifest — no extra fetch needed.
-        // This avoids GitHub Pages blocking .md file requests.
         const bodyHtml = parseMarkdown(meta.body || '');
 
-        // Update page title
         document.title = `${meta.title} — OSIS SMKN 68 Jakarta`;
 
-        // Render article
         container.innerHTML = `
             <div class="reading-content-wrapper">
                 <a href="${ROOT}static/articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
@@ -1463,46 +1756,40 @@ export async function initArticlePage() {
         console.error('Article render failed:', err);
         container.innerHTML = `
             <div class="reading-content-wrapper">
-                <a href="../articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
+                <a href="${ROOT}static/articles.html" class="back-to-feed-link">← Kembali ke Artikel</a>
                 <p style="color:red; margin-top: 2rem;">Gagal memuat artikel: ${err.message}</p>
             </div>`;
     }
 }
-
 ```
 
-`js/components.js`
-```javascript
-/**
- * components.js
- * Injects shared navigation and footer into every page.
- *
- * Uses absolute URLs based on the detected site root so it works
- * correctly on GitHub Pages (https://user.github.io/repo-name/),
- * local dev servers, and any other host — no matter the repo name.
- */
+---
 
-/**
- * Detects the root URL of the site.
- * - GitHub Pages: https://user.github.io/repo-name/  → root = origin/repo-name/
- * - localhost:8000 with files at root                 → root = origin/
- * - localhost:8000/subfolder/                         → root = origin/subfolder/
- *
- * The trick: index.html always lives at the repo root, which is the
- * first path segment on GitHub Pages. We detect this by checking if
- * the first path part contains a dot (meaning it's a file, not a folder).
- */
+## File: `../osissmkn68jkt.github.io/js/components.js`
+
+```js
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
 
-    // True root (e.g. localhost with index.html at /)
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        // Root is the path up to (and including) the slash before "static/"
+        return origin + pathname.slice(0, staticIdx + 1);
     }
 
-    // GitHub Pages or subfolder: first segment is the repo/folder name
-    return origin + '/' + parts[0] + '/';
+    // We're at root level (index.html or /)
+    // The root is everything up to the last path segment if it's a file,
+    // or the full path if it ends with /
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+
+    if (afterLastSlash.includes('.')) {
+        // It's a file (e.g. index.html) — root is the directory
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+
+    // It's a directory path — use as-is (ensure trailing slash)
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 const ROOT = getSiteRoot();
@@ -1574,25 +1861,25 @@ export function injectComponents() {
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) footerPlaceholder.outerHTML = renderFooter();
 }
-
 ```
 
-`js/home.js`
-```javascript
-/**
- * home.js
- * Hero image slider + dynamic "Berita Terkini" for index.html.
- * The news section is auto-populated from content/articles-manifest.json —
- * no need to edit index.html when new articles are added.
- */
+---
 
+## File: `../osissmkn68jkt.github.io/js/home.js`
+
+```js
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
     }
-    return origin + '/' + parts[0] + '/';
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 // ─── Hero Slider ──────────────────────────────────────────────
@@ -1643,7 +1930,6 @@ export async function initHomeNews() {
         if (!res.ok) throw new Error('Manifest not found');
         const articles = await res.json();
 
-        // Show the 3 most recent articles (sorted by date descending)
         const recent = [...articles]
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .slice(0, 3);
@@ -1656,39 +1942,16 @@ export async function initHomeNews() {
         grid.innerHTML = recent.map(a => renderNewsCard(a, ROOT)).join('');
     } catch (err) {
         console.error('Home news failed to load:', err);
-        // Silently fail on home page — fallback content below stays visible
         grid.innerHTML = '<p style="color:var(--text-muted)">Gagal memuat berita terkini.</p>';
     }
 }
 ```
 
-`js/md-parser.js`
-```json
-/**
- * md-parser.js
- * Lightweight Markdown parser for OSIS article system.
- * Supports: frontmatter, headings, paragraphs, bold, italic,
- * blockquote, unordered lists, ordered lists, inline images with captions,
- * and horizontal rules.
- *
- * HOW TO WRITE AN ARTICLE:
- * ─────────────────────────
- * Start the file with a "frontmatter" block (between --- lines).
- * Supported frontmatter keys:
- *   title, category, author, date, readtime, cover, cover_caption
- *
- * Then write your article body using simple Markdown:
- *   ## Heading 2         →  large section heading
- *   ### Heading 3        →  sub-section heading
- *   **bold text**        →  bold
- *   *italic text*        →  italic
- *   - item               →  bullet list item
- *   1. item              →  numbered list item
- *   > quote text         →  blockquote / pull quote
- *   ![alt|caption](url) →  image with optional caption (use | to split alt from caption)
- *   ---                  →  horizontal divider
- */
+---
 
+## File: `../osissmkn68jkt.github.io/js/md-parser.js`
+
+```js
 export function parseFrontmatter(raw) {
     const fm = {};
     const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
@@ -1714,13 +1977,13 @@ function escapeHtml(str) {
 }
 
 function inlineFormat(text) {
-    // Bold + Italic combined
+
     text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
-    // Bold
+
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Italic
+
     text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    // Inline code
+
     text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
     return text;
 }
@@ -1733,7 +1996,7 @@ export function parseMarkdown(markdown) {
     while (i < lines.length) {
         const line = lines[i];
 
-        // ── Headings ──────────────────────────────────
+
         if (line.startsWith('### ')) {
             html.push(`<h3>${inlineFormat(line.slice(4))}</h3>`);
             i++; continue;
@@ -1747,19 +2010,16 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
-        // ── Horizontal Rule ───────────────────────────
         if (line.trim() === '---') {
             html.push('<hr>');
             i++; continue;
         }
 
-        // ── Blockquote ────────────────────────────────
         if (line.startsWith('> ')) {
             html.push(`<blockquote>${inlineFormat(line.slice(2))}</blockquote>`);
             i++; continue;
         }
 
-        // ── Unordered list ────────────────────────────
         if (line.startsWith('- ')) {
             html.push('<ul>');
             while (i < lines.length && lines[i].startsWith('- ')) {
@@ -1770,7 +2030,6 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // ── Ordered list ──────────────────────────────
         if (/^\d+\. /.test(line)) {
             html.push('<ol>');
             while (i < lines.length && /^\d+\. /.test(lines[i])) {
@@ -1781,8 +2040,6 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // ── Image with optional caption ───────────────
-        // Syntax: ![alt text|Caption text here](url)
         const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
         if (imgMatch) {
             const [altRaw, url] = [imgMatch[1], imgMatch[2]];
@@ -1797,13 +2054,10 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
-        // ── Empty line ────────────────────────────────
         if (line.trim() === '') {
             i++; continue;
         }
 
-        // ── Paragraph ─────────────────────────────────
-        // Collect consecutive non-empty, non-special lines as one paragraph
         const paraLines = [];
         while (
             i < lines.length &&
@@ -1825,23 +2079,26 @@ export function parseMarkdown(markdown) {
 
     return html.join('\n');
 }
+
 ```
 
-`js/proker.js`
-```json
-/**
- * proker.js
- * Renders the Program Kerja accordion from content/proker-data.json.
- * To add, edit, or delete a program kerja: only edit proker-data.json.
- */
+---
 
+## File: `../osissmkn68jkt.github.io/js/proker.js`
+
+```js
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
     }
-    return origin + '/' + parts[0] + '/';
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 function renderProkerCard(item) {
@@ -1859,7 +2116,6 @@ function renderProkerCard(item) {
 
 function renderSekbidAccordion(sekbid, index) {
     const checkboxId = `sec-${sekbid.id}`;
-    // Open the first accordion by default
     const checkedAttr = index === 0 ? ' checked' : '';
     const cards = sekbid.proker.map(renderProkerCard).join('');
 
@@ -1895,21 +2151,23 @@ export async function initProkerPage() {
 }
 ```
 
-`js/struktur.js`
-```javascript
-/**
- * struktur.js
- * Renders the OSIS organizational chart from content/osis-data.json.
- * Data is fully separated from logic — edit osis-data.json to update org structure.
- */
+---
 
+## File: `../osissmkn68jkt.github.io/js/struktur.js`
+
+```js
 function getSiteRoot() {
     const { origin, pathname } = window.location;
-    const parts = pathname.split('/').filter(Boolean);
-    if (parts.length === 0 || (parts[0] && parts[0].includes('.'))) {
-        return origin + '/';
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
     }
-    return origin + '/' + parts[0] + '/';
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 function dataPath() {
@@ -1939,7 +2197,7 @@ export async function renderOsisTree() {
 
         let html = '<div class="org-chart">';
 
-        // ── Top chain (Kepsek → Waket) ──────────────────
+
         html += '<div class="org-col org-col--spine">';
         data.pimpinanAtas.forEach((p, idx) => {
             html += node(p.nama, p.jabatan, 'main');
@@ -1947,20 +2205,20 @@ export async function renderOsisTree() {
         });
         html += '</div>';
 
-        // ── Three-column row: Sekretaris | Koordinator | Bendahara ──
+
         html += '<div class="org-row org-row--mid">';
 
-        // Left wing
+
         html += '<div class="org-col org-col--wing">';
         data.sekretaris.forEach(s => html += node(s.nama, s.jabatan, 'wing'));
         html += '</div>';
 
-        // Center: Koordinator + Sekbid branches
+
         html += '<div class="org-col org-col--center">';
         html += node(data.koordinator.nama, data.koordinator.jabatan, 'main');
         html += connector();
 
-        // Sekbid row
+
         html += '<div class="org-row org-row--sekbid">';
         data.sekbid.forEach(sek => {
             html += '<div class="org-col org-col--sekbid">';
@@ -1974,17 +2232,16 @@ export async function renderOsisTree() {
             });
             html += '</div>';
         });
-        html += '</div>'; // .org-row--sekbid
+        html += '</div>';
+        html += '</div>';
 
-        html += '</div>'; // .org-col--center
 
-        // Right wing
         html += '<div class="org-col org-col--wing">';
         data.bendahara.forEach(b => html += node(b.nama, b.jabatan, 'wing'));
         html += '</div>';
 
-        html += '</div>'; // .org-row--mid
-        html += '</div>'; // .org-chart
+        html += '</div>';
+        html += '</div>';
 
         container.innerHTML = html;
 
@@ -1993,41 +2250,170 @@ export async function renderOsisTree() {
         container.innerHTML = `<p style="color:red;padding:2rem">Gagal memuat data struktur: ${err.message}</p>`;
     }
 }
-
 ```
 
-`static/articles/demo-proker-artikel-digital.html`
+---
+
+## File: `../osissmkn68jkt.github.io/README.md`
+
+```md
+# OSIS SMKN 68 Jakarta — Website
+
+## 🗂️ Struktur Proyek
+
+```
+osis-site/
+├── index.html                   ← Halaman utama
+├── css/
+│   └── style.css                ← Semua styling (jangan ubah kecuali perlu)
+├── js/
+│   ├── app.js                   ← Entry point utama
+│   ├── articles.js              ← Engine artikel
+│   ├── components.js            ← Nav & footer otomatis (tidak perlu copy-paste lagi)
+│   ├── home.js                  ← Slider hero
+│   ├── md-parser.js             ← Parser Markdown
+│   └── struktur.js              ← Render bagan organisasi
+├── content/
+│   ├── articles-manifest.json   ← ⭐ Daftar semua artikel
+│   ├── osis-data.json           ← ⭐ Data anggota & struktur organisasi
+│   └── articles/
+│       ├── artikel-fitur-baru.md
+│       └── belajar-javascript.md
+├── static/
+│   ├── about.html
+│   ├── articles.html
+│   ├── contacts.html
+│   ├── proker.html
+│   ├── struktur.html
+│   └── articles/
+│       ├── artikel-fitur-baru.html
+│       └── belajar-javascript.html
+└── img/
+    ├── icon.png
+    ├── slide1.jpg, slide2.jpg, slide3.jpg
+    └── covers/
+        └── news1.jpg, news2.jpg, news3.jpg
+```
+
+---
+
+## ✍️ Cara Menulis Artikel Baru (tanpa coding!)
+
+### Langkah 1 — Buat file Markdown
+
+Buat file baru di `content/articles/` dengan nama `nama-artikel-kamu.md`.
+
+Isi dengan format ini:
+
+```
+---
+title: Judul Artikel Kamu
+category: Teknologi
+author: Nama Penulis
+date: 24 Mei 2026
+readtime: 3 menit
+cover: https://link-gambar-sampul.jpg
+cover_caption: Keterangan gambar sampul (opsional)
+---
+
+Paragraf pembuka artikel kamu di sini. Paragraf pertama akan ditampilkan lebih besar.
+
+## Heading Besar
+
+Isi paragraf biasa di sini. Bisa sepanjang apapun.
+
+### Sub-heading
+
+- Poin pertama
+- Poin kedua
+- **Teks tebal** bisa ditambahkan dengan dua bintang
+
+> Ini adalah kutipan / pull quote yang akan tampil menonjol.
+
+![Nama gambar|Keterangan gambar di bawahnya](https://link-gambar.jpg)
+
+Paragraf penutup.
+```
+
+### Langkah 2 — Daftarkan ke manifest
+
+Buka `content/articles-manifest.json`, tambahkan entry baru:
+
+```json
+{
+  "id": "nama-artikel-kamu",
+  "file": "content/articles/nama-artikel-kamu.md",
+  "title": "Judul Artikel Kamu",
+  "excerpt": "Kalimat singkat preview yang muncul di kartu artikel.",
+  "category": "teknologi",
+  "author": "Nama Penulis",
+  "date": "2026-05-24",
+  "cover": "https://link-gambar-sampul.jpg",
+  "featured": false
+}
+```
+
+> Set `"featured": true` jika ingin artikel tampil sebagai sorotan utama.
+
+### Langkah 3 — Buat halaman HTML artikel
+
+Copy file `static/articles/artikel-fitur-baru.html`, rename jadi `nama-artikel-kamu.html`.
+
+Ubah satu baris ini saja:
 ```html
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artikel - OSIS SMKN 68 Jakarta</title>
-    <link rel="icon" href="../../img/icon.png">
-    <link rel="stylesheet" href="../../css/style.css">
-</head>
-<body>
+<div id="article-render-target" data-article-id="nama-artikel-kamu">
+```
 
-    <div id="nav-placeholder"></div>
+**Selesai!** Artikel baru sudah muncul di halaman Artikel & terbuka di halaman sendiri.
 
-    <main class="single-reading-view">
-        <div id="article-render-target" data-article-id="demo-proker-artikel-digital">
-            <div class="reading-content-wrapper">
-                <p style="color: var(--text-muted); padding: 2rem 0">Memuat artikel...</p>
-            </div>
-        </div>
-    </main>
+---
 
-    <div id="footer-placeholder"></div>
+## 👥 Cara Update Data Anggota / Struktur Organisasi
 
-    <script type="module" src="../../js/app.js"></script>
-</body>
-</html>
+Edit file `content/osis-data.json`. Strukturnya sudah jelas dan berlabel. Tidak perlu ubah kode JavaScript apapun.
+
+---
+
+## 🚀 Cara Menjalankan Lokal
+
+Website ini menggunakan ES Modules dan `fetch()`, jadi **tidak bisa dibuka langsung dengan klik file** (`file://`). Butuh local server sederhana.
+
+Cara paling mudah (jika sudah install Node.js):
+
+```bash
+npx serve .
+```
+
+Atau dengan Python:
+
+```bash
+python -m http.server 8000
+```
+
+Lalu buka `http://localhost:8000` di browser.
+
+---
+
+## 📝 Sintaks Markdown yang Didukung
+
+| Sintaks | Hasil |
+|---|---|
+| `## Judul` | Heading besar |
+| `### Sub-judul` | Heading kecil |
+| `**teks**` | **tebal** |
+| `*teks*` | *miring* |
+| `` `kode` `` | `kode inline` |
+| `- item` | Poin list |
+| `1. item` | Poin berurutan |
+| `> kutipan` | Blockquote |
+| `![alt\|caption](url)` | Gambar dengan keterangan |
+| `---` | Garis pemisah |
 
 ```
 
-`static/about.html`
+---
+
+## File: `../osissmkn68jkt.github.io/static/about.html`
 
 ```html
 <!DOCTYPE html>
@@ -2126,7 +2512,9 @@ export async function renderOsisTree() {
 
 ```
 
-`static/articles.html`
+---
+
+## File: `../osissmkn68jkt.github.io/static/articles.html`
 
 ```html
 <!DOCTYPE html>
@@ -2150,12 +2538,10 @@ export async function renderOsisTree() {
     <main class="news-portal-layout">
         <div class="news-main-feed">
 
-            <!-- Featured articles injected here by articles.js -->
             <div id="featured-article-container"></div>
 
-            <h2 class="feed-subtitle" id="feed-title-text">Berita Terkini</h2>
+            <h2 class="feed-subtitle" id="feed-title-text">Update Berita</h2>
 
-            <!-- Article cards injected here by articles.js -->
             <div class="news-grid" id="articles-grid-container">
                 <p style="color: var(--text-muted)">Memuat artikel...</p>
             </div>
@@ -2181,7 +2567,145 @@ export async function renderOsisTree() {
 
 ```
 
-`static/contacts.html`
+---
+
+## File: `../osissmkn68jkt.github.io/static/articles/anak-smk-jangan-cuma-jadi-pengguna-ai.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - OSIS SMKN 68 Jakarta</title>
+    <link rel="icon" href="../../img/icon.png">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    <main class="single-reading-view">
+        <div id="article-render-target" data-article-id="anak-smk-jangan-cuma-jadi-pengguna-ai">
+            <div class="reading-content-wrapper">
+                <p style="color: var(--text-muted); padding: 2rem 0">Memuat artikel...</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="../../js/app.js"></script>
+</body>
+</html>
+
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/static/articles/demo-proker-artikel-digital.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - OSIS SMKN 68 Jakarta</title>
+    <link rel="icon" href="../../img/icon.png">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    <main class="single-reading-view">
+        <div id="article-render-target" data-article-id="demo-proker-artikel-digital">
+            <div class="reading-content-wrapper">
+                <p style="color: var(--text-muted); padding: 2rem 0">Memuat artikel...</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="../../js/app.js"></script>
+</body>
+</html>
+
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/static/articles/kadang-portofolio-bisa-mengalahkan-nilai.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - OSIS SMKN 68 Jakarta</title>
+    <link rel="icon" href="../../img/icon.png">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    <main class="single-reading-view">
+        <div id="article-render-target" data-article-id="kadang-portofolio-bisa-mengalahkan-nilai">
+            <div class="reading-content-wrapper">
+                <p style="color: var(--text-muted); padding: 2rem 0">Memuat artikel...</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="../../js/app.js"></script>
+</body>
+</html>
+
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/static/articles/lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel - OSIS SMKN 68 Jakarta</title>
+    <link rel="icon" href="../../img/icon.png">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+    <div id="nav-placeholder"></div>
+
+    <main class="single-reading-view">
+        <div id="article-render-target" data-article-id="lulus-smk-bukan-akhir-tapi-tes-pertama-dunia-kerja">
+            <div class="reading-content-wrapper">
+                <p style="color: var(--text-muted); padding: 2rem 0">Memuat artikel...</p>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module" src="../../js/app.js"></script>
+</body>
+</html>
+
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/static/contacts.html`
 
 ```html
 <!DOCTYPE html>
@@ -2272,7 +2796,9 @@ export async function renderOsisTree() {
 
 ```
 
-`static/proker.html`
+---
+
+## File: `../osissmkn68jkt.github.io/static/proker.html`
 
 ```html
 <!DOCTYPE html>
@@ -2307,7 +2833,9 @@ export async function renderOsisTree() {
 
 ```
 
-`static/struktur.html`
+---
+
+## File: `../osissmkn68jkt.github.io/static/struktur.html`
 
 ```html
 <!DOCTYPE html>
@@ -2340,9 +2868,23 @@ export async function renderOsisTree() {
 
 ```
 
-`tools/build.py`
+---
 
-```python
+## File: `../osissmkn68jkt.github.io/TODO.md`
+
+```md
+1. Better Article making process
+2. Structure on a json file 
+3. Add Picture
+4. Finish Proker
+5. Finish Website Text
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/tools/build.py`
+
+```py
 #!/usr/bin/env python3
 """
 tools/build.py
@@ -2551,55 +3093,5 @@ if __name__ == '__main__':
     main()
 ```
 
-`index.html`
-```html
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSIS SMKN 68 Jakarta</title>
-    <link rel="icon" href="img/icon.png">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+---
 
-    <div id="nav-placeholder"></div>
-
-    <div class="hero-container">
-        <div class="hero-slide active" style="background-image: url('img/slide1.jpg')"></div>
-        <div class="hero-slide" style="background-image: url('img/slide2.jpg')"></div>
-        <div class="hero-slide" style="background-image: url('img/slide3.jpg')"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">OSIS SMKN 68 Jakarta</h1>
-            <p class="hero-subtitle">Bergerak bersama, berinovasi untuk masa depan.</p>
-        </div>
-    </div>
-
-    <section class="quote-section">
-        <span class="quote-tagline">Motto Kami</span>
-        <p class="quote-text">"Satu langkah bersama lebih berarti dari seribu langkah sendiri."</p>
-    </section>
-
-    <section class="about-section">
-        <div class="about-container">
-            <h2>Tentang OSIS SMKN 68 Jakarta</h2>
-            <p>Organisasi Siswa Intra Sekolah SMKN 68 Jakarta adalah wadah pengembangan diri, kreativitas, dan kepemimpinan bagi seluruh siswa. Kami berkomitmen untuk menjalankan program kerja yang transparan, inovatif, dan berdampak nyata bagi komunitas sekolah.</p>
-        </div>
-    </section>
-
-    <section class="news-section">
-        <h2 class="section-title">Berita Terkini</h2>
-        <!-- Populated dynamically from articles-manifest.json by home.js -->
-        <div class="news-grid" id="home-news-grid">
-            <p style="color: var(--text-muted)">Memuat berita...</p>
-        </div>
-    </section>
-
-    <div id="footer-placeholder"></div>
-
-    <script type="module" src="js/app.js"></script>
-</body>
-</html>
-```
