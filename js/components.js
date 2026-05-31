@@ -113,5 +113,42 @@ export function injectComponents() {
     if (footerPlaceholder) footerPlaceholder.outerHTML = renderFooter();
     
     // Initialize dark mode after nav is injected
-    setTimeout(() => initDarkMode(), 0);
+    setTimeout(() => {
+        initDarkMode();
+        initTopbarScrollBehavior(); // Add this line
+    }, 0);
+}
+
+export function initTopbarScrollBehavior() {
+    const topbar = document.querySelector('.topbar');
+    if (!topbar) return;
+    
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        // Only hide when scrolling down past 100px
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            topbar.classList.add('topbar--scrolled');
+        } 
+        // Show when scrolling up OR at the top
+        else if (currentScrollY < lastScrollY || currentScrollY <= 50) {
+            topbar.classList.remove('topbar--scrolled');
+        }
+        
+        lastScrollY = currentScrollY;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
+    }, { passive: true });
+    
+    // Initial check
+    handleScroll();
 }

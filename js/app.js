@@ -4,13 +4,14 @@
  * page module based on the current URL.
  */
 
-import { injectComponents } from './components.js';
+import { injectComponents, initTopbarScrollBehavior } from './components.js';
 import { initHomeSlider, initHomeNews } from './home.js';
 import { initArticleListPage, initArticlePage } from './articles.js';
 import { renderOsisTree } from './struktur.js';
 import { initProkerPage } from './proker.js';
 import { initBackToTop } from './backtotop.js';
 import { injectSEOMeta, updateCanonicalURL } from './seo.js';
+import { initPageTransitions, animatePageIn } from './navigation.js';
 
 // ===== ROBUST PRELOADER (Fail-safe version) =====
 function initPreloader() {
@@ -29,6 +30,11 @@ function initPreloader() {
     preloader.classList.add('hidden');
     document.body.classList.remove('preloader-active');
     
+    // Trigger page entrance animation after preloader is gone
+    setTimeout(() => {
+      animatePageIn();
+    }, 50);
+    
     // Clean up DOM after transition
     setTimeout(() => {
       if (preloader.parentNode) {
@@ -40,11 +46,9 @@ function initPreloader() {
   // Strategy 1: Hide when DOM is ready + critical images loaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      // Give images a tiny moment to start loading
       setTimeout(hidePreloader, 100);
     });
   } else {
-    // DOM already ready
     setTimeout(hidePreloader, 100);
   }
 
@@ -71,15 +75,19 @@ function initPreloader() {
   );
 }
 
-// Call preloader init AFTER components are injected
-initPreloader(); // ← This MUST be here
+// Call preloader init
+initPreloader();
+
 // 1. Inject nav + footer on every page
 injectComponents();
 
 // 2. Initialize back to top
 initBackToTop();
 
-// 3. Boot the correct page module based on the filename
+// 3. Initialize page transitions
+initPageTransitions();
+
+// 4. Boot the correct page module based on the filename
 const page = window.location.pathname.split('/').pop() || 'index.html';
 
 if (page === 'index.html' || page === '') {

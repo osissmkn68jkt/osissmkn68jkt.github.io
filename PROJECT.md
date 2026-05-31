@@ -2,6 +2,7 @@
 ```
 osissmkn68jkt.github.io
 ├─.gitignore
+├─404.html
 ├─content
 │   ├─articles
 │   │   ├─anak-smk-jangan-cuma-jadi-pengguna-ai.md
@@ -34,12 +35,16 @@ osissmkn68jkt.github.io
 ├─js
 │   ├─app.js
 │   ├─articles.js
+│   ├─backtotop.js
 │   ├─components.js
 │   ├─home.js
 │   ├─md-parser.js
 │   ├─proker.js
+│   ├─seo.js
 │   └─struktur.js
 ├─README.md
+├─robots.txt
+├─sitemap.xml
 ├─static
 │   ├─about.html
 │   ├─articles
@@ -59,6 +64,141 @@ osissmkn68jkt.github.io
 ---
 
 # Source Code
+
+## File: `../osissmkn68jkt.github.io/404.html`
+
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Halaman Tidak Ditemukan | OSIS SMKN 68 Jakarta</title>
+    <link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="robots" content="noindex">
+    <style>
+        .error-container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 60px 40px;
+            text-align: center;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0 var(--bg-main);
+        }
+        
+        .error-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+        
+        .error-message {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .error-btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .error-btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .error-btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        
+        .error-btn-secondary {
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            border: 2px solid #e2e8f0;
+        }
+        
+        .error-btn-secondary:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 80px;
+            }
+            
+            .error-title {
+                font-size: 24px;
+            }
+            
+            .error-container {
+                padding: 40px 20px;
+                margin: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="nav-placeholder"></div>
+
+    <main class="error-container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">Halaman Tidak Ditemukan</h1>
+        <p class="error-message">
+            Maaf, halaman yang Anda cari tidak dapat ditemukan. <br>
+            Mungkin halaman telah dipindahkan atau dihapus.
+        </p>
+        <div class="error-actions">
+            <a href="index.html" class="error-btn error-btn-primary">
+                ← Kembali ke Beranda
+            </a>
+            <a href="static/articles.html" class="error-btn error-btn-secondary">
+                Baca Artikel 📚
+            </a>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script type="module">
+        import { injectComponents } from './js/components.js';
+        import { initBackToTop } from './js/backtotop.js';
+        
+        injectComponents();
+        initBackToTop();
+    </script>
+</body>
+</html>
+```
+
+---
 
 ## File: `../osissmkn68jkt.github.io/content/articles-manifest.json`
 
@@ -749,6 +889,12 @@ body {
     line-height: 1.6;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -759,6 +905,13 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* ✅ Added */
+}
+
+.topbar--scrolled {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none; /* Prevents blocking clicks when hidden */
 }
 
 .logo a {
@@ -1384,6 +1537,12 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 
 .article-featured-image { margin: 0 0 40px 0; }
 .article-featured-image img { width: 100%; height: auto; max-height: 480px; object-fit: cover; border-radius: var(--radius); }
+.article-featured-image img,
+.graphic-box img {
+    aspect-ratio: 16 / 10; /* Adjust to match your image ratios */
+    background-color: #e2e8f0; /* Placeholder color while loading */
+    object-fit: cover;
+}
 .article-featured-image figcaption, .article-inline-image figcaption { text-align: center; font-size: 13px; color: #64748b; margin-top: 10px; font-style: italic; }
 
 .article-inline-image { margin: 36px 0; }
@@ -1426,7 +1585,18 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 }
 
 @media (max-width: 768px) {
-    .topbar { flex-direction: column; align-items: flex-start; padding: 15px 20px; gap: 12px; }
+    .topbar {
+        flex-direction: column;
+        align-items: center; /* ✅ Changed from flex-start to center */
+        justify-content: center;
+        padding: 15px 20px;
+        gap: 12px;
+        text-align: center;
+    }
+    .topbar .logo {
+        width: 100%;
+        text-align: center; /* ✅ Ensures logo text stays centered */
+    }
     .nav-links {
         display: flex;
         flex-direction: row;
@@ -1437,6 +1607,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        justify-content: flex-start; /* Keep buttons left-aligned for easy scrolling */
     }
     .nav-links::-webkit-scrollbar { display: none; }
     .nav-btn { white-space: nowrap; flex-shrink: 0; padding: 8px 14px; font-size: 14px; }
@@ -1458,6 +1629,385 @@ textarea.form-input { resize: vertical; min-height: 120px; }
     .article-content p:first-child { font-size: 17px; }
 }
 
+#preloader {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  #preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  .preloader-content {
+    text-align: center;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  
+  .preloader-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    /* Optional: subtle bounce */
+    animation: float 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.03); opacity: 0.95; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  
+  body.preloader-active {
+    overflow: hidden;
+  }
+
+
+  @media (max-width: 768px) {
+    .contact-grid {
+        width: 100%;
+        padding: 0 16px;
+        margin: 40px auto;
+        box-sizing: border-box;
+    }
+    .contact-info-panel,
+    .contact-form-panel {
+        padding: 20px;
+    }
+    .info-row {
+        flex-direction: column;
+        gap: 6px;
+    }
+    .info-label {
+        min-width: auto;
+        font-weight: 700;
+    }
+    .map-embed-container {
+        height: 240px;
+    }
+    .form-input,
+    .submit-btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* ===== DARK MODE ===== */
+:root[data-theme="dark"] {
+    --primary: #3b82f6;
+    --primary-hover: #60a5fa;
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --text-dark: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+    --line-color: #334155;
+}
+
+:root[data-theme="dark"] .topbar,
+:root[data-theme="dark"] .site-footer {
+    background-color: #1e293b;
+}
+
+:root[data-theme="dark"] .nav-btn:hover {
+    background-color: #334155;
+}
+
+:root[data-theme="dark"] .accordion-header:hover {
+    background-color: #334155;
+}
+
+:root[data-theme="dark"] .accordion-content {
+    background-color: #0f172a;
+}
+
+:root[data-theme="dark"] .proker-item-card,
+:root[data-theme="dark"] .sekbid-accordion,
+:root[data-theme="dark"] .sidebar-widget,
+:root[data-theme="dark"] .pillar-card,
+:root[data-theme="dark"] .news-card,
+:root[data-theme="dark"] .featured-news-hero-card,
+:root[data-theme="dark"] .reading-content-wrapper,
+:root[data-theme="dark"] .contact-form-panel,
+:root[data-theme="dark"] .info-card-modern {
+    background-color: #1e293b;
+    border-color: #334155;
+}
+
+:root[data-theme="dark"] .form-input {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: var(--text-dark);
+}
+
+:root[data-theme="dark"] .form-input:focus {
+    background-color: #1e293b;
+    border-color: var(--primary);
+}
+
+:root[data-theme="dark"] .org-node--wing {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+:root[data-theme="dark"] .org-dept {
+    background: #0f172a;
+    border-color: #334155;
+}
+
+:root[data-theme="dark"] .widget-list li a:hover,
+:root[data-theme="dark"] .widget-list li a.active {
+    background-color: #1e293b;
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: var(--transition);
+    margin-left: 10px;
+}
+
+.theme-toggle:hover {
+    background-color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .theme-toggle:hover {
+    background-color: #334155;
+}
+
+/* ===== BACK TO TOP BUTTON ===== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 99;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-3px);
+}
+
+/* ===== SKELETON LOADERS ===== */
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+
+}
+
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-card) 0%,
+        #e2e8f0 50%,
+        var(--bg-card) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 8px;
+}
+
+:root[data-theme="dark"] .skeleton {
+    background: linear-gradient(
+        90deg,
+        var(--bg-card) 0%,
+        #334155 50%,
+        var(--bg-card) 100%
+    );
+    background-size: 200% 100%;
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 10px;
+}
+
+.skeleton-title {
+    height: 24px;
+    width: 70%;
+    margin-bottom: 12px;
+}
+
+.skeleton-image {
+    height: 200px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.skeleton-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+/* News Card Skeleton */
+.news-card-skeleton {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    padding: 0;
+}
+
+.news-card-skeleton .skeleton-image {
+    margin: 0;
+    border-radius: 0;
+}
+
+.news-card-skeleton .skeleton-body {
+    padding: 20px;
+}
+
+/* Featured Card Skeleton */
+.featured-card-skeleton {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+}
+
+.featured-card-skeleton .skeleton-image {
+    height: 280px;
+    margin: 0;
+}
+
+.featured-card-skeleton .skeleton-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Article Skeleton */
+.article-skeleton .skeleton-title {
+    height: 40px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.article-skeleton .skeleton-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px auto;
+    justify-content: center;
+}
+
+/* ===== ARTICLE SEARCH ===== */
+.search-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    background-color: #f8fafc;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0,123,255,0.1);
+}
+
+:root[data-theme="dark"] .search-input {
+    background-color: #0f172a;
+    border-color: #334155;
+    color: var(--text-dark);
+}
+
+:root[data-theme="dark"] .search-input:focus {
+    background-color: #1e293b;
+}
+
+.search-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 16px;
+}
+
+.search-no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .theme-toggle {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    
+    .featured-card-skeleton {
+        grid-template-columns: 1fr;
+    }
+    
+    .featured-card-skeleton .skeleton-image {
+        height: 200px;
+    }
+}
 ```
 
 ---
@@ -1470,11 +2020,20 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website resmi OSIS SMKN 68 Jakarta - Organisasi Siswa Intra Sekolah yang bergerak dalam pengembangan kreativitas, kepemimpinan, dan inovasi siswa.">
+    <meta name="keywords" content="OSIS, SMKN 68, Jakarta, organisasi siswa, kegiatan sekolah">
+    <meta name="author" content="OSIS SMKN 68 Jakarta">
+    <link rel="canonical" href="https://osissmkn68jkt.github.io/">
     <title>OSIS SMKN 68 Jakarta</title>
     <link rel="icon" href="img/icon.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div id="preloader" aria-hidden="true">
+        <div class="preloader-content">
+          <img src="img/icon.png" alt="OSIS SMKN 68 Jakarta" class="preloader-logo" width="120" height="120">
+        </div>
+    </div>
 
     <div id="nav-placeholder"></div>
 
@@ -1532,25 +2091,143 @@ import { initHomeSlider, initHomeNews } from './home.js';
 import { initArticleListPage, initArticlePage } from './articles.js';
 import { renderOsisTree } from './struktur.js';
 import { initProkerPage } from './proker.js';
+import { initBackToTop } from './backtotop.js';
+import { injectSEOMeta, updateCanonicalURL } from './seo.js';
 
+// ===== ROBUST PRELOADER (Fail-safe version) =====
+function initPreloader() {
+  const preloader = document.getElementById('preloader');
+  if (!preloader) return;
+
+  // Prevent scroll during load
+  document.body.classList.add('preloader-active');
+
+  let hasHidden = false;
+  
+  const hidePreloader = () => {
+    if (hasHidden) return;
+    hasHidden = true;
+    
+    preloader.classList.add('hidden');
+    document.body.classList.remove('preloader-active');
+    
+    // Clean up DOM after transition
+    setTimeout(() => {
+      if (preloader.parentNode) {
+        preloader.remove();
+      }
+    }, 400);
+  };
+
+  // Strategy 1: Hide when DOM is ready + critical images loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      // Give images a tiny moment to start loading
+      setTimeout(hidePreloader, 100);
+    });
+  } else {
+    // DOM already ready
+    setTimeout(hidePreloader, 100);
+  }
+
+  // Strategy 2: Fallback timeout (never hang longer than 2.5s)
+  setTimeout(hidePreloader, 2500);
+
+  // Strategy 3: Hide immediately on cached navigation
+  try {
+    const nav = performance.getEntriesByType('navigation')[0];
+    if (nav?.type === 'back_forward') {
+      hidePreloader();
+    }
+  } catch (e) { /* ignore */ }
+
+  // Strategy 4: Hide on first user interaction (safety net)
+  const onFirstInteraction = () => {
+    hidePreloader();
+    ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt =>
+      document.removeEventListener(evt, onFirstInteraction)
+    );
+  };
+  ['click', 'touchstart', 'keydown', 'scroll'].forEach(evt =>
+    document.addEventListener(evt, onFirstInteraction, { once: true, passive: true })
+  );
+}
+
+// Call preloader init AFTER components are injected
+initPreloader(); // ← This MUST be here
 // 1. Inject nav + footer on every page
 injectComponents();
 
-// 2. Boot the correct page module based on the filename
+// 2. Initialize back to top
+initBackToTop();
+
+// 3. Boot the correct page module based on the filename
 const page = window.location.pathname.split('/').pop() || 'index.html';
 
 if (page === 'index.html' || page === '') {
     initHomeSlider();
     initHomeNews();
+    // SEO for homepage
+    setTimeout(() => {
+        injectSEOMeta({
+            title: 'OSIS SMKN 68 Jakarta - Organisasi Siswa Intra Sekolah',
+            description: 'Website resmi OSIS SMKN 68 Jakarta. Bergerak bersama, berinovasi untuk masa depan. Temukan informasi kegiatan, program kerja, dan artikel edukatif.',
+            url: window.location.href,
+            type: 'website'
+        });
+        updateCanonicalURL();
+    }, 100);
 } else if (page === 'struktur.html') {
     renderOsisTree();
+    setTimeout(() => {
+        injectSEOMeta({
+            title: 'Struktur Organisasi - OSIS SMKN 68 Jakarta',
+            description: 'Bagan hierarki wewenang, tanggung jawab, dan koordinasi internal kepengurusan OSIS SMKN 68 Jakarta.',
+            url: window.location.href,
+            type: 'website'
+        });
+    }, 100);
 } else if (page === 'articles.html') {
     initArticleListPage();
+    setTimeout(() => {
+        injectSEOMeta({
+            title: 'Artikel & Berita - OSIS SMKN 68 Jakarta',
+            description: 'Jelajahi bacaan edukasi, info rilis fitur terbaru, dan dokumentasi kegiatan OSIS SMKN 68 Jakarta.',
+            url: window.location.href,
+            type: 'website'
+        });
+    }, 100);
 } else if (page === 'proker.html') {
     initProkerPage();
+    setTimeout(() => {
+        injectSEOMeta({
+            title: 'Program Kerja - OSIS SMKN 68 Jakarta',
+            description: 'Daftar agenda kerja prioritas serta cetak biru pergerakan strategis di setiap seksi bidang OSIS SMKN 68 Jakarta.',
+            url: window.location.href,
+            type: 'website'
+        });
+    }, 100);
 } else if (page.endsWith('.html') && window.location.pathname.includes('/articles/')) {
-    // Static article pages — static/articles/[id].html
     initArticlePage();
+    // SEO will be injected by initArticlePage after loading article data
+} else if (page === 'about.html') {
+    setTimeout(() => {
+        injectSEOMeta({
+            title: 'Tentang Kami - OSIS SMKN 68 Jakarta',
+            description: 'Mengenal lebih dekat visi, misi, serta komitmen kami sebagai organisasi intra sekolah SMKN 68 Jakarta.',
+            url: window.location.href,
+            type: 'website'
+        });
+    }, 100);
+} else if (page === 'contacts.html') {
+    setTimeout(() => {
+        injectSEOMeta({
+            title: 'Hubungi Kami - OSIS SMKN 68 Jakarta',
+            description: 'Punya pertanyaan atau rencana kolaborasi kreatif? Kirimkan pesan langsung kepada OSIS SMKN 68 Jakarta.',
+            url: window.location.href,
+            type: 'website'
+        });
+    }, 100);
 }
 ```
 
@@ -1559,18 +2236,36 @@ if (page === 'index.html' || page === '') {
 ## File: `../osissmkn68jkt.github.io/js/articles.js`
 
 ```js
-/**
- * articles.js
- * Handles everything related to articles:
- *   - Loading the manifest (content/articles-manifest.json)
- *   - Rendering article cards on articles.html
- *   - Rendering a full article page from a .md file
- *   - Category filtering with correct counts
- */
-
 import { parseMarkdown } from './md-parser.js';
+import { injectSEOMeta, updateCanonicalURL } from './seo.js';
 
-/** Site root — same robust logic as components.js */
+function renderNewsCardSkeleton() {
+    return `
+    <div class="news-card-skeleton">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-body">
+            <div class="skeleton-text" style="width: 40%"></div>
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 80%"></div>
+        </div>
+    </div>`;
+}
+
+function renderFeaturedCardSkeleton() {
+    return `
+    <div class="featured-card-skeleton">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-body">
+            <div class="skeleton-text" style="width: 30%"></div>
+            <div class="skeleton-title" style="width: 90%"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 60%"></div>
+        </div>
+    </div>`;
+}
+
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -1587,12 +2282,10 @@ function getSiteRoot() {
 
 const ROOT = getSiteRoot();
 
-/** Resolve path to content/ folder using absolute ROOT */
 function contentPath(rel) {
     return ROOT + 'content/' + rel;
 }
 
-/** Format ISO date to human-readable Indonesian */
 function formatDate(isoDate) {
     const months = ['Januari','Februari','Maret','April','Mei','Juni',
                     'Juli','Agustus','September','Oktober','November','Desember'];
@@ -1600,27 +2293,21 @@ function formatDate(isoDate) {
     return `${d} ${months[m - 1]} ${y}`;
 }
 
-/** Build URL to a single article page using absolute ROOT */
 function articleUrl(id) {
     return ROOT + 'static/articles/' + id + '.html';
 }
 
-/** Load the articles manifest JSON */
 async function loadManifest() {
     const res = await fetch(contentPath('articles-manifest.json'));
     if (!res.ok) throw new Error('Could not load articles manifest');
     return res.json();
 }
 
-// ─────────────────────────────────────────────────────────────
-// ARTICLES LIST PAGE (articles.html)
-// ─────────────────────────────────────────────────────────────
-
 function renderFeaturedCard(article) {
     return `
     <div class="featured-news-hero-card" data-category="${article.category}">
         <div class="featured-hero-img-box">
-            <img src="${article.cover}" alt="${article.title}" loading="lazy">
+            <img src="${article.cover}" alt="${article.title}" loading="lazy" decoding="async">
         </div>
         <div class="featured-hero-body">
             <span class="news-date">SOROTAN UTAMA • ${formatDate(article.date)}</span>
@@ -1635,7 +2322,7 @@ function renderArticleCard(article) {
     return `
     <article class="news-card" data-category="${article.category}">
         <div class="news-image-wrapper">
-            <img src="${article.cover}" alt="${article.title}" class="news-image" loading="lazy">
+            <img src="${article.cover}" alt="${article.title}" class="news-image" loading="lazy" decoding="async">
         </div>
         <div class="news-body">
             <span class="news-date">${formatDate(article.date)}</span>
@@ -1708,6 +2395,12 @@ export async function initArticleListPage() {
 
     if (!gridContainer) return;
 
+    // Show skeletons while loading
+    if (featuredContainer) {
+        featuredContainer.innerHTML = renderFeaturedCardSkeleton();
+    }
+    gridContainer.innerHTML = Array(3).fill(renderNewsCardSkeleton()).join('');
+
     try {
         const manifest = await loadManifest();
 
@@ -1720,6 +2413,9 @@ export async function initArticleListPage() {
         gridContainer.innerHTML = regular.map(renderArticleCard).join('');
 
         buildCategorySidebar(manifest, categoryListId);
+        
+        // Initialize search
+        initArticleSearch(regular);
 
     } catch (err) {
         console.error('Articles failed to load:', err);
@@ -1728,10 +2424,6 @@ export async function initArticleListPage() {
         }
     }
 }
-
-// ─────────────────────────────────────────────────────────────
-// SINGLE ARTICLE PAGE (static/articles/[id].html)
-// ─────────────────────────────────────────────────────────────
 
 export async function initArticlePage() {
     const container = document.getElementById('article-render-target');
@@ -1749,6 +2441,20 @@ export async function initArticlePage() {
         const bodyHtml = parseMarkdown(meta.body || '');
 
         document.title = `${meta.title} — OSIS SMKN 68 Jakarta`;
+
+        injectSEOMeta({
+            title: meta.title,
+            description: meta.excerpt,
+            image: meta.cover,
+            url: window.location.href,
+            type: 'article',
+            article: {
+                date: meta.date,
+                author: meta.author,
+                category: meta.category
+            }
+        });
+        updateCanonicalURL();
 
         container.innerHTML = `
             <div class="reading-content-wrapper">
@@ -1788,6 +2494,79 @@ export async function initArticlePage() {
             </div>`;
     }
 }
+
+function initArticleSearch(articles) {
+    const searchBox = document.getElementById('article-search-box');
+    if (!searchBox) return;
+
+    const searchInput = searchBox.querySelector('.search-input');
+    const gridContainer = document.getElementById('articles-grid-container');
+
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+
+        if (query.length === 0) {
+            // Show all articles
+            gridContainer.innerHTML = articles.map(renderArticleCard).join('');
+            return;
+        }
+
+        // Filter articles
+        const filtered = articles.filter(article => {
+            const titleMatch = article.title.toLowerCase().includes(query);
+            const excerptMatch = article.excerpt.toLowerCase().includes(query);
+            const categoryMatch = article.category.toLowerCase().includes(query);
+            return titleMatch || excerptMatch || categoryMatch;
+        });
+
+        if (filtered.length === 0) {
+            gridContainer.innerHTML = `
+                <div class="search-no-results">
+                    <p style="font-size: 48px; margin-bottom: 10px;">🔍</p>
+                    <p><strong>Tidak ada artikel ditemukan</strong></p>
+                    <p style="margin-top: 8px;">Coba kata kunci lain atau browse semua kategori</p>
+                </div>`;
+        } else {
+            gridContainer.innerHTML = filtered.map(renderArticleCard).join('');
+        }
+    });
+}
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/js/backtotop.js`
+
+```js
+/**
+ * backtotop.js
+ * Back to top button with smooth scroll
+ */
+
+export function initBackToTop() {
+    const button = document.createElement('button');
+    button.className = 'back-to-top';
+    button.innerHTML = '↑';
+    button.setAttribute('aria-label', 'Kembali ke atas');
+    document.body.appendChild(button);
+
+    const scrollThreshold = 400;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > scrollThreshold) {
+            button.classList.add('visible');
+        } else {
+            button.classList.remove('visible');
+        }
+    }, { passive: true });
+
+    button.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 ```
 
 ---
@@ -1795,70 +2574,28 @@ export async function initArticlePage() {
 ## File: `../osissmkn68jkt.github.io/js/components.js`
 
 ```js
-/**
- * components.js
- * Injects shared navigation and footer into every page.
- *
- * ROOT is determined once by finding the deepest path that contains index.html.
- * This works correctly on GitHub Pages (with or without a repo subfolder),
- * local dev servers, and any other static host.
- */
-
-/**
- * Detects the root URL of the site robustly.
- *
- * Strategy: walk up the path segments until we find the one that is the
- * actual site root. We do this by checking <base> tag (if set by build tool),
- * or by using the fact that index.html always lives at root.
- *
- * The reliable approach: if the site lives at origin/ (no subfolder), root = origin/
- * If the site lives at origin/repo/, root = origin/repo/
- *
- * We detect this by looking at the <link rel="canonical"> or simply by
- * checking if the first path segment is a known repo name. Since we can't
- * know the repo name at runtime, we use a smarter heuristic:
- *
- * - All static pages live under /static/ or at root /
- * - All article pages live under /static/articles/
- * - So the root is everything BEFORE the first occurrence of:
- *     "static/", "index.html", or end of meaningful path
- */
 function getSiteRoot() {
     const { origin, pathname } = window.location;
 
-    // Find the root by stripping known subpaths
-    // Known page locations relative to root:
-    //   /                          → index.html
-    //   /index.html                → root
-    //   /static/about.html         → root is everything before "static/"
-    //   /static/articles/foo.html  → root is everything before "static/"
-    //   /repo/                     → root (GitHub Pages with repo subfolder)
-    //   /repo/static/about.html    → root is everything before "static/"
-
     const staticIdx = pathname.indexOf('/static/');
     if (staticIdx !== -1) {
-        // Root is the path up to (and including) the slash before "static/"
         return origin + pathname.slice(0, staticIdx + 1);
     }
 
-    // We're at root level (index.html or /)
-    // The root is everything up to the last path segment if it's a file,
-    // or the full path if it ends with /
     const lastSlash = pathname.lastIndexOf('/');
     const afterLastSlash = pathname.slice(lastSlash + 1);
 
     if (afterLastSlash.includes('.')) {
-        // It's a file (e.g. index.html) — root is the directory
         return origin + pathname.slice(0, lastSlash + 1);
     }
 
-    // It's a directory path — use as-is (ensure trailing slash)
     return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
 
 const ROOT = getSiteRoot();
 
 const NAV_LINKS = [
+    { href: 'index.html',    label: 'Beranda' }, // ✅ Added on the left
     { href: 'static/about.html',    label: 'Tentang Kami' },
     { href: 'static/proker.html',   label: 'Program Kerja' },
     { href: 'static/struktur.html', label: 'Struktur' },
@@ -1874,7 +2611,7 @@ export function renderNav() {
     const current = getCurrentPage();
 
     const linksHtml = NAV_LINKS.map(link => {
-        const pageFile = link.href.split('/').pop(); // e.g. "about.html"
+        const pageFile = link.href.split('/').pop();
         const isActive = current === pageFile ? 'active' : '';
         return `<a href="${ROOT}${link.href}" class="nav-btn ${isActive}">${link.label}</a>`;
     }).join('');
@@ -1886,6 +2623,7 @@ export function renderNav() {
         </div>
         <div class="nav-links">
             ${linksHtml}
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">🌓</button>
         </div>
     </nav>`;
 }
@@ -1918,12 +2656,40 @@ export function renderFooter() {
     </footer>`;
 }
 
+export function initDarkMode() {
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+    
+    // Check localStorage or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        root.setAttribute('data-theme', 'dark');
+        if (toggle) toggle.textContent = '☀️';
+    }
+    
+    if (toggle) {
+        toggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            toggle.textContent = newTheme === 'dark' ? '☀️' : '🌓';
+        });
+    }
+}
+
 export function injectComponents() {
     const navPlaceholder = document.getElementById('nav-placeholder');
     if (navPlaceholder) navPlaceholder.outerHTML = renderNav();
 
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) footerPlaceholder.outerHTML = renderFooter();
+    
+    // Initialize dark mode after nav is injected
+    setTimeout(() => initDarkMode(), 0);
 }
 ```
 
@@ -1932,13 +2698,6 @@ export function injectComponents() {
 ## File: `../osissmkn68jkt.github.io/js/home.js`
 
 ```js
-/**
- * home.js
- * Hero image slider + dynamic "Berita Terkini" for index.html.
- * The news section is auto-populated from content/articles-manifest.json —
- * no need to edit index.html when new articles are added.
- */
-
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -1952,8 +2711,6 @@ function getSiteRoot() {
     }
     return origin + pathname + (pathname.endsWith('/') ? '' : '/');
 }
-
-// ─── Hero Slider ──────────────────────────────────────────────
 
 export function initHomeSlider() {
     const slides = document.querySelectorAll('.hero-slide');
@@ -1969,13 +2726,12 @@ export function initHomeSlider() {
     }, 5000);
 }
 
-// ─── Berita Terkini ───────────────────────────────────────────
 
 function renderNewsCard(article, ROOT) {
     const coverHtml = article.cover
-        ? `<img src="${article.cover}" alt="${article.title}" class="news-image" loading="lazy">`
-        : `<div class="news-image" style="background:var(--bg-main);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;">Tanpa Gambar</div>`;
-
+    ? `<img src="${article.cover}" alt="${article.title}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">`
+    : `<div class="news-image" style="background:var(--bg-main);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:13px;">Tanpa Gambar</div>`;
+    
     return `
     <article class="news-card">
         <div class="news-image-wrapper">
@@ -2023,31 +2779,6 @@ export async function initHomeNews() {
 ## File: `../osissmkn68jkt.github.io/js/md-parser.js`
 
 ```js
-/**
- * md-parser.js
- * Lightweight Markdown parser for OSIS article system.
- * Supports: frontmatter, headings, paragraphs, bold, italic,
- * blockquote, unordered lists, ordered lists, inline images with captions,
- * and horizontal rules.
- *
- * HOW TO WRITE AN ARTICLE:
- * ─────────────────────────
- * Start the file with a "frontmatter" block (between --- lines).
- * Supported frontmatter keys:
- *   title, category, author, date, readtime, cover, cover_caption
- *
- * Then write your article body using simple Markdown:
- *   ## Heading 2         →  large section heading
- *   ### Heading 3        →  sub-section heading
- *   **bold text**        →  bold
- *   *italic text*        →  italic
- *   - item               →  bullet list item
- *   1. item              →  numbered list item
- *   > quote text         →  blockquote / pull quote
- *   ![alt|caption](url) →  image with optional caption (use | to split alt from caption)
- *   ---                  →  horizontal divider
- */
-
 export function parseFrontmatter(raw) {
     const fm = {};
     const fmMatch = raw.match(/^---\n([\s\S]*?)\n---/);
@@ -2073,13 +2804,9 @@ function escapeHtml(str) {
 }
 
 function inlineFormat(text) {
-    // Bold + Italic combined
     text = text.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
-    // Bold
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    // Italic
     text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
-    // Inline code
     text = text.replace(/`([^`]+)`/g, '<code>$1</code>');
     return text;
 }
@@ -2092,7 +2819,6 @@ export function parseMarkdown(markdown) {
     while (i < lines.length) {
         const line = lines[i];
 
-        // ── Headings ──────────────────────────────────
         if (line.startsWith('### ')) {
             html.push(`<h3>${inlineFormat(line.slice(4))}</h3>`);
             i++; continue;
@@ -2106,19 +2832,16 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
-        // ── Horizontal Rule ───────────────────────────
         if (line.trim() === '---') {
             html.push('<hr>');
             i++; continue;
         }
 
-        // ── Blockquote ────────────────────────────────
         if (line.startsWith('> ')) {
             html.push(`<blockquote>${inlineFormat(line.slice(2))}</blockquote>`);
             i++; continue;
         }
 
-        // ── Unordered list ────────────────────────────
         if (line.startsWith('- ')) {
             html.push('<ul>');
             while (i < lines.length && lines[i].startsWith('- ')) {
@@ -2129,7 +2852,6 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // ── Ordered list ──────────────────────────────
         if (/^\d+\. /.test(line)) {
             html.push('<ol>');
             while (i < lines.length && /^\d+\. /.test(lines[i])) {
@@ -2140,8 +2862,6 @@ export function parseMarkdown(markdown) {
             continue;
         }
 
-        // ── Image with optional caption ───────────────
-        // Syntax: ![alt text|Caption text here](url)
         const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
         if (imgMatch) {
             const [altRaw, url] = [imgMatch[1], imgMatch[2]];
@@ -2156,13 +2876,10 @@ export function parseMarkdown(markdown) {
             i++; continue;
         }
 
-        // ── Empty line ────────────────────────────────
         if (line.trim() === '') {
             i++; continue;
         }
 
-        // ── Paragraph ─────────────────────────────────
-        // Collect consecutive non-empty, non-special lines as one paragraph
         const paraLines = [];
         while (
             i < lines.length &&
@@ -2192,12 +2909,6 @@ export function parseMarkdown(markdown) {
 ## File: `../osissmkn68jkt.github.io/js/proker.js`
 
 ```js
-/**
- * proker.js
- * Renders the Program Kerja accordion from content/proker-data.json.
- * To add, edit, or delete a program kerja: only edit proker-data.json.
- */
-
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -2264,15 +2975,185 @@ export async function initProkerPage() {
 
 ---
 
-## File: `../osissmkn68jkt.github.io/js/struktur.js`
+## File: `../osissmkn68jkt.github.io/js/seo.js`
 
 ```js
 /**
- * struktur.js
- * Renders the OSIS organizational chart from content/osis-data.json.
- * Data is fully separated from logic — edit osis-data.json to update org structure.
+ * seo.js
+ * Handles SEO meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
  */
 
+function getSiteRoot() {
+    const { origin, pathname } = window.location;
+    const staticIdx = pathname.indexOf('/static/');
+    if (staticIdx !== -1) {
+        return origin + pathname.slice(0, staticIdx + 1);
+    }
+    const lastSlash = pathname.lastIndexOf('/');
+    const afterLastSlash = pathname.slice(lastSlash + 1);
+    if (afterLastSlash.includes('.')) {
+        return origin + pathname.slice(0, lastSlash + 1);
+    }
+    return origin + pathname + (pathname.endsWith('/') ? '' : '/');
+}
+
+const ROOT = getSiteRoot();
+
+export function injectSEOMeta({
+    title = 'OSIS SMKN 68 Jakarta',
+    description = 'Website resmi OSIS SMKN 68 Jakarta - Organisasi Siswa Intra Sekolah yang bergerak dalam pengembangan kreativitas, kepemimpinan, dan inovasi siswa.',
+    image = `${ROOT}img/icon.png`,
+    url = window.location.href,
+    type = 'website',
+    article = null
+}) {
+    // Remove existing meta tags if any
+    const existingTags = document.querySelectorAll('meta[property^="og:"], meta[name^="twitter:"], meta[name="description"]');
+    existingTags.forEach(tag => tag.remove());
+
+    const head = document.head;
+
+    // Basic meta
+    const descMeta = document.createElement('meta');
+    descMeta.name = 'description';
+    descMeta.content = description;
+    head.appendChild(descMeta);
+
+    // Open Graph
+    const ogTags = [
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: description },
+        { property: 'og:image', content: image },
+        { property: 'og:url', content: url },
+        { property: 'og:type', content: type },
+        { property: 'og:site_name', content: 'OSIS SMKN 68 Jakarta' },
+        { property: 'og:locale', content: 'id_ID' }
+    ];
+
+    ogTags.forEach(tag => {
+        const meta = document.createElement('meta');
+        meta.setAttribute('property', tag.property);
+        meta.content = tag.content;
+        head.appendChild(meta);
+    });
+
+    // Twitter Card
+    const twitterTags = [
+        { name: 'twitter:card', content: type === 'article' ? 'summary_large_image' : 'summary' },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: image }
+    ];
+
+    twitterTags.forEach(tag => {
+        const meta = document.createElement('meta');
+        meta.setAttribute('name', tag.name);
+        meta.content = tag.content;
+        head.appendChild(meta);
+    });
+
+    // Article-specific meta
+    if (article) {
+        const articleTags = [
+            { property: 'article:published_time', content: article.date },
+            { property: 'article:author', content: article.author },
+            { property: 'article:section', content: article.category }
+        ];
+
+        articleTags.forEach(tag => {
+            const meta = document.createElement('meta');
+            meta.setAttribute('property', tag.property);
+            meta.content = tag.content;
+            head.appendChild(meta);
+        });
+    }
+
+    // JSON-LD Structured Data
+    injectJSONLD({ title, description, image, url, type, article });
+}
+
+function injectJSONLD({ title, description, image, url, type, article }) {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+
+    let jsonLD = {};
+
+    if (type === 'article' && article) {
+        jsonLD = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: title,
+            description: description,
+            image: image,
+            url: url,
+            datePublished: article.date,
+            dateModified: article.date,
+            author: {
+                '@type': 'Person',
+                name: article.author
+            },
+            publisher: {
+                '@type': 'Organization',
+                name: 'OSIS SMKN 68 Jakarta',
+                logo: {
+                    '@type': 'ImageObject',
+                    url: `${ROOT}img/icon.png`
+                }
+            },
+            mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': url
+            }
+        };
+    } else {
+        jsonLD = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'OSIS SMKN 68 Jakarta',
+            url: ROOT,
+            logo: `${ROOT}img/icon.png`,
+            description: description,
+            sameAs: [
+                'https://www.instagram.com/osissmkn68.jkt/',
+                'https://www.youtube.com/@OSISSMKN68',
+                'https://www.tiktok.com/@osissmkn68'
+            ],
+            address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Jl. Penganten Ali RT 09 RW 06',
+                addressLocality: 'Jakarta Timur',
+                addressRegion: 'DKI Jakarta',
+                addressCountry: 'ID'
+            },
+            contactPoint: {
+                '@type': 'ContactPoint',
+                telephone: '+62-896-1672-7118',
+                contactType: 'customer service',
+                availableLanguage: ['Indonesian']
+            }
+        };
+    }
+
+    script.textContent = JSON.stringify(jsonLD);
+    document.head.appendChild(script);
+}
+
+export function updateCanonicalURL(url) {
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+    }
+    canonical.href = url || window.location.href;
+}
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/js/struktur.js`
+
+```js
 function getSiteRoot() {
     const { origin, pathname } = window.location;
     const staticIdx = pathname.indexOf('/static/');
@@ -2531,6 +3412,30 @@ Lalu buka `http://localhost:8000` di browser.
 
 ---
 
+## File: `../osissmkn68jkt.github.io/robots.txt`
+
+```txt
+# robots.txt for OSIS SMKN 68 Jakarta
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://osissmkn68jkt.github.io/sitemap.xml
+
+# Crawl-delay (optional)
+Crawl-delay: 1
+
+# Block access to tools and build files
+Disallow: /tools/
+Disallow: /content/articles/*.md
+
+# Allow all static pages and articles
+Allow: /static/
+Allow: /content/articles-manifest.json
+```
+
+---
+
 ## File: `../osissmkn68jkt.github.io/static/about.html`
 
 ```html
@@ -2544,7 +3449,6 @@ Lalu buka `http://localhost:8000` di browser.
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-
     <div id="nav-placeholder"></div>
 
     <header class="subpage-banner">
@@ -2668,6 +3572,14 @@ Lalu buka `http://localhost:8000` di browser.
         </div>
 
         <aside class="news-sidebar">
+            <div class="sidebar-widget">
+                <h3>Cari Artikel</h3>
+                <div class="search-box" id="article-search-box">
+                    <input type="text" class="search-input" placeholder="Cari judul, kategori..." aria-label="Cari artikel">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+            
             <div class="sidebar-widget">
                 <h3>Kategori Berita</h3>
                 <ul class="widget-list" id="category-list">
@@ -3190,6 +4102,8 @@ def main():
     with open(MANIFEST_PATH, 'w', encoding='utf-8') as f:
         json.dump(final_manifest, f, ensure_ascii=False, indent=2)
 
+    generate_sitemap(final_manifest)
+
     # ── Summary ───────────────────────────────────────────────
     print(f"\n{'─' * 52}")
     print(f"  Articles scanned : {len(md_files)}")
@@ -3206,6 +4120,63 @@ def main():
     print("  Next step:")
     print("    git add . && git commit -m 'update articles' && git push")
     print()
+
+def generate_sitemap(manifest: list, root_url: str = "https://osissmkn68jkt.github.io"):
+    """Generate sitemap.xml from manifest and static pages"""
+    
+    # Static pages
+    static_pages = [
+        '',
+        'static/about.html',
+        'static/articles.html',
+        'static/contacts.html',
+        'static/proker.html',
+        'static/struktur.html',
+    ]
+    
+    # Article pages
+    article_pages = [f"static/articles/{entry['id']}.html" for entry in manifest]
+    
+    # Build XML
+    xml_lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    
+    # Add static pages
+    for page in static_pages:
+        url = f"{root_url}/{page}" if page else f"{root_url}/"
+        priority = "1.0" if page == '' else "0.8"
+        changefreq = "weekly" if page == '' else "monthly"
+        
+        xml_lines.extend([
+            '  <url>',
+            f'    <loc>{url}</loc>',
+            f'    <changefreq>{changefreq}</changefreq>',
+            f'    <priority>{priority}</priority>',
+            '  </url>',
+        ])
+    
+    # Add article pages
+    for entry in manifest:
+        url = f"{root_url}/static/articles/{entry['id']}.html"
+        lastmod = entry.get('date', '')
+        
+        xml_lines.extend([
+            '  <url>',
+            f'    <loc>{url}</loc>',
+            f'    <lastmod>{lastmod}</lastmod>' if lastmod else '',
+            '    <changefreq>monthly</changefreq>',
+            '    <priority>0.7</priority>',
+            '  </url>',
+        ])
+    
+    xml_lines.append('</urlset>')
+    
+    # Write sitemap
+    sitemap_path = ROOT / 'sitemap.xml'
+    sitemap_path.write_text('\n'.join(xml_lines), encoding='utf-8')
+    print(f"  Sitemap generated → sitemap.xml ({len(static_pages) + len(article_pages)} URLs)")
 
 
 if __name__ == '__main__':

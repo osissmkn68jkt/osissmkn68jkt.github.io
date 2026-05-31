@@ -46,13 +46,13 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: opacity 0.3s ease, transform 0.3s ease; /* ✅ Added */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .topbar--scrolled {
     opacity: 0;
     transform: translateY(-100%);
-    pointer-events: none; /* Prevents blocking clicks when hidden */
+    visibility: hidden;
 }
 
 .logo a {
@@ -1148,4 +1148,45 @@ textarea.form-input { resize: vertical; min-height: 120px; }
     .featured-card-skeleton .skeleton-image {
         height: 200px;
     }
+}
+.page-transition {
+    animation: pageFadeIn 0.4s ease-out;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-transition-out {
+    animation: pageFadeOut 0.2s ease-in;
+    pointer-events: none;
+}
+
+@keyframes pageFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.content-loading {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.content-loaded {
+    opacity: 1;
+    transform: translateY(0);
 }
