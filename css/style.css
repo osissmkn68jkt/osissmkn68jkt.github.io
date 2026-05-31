@@ -855,7 +855,7 @@ textarea.form-input { resize: vertical; min-height: 120px; }
     --bg-main: #0f172a;
     --bg-card: #1e293b;
     --text-dark: #f1f5f9;
-    --text-muted: #94a3b8;
+    --text-muted: #dddee1;
     --text-light: #e2e8f0;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
     --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4);
