@@ -84,13 +84,17 @@ export function initDarkMode() {
     const toggle = document.getElementById('theme-toggle');
     const root = document.documentElement;
     
-    // Check localStorage or system preference
+    // Check localStorage for a previously saved theme
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+    // Only apply dark mode if the user EXPLICITLY saved it before
+    if (savedTheme === 'dark') {
         root.setAttribute('data-theme', 'dark');
         if (toggle) toggle.textContent = '☀️';
+    } else {
+        // Force light mode by default for everyone else
+        root.setAttribute('data-theme', 'light');
+        if (toggle) toggle.textContent = '🌓';
     }
     
     if (toggle) {

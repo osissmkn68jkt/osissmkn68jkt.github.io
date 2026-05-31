@@ -39,6 +39,7 @@ osissmkn68jkt.github.io
 │   ├─components.js
 │   ├─home.js
 │   ├─md-parser.js
+│   ├─navigation.js
 │   ├─proker.js
 │   ├─seo.js
 │   └─struktur.js
@@ -905,13 +906,13 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: opacity 0.3s ease, transform 0.3s ease; /* ✅ Added */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .topbar--scrolled {
     opacity: 0;
     transform: translateY(-100%);
-    pointer-events: none; /* Prevents blocking clicks when hidden */
+    visibility: hidden;
 }
 
 .logo a {
@@ -2008,6 +2009,47 @@ textarea.form-input { resize: vertical; min-height: 120px; }
         height: 200px;
     }
 }
+.page-transition {
+    animation: pageFadeIn 0.4s ease-out;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.page-transition-out {
+    animation: pageFadeOut 0.2s ease-in;
+    pointer-events: none;
+}
+
+@keyframes pageFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+.content-loading {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.content-loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
 ```
 
 ---
@@ -2086,13 +2128,14 @@ textarea.form-input { resize: vertical; min-height: 120px; }
  * page module based on the current URL.
  */
 
-import { injectComponents } from './components.js';
+import { injectComponents, initTopbarScrollBehavior } from './components.js';
 import { initHomeSlider, initHomeNews } from './home.js';
 import { initArticleListPage, initArticlePage } from './articles.js';
 import { renderOsisTree } from './struktur.js';
 import { initProkerPage } from './proker.js';
 import { initBackToTop } from './backtotop.js';
 import { injectSEOMeta, updateCanonicalURL } from './seo.js';
+import { initPageTransitions, animatePageIn } from './navigation.js';
 
 // ===== ROBUST PRELOADER (Fail-safe version) =====
 function initPreloader() {
@@ -2111,6 +2154,11 @@ function initPreloader() {
     preloader.classList.add('hidden');
     document.body.classList.remove('preloader-active');
     
+    // Trigger page entrance animation after preloader is gone
+    setTimeout(() => {
+      animatePageIn();
+    }, 50);
+    
     // Clean up DOM after transition
     setTimeout(() => {
       if (preloader.parentNode) {
@@ -2122,11 +2170,9 @@ function initPreloader() {
   // Strategy 1: Hide when DOM is ready + critical images loaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      // Give images a tiny moment to start loading
       setTimeout(hidePreloader, 100);
     });
   } else {
-    // DOM already ready
     setTimeout(hidePreloader, 100);
   }
 
@@ -2153,15 +2199,19 @@ function initPreloader() {
   );
 }
 
-// Call preloader init AFTER components are injected
-initPreloader(); // ← This MUST be here
+// Call preloader init
+initPreloader();
+
 // 1. Inject nav + footer on every page
 injectComponents();
 
 // 2. Initialize back to top
 initBackToTop();
 
-// 3. Boot the correct page module based on the filename
+// 3. Initialize page transitions
+initPageTransitions();
+
+// 4. Boot the correct page module based on the filename
 const page = window.location.pathname.split('/').pop() || 'index.html';
 
 if (page === 'index.html' || page === '') {
@@ -2689,7 +2739,44 @@ export function injectComponents() {
     if (footerPlaceholder) footerPlaceholder.outerHTML = renderFooter();
     
     // Initialize dark mode after nav is injected
-    setTimeout(() => initDarkMode(), 0);
+    setTimeout(() => {
+        initDarkMode();
+        initTopbarScrollBehavior(); // Add this line
+    }, 0);
+}
+
+export function initTopbarScrollBehavior() {
+    const topbar = document.querySelector('.topbar');
+    if (!topbar) return;
+    
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        // Only hide when scrolling down past 100px
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            topbar.classList.add('topbar--scrolled');
+        } 
+        // Show when scrolling up OR at the top
+        else if (currentScrollY < lastScrollY || currentScrollY <= 50) {
+            topbar.classList.remove('topbar--scrolled');
+        }
+        
+        lastScrollY = currentScrollY;
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
+    }, { passive: true });
+    
+    // Initial check
+    handleScroll();
 }
 ```
 
@@ -2902,6 +2989,109 @@ export function parseMarkdown(markdown) {
     return html.join('\n');
 }
 
+```
+
+---
+
+## File: `../osissmkn68jkt.github.io/js/navigation.js`
+
+```js
+/**
+ * navigation.js
+ * Handles smooth page transitions between pages
+ */
+
+let isTransitioning = false;
+
+export function initPageTransitions() {
+    // Apply fade-in animation to current page content
+    const mainContent = document.querySelector('main') || document.querySelector('.hero-container');
+    if (mainContent) {
+        mainContent.style.opacity = '0';
+        mainContent.style.transform = 'translateY(15px)';
+        mainContent.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        
+        // Trigger fade in after a tiny delay
+        setTimeout(() => {
+            mainContent.style.opacity = '1';
+            mainContent.style.transform = 'translateY(0)';
+        }, 50);
+    }
+
+    // Intercept all internal navigation clicks
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        if (!href) return;
+        
+        // Skip external links, anchors, and javascript:
+        if (href.startsWith('http') && !href.includes(window.location.hostname)) return;
+        if (href.startsWith('#') || href.startsWith('javascript:')) return;
+        
+        e.preventDefault();
+        
+        // Don't transition if already transitioning
+        if (isTransitioning) return;
+        
+        const targetUrl = new URL(href, window.location.href).href;
+        
+        // Animate out
+        animatePageOut(() => {
+            window.location.href = targetUrl;
+        });
+    });
+}
+
+function animatePageOut(callback) {
+    isTransitioning = true;
+    
+    const mainContent = document.querySelector('main') || document.querySelector('.hero-container');
+    const topbar = document.querySelector('.topbar');
+    
+    // Animate main content out
+    if (mainContent) {
+        mainContent.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+        mainContent.style.opacity = '0';
+        mainContent.style.transform = 'translateY(-10px)';
+    }
+    
+    // Optional: animate topbar out
+    if (topbar) {
+        topbar.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        topbar.style.opacity = '0';
+        topbar.style.transform = 'translateY(-100%)';
+    }
+    
+    // Execute callback after animation
+    setTimeout(callback, 250);
+}
+
+// Call this on page load to apply entrance animation
+export function animatePageIn() {
+    isTransitioning = false;
+    
+    const mainContent = document.querySelector('main') || document.querySelector('.hero-container');
+    const topbar = document.querySelector('.topbar');
+    
+    if (mainContent) {
+        mainContent.style.opacity = '0';
+        mainContent.style.transform = 'translateY(15px)';
+        mainContent.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        
+        // Force reflow
+        void mainContent.offsetHeight;
+        
+        mainContent.style.opacity = '1';
+        mainContent.style.transform = 'translateY(0)';
+    }
+    
+    if (topbar) {
+        topbar.style.opacity = '1';
+        topbar.style.transform = 'translateY(0)';
+    }
+}
 ```
 
 ---

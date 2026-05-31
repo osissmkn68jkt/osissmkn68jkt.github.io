@@ -80,6 +80,7 @@ img {
     transition: var(--transition);
     text-decoration: none;
     display: inline-block;
+    align-items: center;
 }
 
 .nav-btn:hover {
@@ -922,12 +923,12 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 .theme-toggle {
     background: none;
     border: none;
-    padding: 8px 12px;
     cursor: pointer;
     border-radius: 8px;
     font-size: 18px;
     transition: var(--transition);
     margin-left: 10px;
+
 }
 
 .theme-toggle:hover {
@@ -936,6 +937,33 @@ textarea.form-input { resize: vertical; min-height: 120px; }
 
 :root[data-theme="dark"] .theme-toggle:hover {
     background-color: #334155;
+}
+
+/* Fix for Article Paragraphs and Lists in Dark Mode */
+:root[data-theme="dark"] .article-content p:first-child {
+    color: var(--text-dark);
+}
+
+:root[data-theme="dark"] .article-content p,
+:root[data-theme="dark"] .article-content ul,
+:root[data-theme="dark"] .article-content ol {
+    color: var(--text-muted);
+}
+
+:root[data-theme="dark"] .article-content blockquote {
+    background-color: #334155;
+    color: var(--text-muted);
+}
+
+/* Fix for Program Kerja Badges in Dark Mode */
+:root[data-theme="dark"] .badge {
+    background-color: #334155;
+    color: var(--text-dark);
+}
+
+:root[data-theme="dark"] .badge.status-running {
+    background-color: #064e3b; /* Dark green background */
+    color: #34d399; /* Light green text */
 }
 
 /* ===== BACK TO TOP BUTTON ===== */
