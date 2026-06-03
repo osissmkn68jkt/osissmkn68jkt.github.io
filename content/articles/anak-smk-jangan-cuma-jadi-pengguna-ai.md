@@ -6,7 +6,7 @@ date: 27 Mei 2026
 date_iso: 2026-05-27
 excerpt: Banyak orang memakai AI hanya untuk mencari jawaban tugas sekolah atau membuat caption media sosial. Padahal kemampuan paling penting sebenarnya bukan sekadar “bertanya ke AI”.
 cover: https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/anak-smk-jangan-cuma-jadi-pengguna-ai.jpeg?raw=true
-featured: True
+featured: False
 ---
 
 Artificial Intelligence atau AI adalah teknologi yang membuat komputer mampu membantu manusia berpikir, menganalisis, membuat teks, mengenali gambar, hingga membantu pekerjaan digital sehari-hari.

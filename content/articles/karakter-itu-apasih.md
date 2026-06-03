@@ -25,22 +25,22 @@ Karakter memiliki peran penting karena:
 
 ### A. Jujur 
 Mengatakan dan melakukan sesuatu sesuai dengan kenyataan.
-![10001](/img/10001.jpg)
+![10001](/img/assets/10001.jpg)
 ### B. Disiplin 
 Menaati aturan dan melakukan sesuatu tepat waktu.
-![10002](/img/10002.jpg)
+![10002](/img/assets/10002.jpg/)
 ### C. Peduli
 Memiliki rasa perhatian terhadap orang lain dan lingkungan.
-![10003](/img/10003.jpg)
+![10003](/img/assets/10003.jpg)
 ### D. Sopan santun 
 Berperilaku baik dan menghormati orang lain. 
-![10004](/img/10004.jpg)
+![10004](/img/assets/10004.jpg)
 ### E. Tanggung Jawab
 Melaksanakan tugas dan kewajiban dengan bak.
-![10005](/img/10005.jpg)
+![10005](/img/assets/10005.jpg)
 ### F. Kerja Keras 
 Berusaha dengan sungguh-sungguh untuk mencapai tujuan.
-![10006](/img/10006.jpg)
+![10006](/img/assets/0006.jpg)
 
 ## Faktor yang Membentuk Karakter :
 
