@@ -5,7 +5,7 @@ author: Fearbly & Jenyka | Sekbid Kedisiplinan
 date: 2 Juni 2026
 date_iso: 2026-06-2
 excerpt: Sebagai informasi mengenai pendidikan karakter yang sesuai di era sekarang 
-cover: https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/karakter-itu-apasih.jpeg?raw=true
+cover: https://github.com/osissmkn68jkt/osissmkn68jkt.github.io/blob/main/img/covers/karakter-itu-apasih.jpg?raw=true
 featured: True
 ---
 
